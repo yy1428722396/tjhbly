@@ -1,0 +1,23 @@
+<div class="span12">
+	<div class="clearfix">
+		<div class="pull-left classifyDIV pt-10 my1D6597">楼宇经济>>政策法规</div>
+	</div>
+	<div id="zcfgcontent"></div>
+	<div class="pagination center pagination-large pt-20">
+		<image src="images/downjiao.jpg" onclick="add()">
+	</div>
+</div>
+
+<!--右侧代码-->
+<div id="contactus" class="span4"></div>
+
+<script type="text/javascript">
+	$('#contactus').load('contactus.html');
+	var num = 1;
+	function add() {
+		num++;
+		initpage("zcfgcontent", 1,num);
+	}
+
+	initpage("zcfgcontent", 1,num);
+</script>

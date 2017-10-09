@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7 lte7 lte8 lte9" lang="en-US"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8 lte8 lte9" lang="en-US"> <![endif]-->
+<!--[if IE 9 ]><html class="ie ie9 lte9>" lang="en-US"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="zh-CN"><!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>欢迎页 -销售业绩管理系统</title>
+<link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/main.css" rel="stylesheet" type="text/css" media="all" />
+	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	
+	<style type="text/css" media="all">
+	.ui-accordion .ui-accordion-content {
+		padding1: 0;
+	}
+	.yx-main a {
+		text-decoration: none;
+		font-size: 12px;
+		color:#FFFFFF;
+	}
+	.yx-main a:hover {
+		color: #FFFFFF!important;
+	}
+	.yx-main:after {
+		content: "";
+		clear: both;
+		display: table;
+	}
+	.yx-head {
+		background:url(css/images/allback.png);
+		border-bottom: 1px solid #eee;
+		padding: 8px;
+		height:59px;
+
+	}
+	.yx-head #logout {
+		float: right;
+		color: #369;
+	}
+	.yx-head .yx-welcome {
+	}
+	#yx-menu {
+		width: 200px;
+		min-height: 205px;
+		outline: none;
+		border1: 1px solid #FFFFFF;
+		background-color:#007fc8;		
+		font-family:Microsoft Yahei
+	}
+	
+	#yx-menu ul {
+		border1: 1px solid #000000;		
+	}
+	#yx-menu ul>li {
+		line-height: 1.5em;
+	}
+	
+	.yx-menu ul li {
+		border1: 1px solid #000000;		
+	}
+
+	.yx-body-left {
+		float: left;
+		width: 204px;
+		
+	}
+	.yx-body-content {
+		margin-left: 204px;
+		padding: 5px;
+	}
+	.yx-content {
+		width:100%;
+		height: 410px;
+	}
+	.yx-clear {
+		clear: both;
+	}	
+	
+	#yx-menu li a.active {
+		color: #000000; 
+	}
+	.ui-accordion .yx-submenu.ui-accordion-content {
+		margin: 0 0 0 10px;
+		padding: 0;
+		background-color:#FFFFFF;
+	}
+.STYLE4 {
+	font-size: 14px;
+	color: #FFFFFF;
+}
+
+    .STYLE5 {	
+		color: #FFFFFF;
+	}
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body>
+<div class="yx-main">
+	<div class="yx-head">
+	  <table width="100%" height="59" border="0" margin=0>
+        <tr>
+            <td width="22%" rowspan="2" valign="top"><span class="STYLE4">北京翠瑜熙幔商贸有限公司</span></td>
+          <td width="34%"><span class="STYLE4">欢迎使用 - 销售业绩管理系统</span></td>
+          <td width="34%"><div align="right" class="STYLE4"><a href="#">设置</a> | <a href="index.html">退出</a></div></td>
+          <td width="10%" rowspan="2" valign="top"><div align="right" ><img src="css/images/untitled.png" width="301" height="59"></div>            </td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="top">&nbsp;</td>
+        </tr>
+      </table>
+	</div>
+	<div class="yx-body">
+		<div  class="yx-body-left">
+			<div id="yx-menu">
+
+			  <h3 class="STYLE6 STYLE5">核销报单管理</h3>
+			  <ul>
+			  	<li><a href="resource/VerificationAdd.html" target="content">
+				&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;核销报单提交</a></li>
+				<li><a href="resource/VerificationView.html" target="content">
+				&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;核销报单浏览</a></li>
+			  </ul>
+			  <h3 class="STYLE6 STYLE5">美容院管理</h3>
+			  <ul>
+			  	<li><a href="resource/BeautyShopAdd.html" target="content">
+				&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;美容院信息提交</a></li>
+				<li><a href="resource/BeautyShopView.html" target="content">
+				&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;美容院信息浏览</a></li>
+			  </ul>
+			   <h3 class="STYLE6 STYLE5">业务员管理</h3>
+			  <ul>
+			  	<li><a href="resource/SalesmanAdd.html" target="content">
+				&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;业务员信息提交</a></li>
+				<li><a href="resource/SalesmanView.html" target="content">
+				&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;业务员信息浏览</a></li>
+				<li><a href="resource/SalesmanDelView.html" target="content">
+				&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;已删除信息浏览</a></li>
+				<li><a href="resource/SalesmanIntegral.html" target="content">
+				&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;业务员业绩查询</a></li>
+			  </ul>
+			  
+			  <h3 class="STYLE5">业绩管理</h3>
+			  <ul>
+			  	<li><a href="resource/ResultFinalList.html" target="content">
+				&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;业绩结算</a></li>
+				
+			
+			  </ul>
+			  
+			  <h3 class="STYLE5">系统管理</h3>
+			  <ul>
+			  	<li><a href="resource/UsersAdd.html" target="content">
+				&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;账号添加</a></li>
+				<li><a href="resource/UsersList.html" target="content">
+				&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;账号浏览</a></li>
+				<li><a href="resource/ManagementCity.html" target="content">
+				&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;所属城市</a></li>
+			  </ul>
+			</div>
+		</div>
+		<div class="yx-body-content">
+			
+			<iframe src="about:blank" name="content" class="yx-content"></iframe>
+	  </div>
+	</div>
+</div>
+<div class="yx-copyright"> &copy; 2014 版权所有</div>
+</div>
+<div id="dialog" title="确认" class="yx-hide">
+  <div class="yx-dialog-box"><p id="dialog-msg">确定注销？</p></div>
+</div>
+<script type="text/javascript">
+jQuery(function($) {
+	$("#logout").on("click", function(e) {
+		if(!confirm("确定注销？")) {
+			return false;
+		}
+		return true;
+	});
+	
+	
+	$.get("user/userrole", function(json) {
+		var d = json.data;
+		if(d == "error"){
+			window.location = "index.html";
+		}else{
+			if(d == "结算员"){
+				$(".yx-body-left").empty().append('<div class="yx-body-left"><div id="yx-menu"> '
+						   + '<h3 class="STYLE6 STYLE5">美容院管理</h3>'
+						   + '<ul><li><a href="resource/BeautyShopAdd.html" target="content">&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;美容院信息提交</a></li><li><a href="resource/BeautyShopView.html" target="content">&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;美容院信息浏览</a></li></ul>'
+						   + '<h3 class="STYLE6 STYLE5">业务员管理</h3>'
+						   + '<ul><li><a href="resource/SalesmanAdd.html" target="content">&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;业务员信息提交</a></li><li><a href="resource/SalesmanView.html" target="content">&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;业务员信息浏览</a></li><li><a href="resource/SalesmanIntegral.html" target="content">&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;业务员业绩查询</a></li></ul>'
+						+ '<h3 class="STYLE5">业绩管理</h3>'
+						+ '<ul><li><a href="resource/ResultFinalList.html" target="content">&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;业绩结算</a></li></ul>'
+						+ '</div></div>');
+			}else if(d == '报单员'){
+				$(".yx-body-left").empty().append('<div class="yx-body-left"><div id="yx-menu">'
+						   + '<h3 class="STYLE6 STYLE5">核销报单管理</h3>'
+						   + '<ul><li><a href="resource/VerificationAdd.html" target="content">&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;核销报单提交</a></li><li><a href="resource/VerificationView.html" target="content">&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;核销报单浏览</a></li></ul>'
+						   + '<h3 class="STYLE6 STYLE5">美容院管理</h3>'
+						   + '<ul><li><a href="resource/BeautyShopAdd.html" target="content">&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;美容院信息提交</a></li><li><a href="resource/BeautyShopView.html" target="content">&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;美容院信息浏览</a></li></ul>'
+						   + '<h3 class="STYLE6 STYLE5">业务员管理</h3>'
+						   + '<ul><li><a href="resource/SalesmanAdd.html" target="content">&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;业务员信息提交</a></li><li><a href="resource/SalesmanView.html" target="content">&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;业务员信息浏览</a></li><li><a href="resource/SalesmanIntegral.html" target="content">&nbsp;&nbsp;<img src="css/images/Mask.jpg" width="6" height="6">&nbsp;&nbsp;业务员业绩查询</a></li></ul>'
+						   + '</div></div>');
+				
+			}
+			
+			$("#yx-menu,.yx-submenu").accordion({
+				collapsible: true,
+				active: 0,
+				heightStyle: "content"
+			});
+
+			var $activeMenu = null;
+			$("#yx-menu").find("li a").on("click", function(e) {
+				if($activeMenu !== null) {
+					$activeMenu.removeClass("active");
+				}
+				$activeMenu = $(this);
+				$activeMenu.addClass("active");
+			});
+		}
+	});
+	
+});
+
+var interval = setInterval ("schedule_check()", 600000);
+function schedule_check()
+{
+	$.get("verification/schedule_check", function(json){
+		if(!json){
+			var r=confirm("是否要手动清零上月业绩？");
+			  if (r==true)
+			    {
+				  $.post("verification/monthSchedule", {},function(json){
+					 
+				  });
+			    }
+		}else{
+			window.clearInterval(interval);
+		}
+	});
+}
+</script>
+</body>
+</html>

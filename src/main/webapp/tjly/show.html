@@ -1,0 +1,108 @@
+<div class="span16">
+	<div class="label-div b-30 border-all pt-5 t-20"
+		style="position: relative; padding-left: 0;">
+		<div class="mmright2 t-30">
+			<img id="buildimg" src="images/ly.png" />
+		</div>
+		<div class="mmleft t-30">
+			<h5><font id="buildname"></font></h5>
+			<div class="info" style="height:260px;">
+				<table style="width:100%;height:100%">
+					<tr>
+						<td style="width:20%;text-align:right;vertical-align:top;padding-top:10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;楼层总数：</td>
+						<td style="width:80%;vertical-align:top;padding-top:10px;padding-right:20px;"><span id="floors"></span></td>
+					</tr>
+					<tr>
+						<td style="width:20%;text-align:right;vertical-align:top;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;详细地址：</td>
+						<td style="width:80%;vertical-align:top;padding-right:20px;"><span id="address"></span></td>
+					</tr>
+					<tr>
+						<td style="width:20%;text-align:right;vertical-align:top;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所属街道：</td>
+						<td style="width:80%;vertical-align:top;padding-right:20px;"><span id="street"></span></td>
+					</tr>
+					<tr>
+						<td style="width:20%;text-align:right;vertical-align:top;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所属商圈：</td>
+						<td style="width:80%;vertical-align:top;padding-right:20px;"><span id="cbd"></span></td>
+					</tr>
+					<tr>
+						<td style="width:20%;text-align:right;vertical-align:top;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;物业公司：</td>
+						<td style="width:80%;vertical-align:top;padding-right:20px;"><span id="propertyname"></span></td>
+					</tr>
+					<tr>
+						<td style="width:20%;text-align:right;vertical-align:top;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系人：</td>
+						<td style="width:80%;vertical-align:top;padding-right:20px;"><span id="touchman"></span></td>
+					</tr>
+					<tr>
+						<td style="width:20%;text-align:right;vertical-align:top;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系电话：</td>
+						<td style="width:80%;vertical-align:top;padding-right:20px;"><span id="telphone"></span></td>
+					</tr>
+					<tr>
+						<td style="width:20%;text-align:right;vertical-align:top;padding-bottom:10px;">VR链接地址：</td>
+						<td style="width:80%;vertical-align:top;padding-bottom:10px;padding-right:20px;"><span id="vrurl"></span></td>
+					</tr>
+					
+				</table>
+				
+			</div>
+		</div>
+		<!--警告：切勿删除-->
+		<!--[if IE 6]> <a class="follow-btn ie6png mmmzw"></a><![endif]-->
+		<div class="mmclear"></div>
+		<div class="mmcontent t-20" style="padding-left:10px;">
+			<div style="margin: 40px 0 10px 10px;"><h5>相关信息</h5></div>
+			<table class="mytable" cellpadding="0" cellspacing="0">
+				<tr style="text-align:center;">
+					<th>车位数</th>
+					<th>建筑面积</th>
+					<th>空置面积</th>
+					<th>可出租面积</th>
+					<th>建成年度</th>
+				</tr>
+				<tr>
+					<td id="carno"></td>
+					<td id="area"></td>
+					<td id="emptyarea"></td>
+					<td id="rentarea"></td>
+					<td id="buildyear"></td>
+				</tr>
+			</table>
+			<br /> <span class="pc157AC0">入驻企业数量：<font id="unitno"></font></span>
+			<br /> <span class="pc157AC0">就业人群数量：<font id="workmanno"></font></span>
+		</div>
+	</div>
+</div>
+<script>
+$
+.get(
+		"../build_base/build_detail",
+		{
+			buildid:lyid
+		},
+		function(json) {
+			if (json != null && json != "") {
+				$('#buildname').empty().append(json.buildname);
+				$('#floors').empty().append(json.totalfloor);
+				$('#address').empty().append(json.address);
+				$('#street').empty().append(json.street);
+				$('#cbd').empty().append(json.cbd);
+				$('#propertyname').empty().append(json.propertyname);
+				$('#touchman').empty().append(json.toucheman);
+				$('#telphone').empty().append(json.propertytel);
+				var url = json.vrurl;
+				if(url.indexOf("http://") != 0)
+					url = "http://" + url;
+				$('#vrurl').empty().append('<a href="' + url + '" target="blank">' + url + '</a>');
+				
+				$('#carno').empty().append(json.carno);
+				$('#area').empty().append(json.buildarea);
+				$('#buildyear').empty().append(json.buildyear);
+				$('#emptyarea').empty().append(json.emptyarea);
+				$('#rentarea').empty().append(json.rentarea);
+				
+				$('#unitno').empty().append(json.unitno);
+				$('#workmanno').empty().append(json.workmannum);
+				
+				$('#buildimg').attr("src","../attached/" + lyid + "/" + json.imgurl);
+			}
+		});
+</script>

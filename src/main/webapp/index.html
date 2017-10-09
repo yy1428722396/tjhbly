@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="zh-CN" /> 
+<title>天津河北区楼宇经济</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="stylesheet" type="text/css" href="style/basic.css"/>
+<link rel="stylesheet" type="text/css" href="style/cxzx_list.css"/>
+<link rel="stylesheet" type="text/css" href="style/zx_info.css"/>
+<link rel="stylesheet" type="text/css" href="style/xmdata.css"/>
+
+</head>
+<body>
+	<script type="text/javascript" src="js/borsertocss.js"> </script><!-- 判断在IE9以下浏览器中根据像素的不同而设置的样式 -->	
+    
+   
+  <!--头部代码开始-->
+
+  <div class="navbar navbar-fixed-top" style="_position: relative;_z-index: 10000;">
+		<div class="navbar-inner">
+			<div class="container">
+			
+				<div class="nav-collapse">
+					<ul class="nav" id="navID">
+                    
+                        <li class="active"><a href="javascript:void(0)" onclick="retriveBody(0)"><b>首页</b></a></li>
+						<li class=""><a href="javascript:void(0)" onclick="retriveBody(1)"><b>政策法规</b></a></li>
+						<li class=""><a href="javascript:void(0)" onclick="retriveBody(2)"><b>楼宇信息</b></a></li>
+						<li class=""><a href="javascript:void(0)" onclick="retriveBody(3)"><b>楼宇经济</b></a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+				<ul class="nav pull-right login-none nav-tips">
+						<li class="l10"><a href="javascript:void(0)" onclick="login()">登录</a></li>
+						<li class="l10"><a href="tjlyxtgl/main.html">进入管理系统</a></li>
+		         </ul>
+	            <ul class="nav pull-right pl-20 myul">
+                    
+                </ul>
+			</div>
+		</div>
+	</div>
+	<div class="top-div">
+	   
+    </div>
+<!--头部代码结束-->
+
+
+	<div class="hr tp-div-nexthr" style="margin-top: 0;margin-bottom: 0;padding: 0;"></div>
+	<div class="container pb-15">
+		<div id="bodycontent" class="row">
+			
+		</div>
+	</div>
+
+<!--右侧代码结束-->
+ 
+<div class="footer">
+	<div class="clearfix" style="background:#EDEDED;">
+		<ul class="about-ul" >
+            <li>客服电话 400-100-8888</li>
+            <li><span>|</span></li>
+            <li><a title="广告投放" href="javascript:;" class="fc666" target="_blank">广告投放</a></li>
+			<div class="clear"></div>
+		</ul>
+		<p>Copyright ©2013　　备8888888888号</p>
+	</div>
+</div> 
+ 
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bioV4.min.js"></script>
+<script type="text/javascript" src="js/jquery.lazyload.mini.js"></script>
+<script type="text/javascript" src="js/function.js"></script>
+<script type="text/javascript" src="js/list.js"></script>
+<!--[if IE 6]>
+<script type="text/javascript" src="js/DD_belatedPNG.js?v=20130220"></script>
+<script type="text/javascript">
+DD_belatedPNG.fix('img,.ie6png');
+</script>
+<![endif]--> 
+<script type="text/javascript">
+	//回到顶部
+	backToTop('body');
+	
+	function retriveBody(t){
+		$(".nav li.active").removeClass("active")
+		$(this).addClass("active");
+	
+		if(t == '0'){
+			$('#bodycontent').load('view/gzdt.html');
+		}else if(t == '1'){
+			$('#bodycontent').load('view/zcfg.html');
+		}else if(t == '2'){
+			$('#bodycontent').load('view/lylist.html');
+		}else if(t == '3'){
+			$('#bodycontent').load('view/lyjjindex.html');
+		}
+	}
+
+	function login(){
+
+	}
+
+	function showinfo(t){
+		$('#bodycontent').load('view/info.html?id=' + t.id);
+	}
+
+	function lyinfo(){
+		$('#bodycontent').load('view/show.html');
+	}
+
+	function showjj(){
+		$('#bodycontent').load('view/lyjjtj.html');
+	}
+
+	$(document).ready(function(){
+		$('#bodycontent').load('view/gzdt.html');
+		var flag = 0;
+		$(".friend-link").hide();
+		//Down
+		$("#zk_btn").click(function(){
+			if(flag == 0){
+				$(".friend-link").slideDown(400); 
+				$(this).removeClass('down-class');
+				$(this).addClass('up-class');
+				$("html,body").animate({scrollTop:($(".friend-link").offset().top+2000)},600);
+				flag = 1;
+			}else{
+				$(".friend-link").slideUp(400);  
+				$(this).removeClass('up-class');
+				$(this).addClass('down-class'); 
+				flag = 0;
+			}
+		});
+	});
+</script>    
+</body>
+</html>

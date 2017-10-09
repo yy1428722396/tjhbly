@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:cxf="http://cxf.apache.org/core" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+	    http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://cxf.apache.org/jaxws
+		http://cxf.apache.org/schemas/jaxws.xsd 
+		http://cxf.apache.org/core 
+		http://cxf.apache.org/schemas/core.xsd
+		http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+	<context:property-placeholder location="classpath:jdbc.properties" />
+
+
+
+	<!-- 引入由spring管理jdbc连接数据库的配置文件 -->
+	<import resource="classpath:applicationContext-jdbc.xml" />
+	<!-- <import resource="classpath:applicationContext-shiro.xml" /> <import 
+		resource="classpath:beans.xml" /> <context:component-scan base-package="com.service.impl" 
+		/> -->
+
+	<!-- 在com。controller包下查找所有的controller类 -->
+	
+	<task:scheduled-tasks>
+		<task:scheduled ref="taskJob" method="count" cron="10 0 0 1 * ?" />
+	</task:scheduled-tasks>
+</beans>
