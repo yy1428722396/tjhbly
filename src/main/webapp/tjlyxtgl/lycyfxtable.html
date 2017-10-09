@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="js/bootstrap/css/bootstrap.css">
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body, ul, li {
+	margin: 0;
+	padding: 0;
+}
+
+#outer {
+	width: 800px;
+	margin: 10px auto;
+}
+
+#tab {
+	overflow: hidden;
+	zoom: 1;
+}
+
+#tab li {
+	float: left;
+	color: #fff;
+	height: 120px;
+	cursor: pointer;
+	line-height: 30px;
+	list-style-type: none;
+	padding: 10px 20px 0 20px;
+}
+
+#tab li image {
+	height: 50px;
+	width: 50px;
+}
+
+#tab li.current {
+	color: #000;
+	background: #00FFB3;
+}
+
+#content {
+	border: 1px solid #000;
+	border-top-width: 0;
+}
+
+#content ul {
+	line-height: 25px;
+	display: none;
+	margin: 0 30px;
+	padding: 10px 0;
+}
+
+.chartcss {
+	width: 600px;
+	height: 500px;
+}
+</style>
+</head>
+
+
+<body>
+
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">报表统计</a></li>
+			<li><a href="#">楼宇产业分析</a></li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+
+		<ul class="seachform">
+
+			<li style="width: 400px;"><label>统计年月</label><input
+				id="s_subway1" type="text" class="scinput" style="width: 100px;" /></li>
+			<li style="width: 400px;"><label style="padding-left: 21px;">楼宇名称</label><input
+				id="s_station1" type="text" class="scinput" style="width:100px;"/></li>
+			<li style="float: right;"><label>&nbsp;</label><input name=""
+				type="button" class="btn btn-info" value="查询" onclick="search()" /></li>
+
+		</ul>
+
+
+	<div id="outer">
+		<ul id="tab">
+			<li class="current"><image src="images/tab1.png" style="width:100px;height:120px;"/></li>
+			<li><image src="images/tab2.png" style="width:100px;"/></li>
+			<li><image src="images/tab3.png" style="width:100px;"/></li>
+			<li><image src="images/tab4.png" style="width:100px;"/></li>
+		</ul>
+		<div id="content">
+			<ul style="display:block;">
+			   <div id="chart1" class="chartcss">
+
+			   </div>
+			</ul>
+			<ul>
+				<div id="chart2" class="chartcss">
+				</div>
+			</ul>
+			<ul>
+				<div id="chart3" class="chartcss">
+				</div>
+			</ul>
+			<ul>
+				<div id="chart4" class="chartcss">
+				</div>
+			 </ul>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/echarts.common.min.js"></script>
+<script>
+	function search() {
+		mmg.load({
+			subway1 : $("#s_subway1").val(),
+			subway2 : $("#s_subway2").val(),
+			hotel11 : $("#s_hotel11").val(),
+			hotel12 : $("#s_hotel12").val(),
+			station1 : $("#s_station1").val(),
+			station2 : $("#s_station1").val(),
+			restaurant1 : $("#s_restaurant1").val(),
+			restaurant2 : $("#s_restaurant2").val()
+		});
+	}
+	
+	var myChart1 = echarts.init(document.getElementById("chart1"));
+	var myChart2 = echarts.init(document.getElementById("chart2"));
+	var myChart3 = echarts.init(document.getElementById("chart3"));
+	var myChart4 = echarts.init(document.getElementById("chart4"));
+
+	option1 = {
+title : {
+},
+tooltip : {
+    trigger: 'axis'
+},
+legend: {
+    data:['意向','预购','成交']
+},
+toolbox: {
+    show : true,
+    feature : {
+        mark : {show: true},
+        dataView : {show: true, readOnly: false},
+        magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+        restore : {show: true},
+        saveAsImage : {show: true}
+    }
+},
+calculable : true,
+xAxis : [
+    {
+        type : 'category',
+        boundaryGap : false,
+        data : ['周一','周二','周三','周四','周五','周六','周日']
+    }
+],
+yAxis : [
+    {
+        type : 'value'
+    }
+],
+series : [
+    {
+        name:'成交',
+        type:'line',
+        smooth:true,
+        itemStyle: {normal: {areaStyle: {type: 'default'}}},
+        data:[10, 12, 21, 54, 260, 830, 710]
+    }
+]
+};
+
+option2 = {
+title : {
+   
+},
+tooltip : {
+    trigger: 'axis'
+},
+legend: {
+    data:['蒸发量','降水量']
+},
+toolbox: {
+    show : true,
+    feature : {
+        mark : {show: true},
+        dataView : {show: true, readOnly: false},
+        magicType : {show: true, type: ['line', 'bar']},
+        restore : {show: true},
+        saveAsImage : {show: true}
+    }
+},
+calculable : true,
+xAxis : [
+    {
+        type : 'category',
+        data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+    }
+],
+yAxis : [
+    {
+        type : 'value'
+    }
+],
+series : [
+   
+    {
+        name:'降水量',
+        type:'bar',
+        data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+        markPoint : {
+            data : [
+                {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183, symbolSize:18},
+                {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+            ]
+        },
+        markLine : {
+            data : [
+                {type : 'average', name : '平均值'}
+            ]
+        }
+    }
+]
+};
+                
+option3 = {
+title : {
+},
+tooltip : {
+    trigger: 'axis'
+},
+legend: {
+    data:[
+        'ECharts1 - 2k数据','ECharts1 - 2w数据','ECharts1 - 20w数据','',
+        'ECharts2 - 2k数据','ECharts2 - 2w数据','ECharts2 - 20w数据'
+    ]
+},
+toolbox: {
+    show : true,
+    feature : {
+        mark : {show: true},
+        dataView : {show: true, readOnly: false},
+        magicType : {show: true, type: ['line', 'bar']},
+        restore : {show: true},
+        saveAsImage : {show: true}
+    }
+},
+calculable : true,
+grid: {y: 70, y2:30, x2:20},
+xAxis : [
+    {
+        type : 'category',
+        data : ['Line','Bar','Scatter','K','Map']
+    },
+    {
+        type : 'category',
+        axisLine: {show:false},
+        axisTick: {show:false},
+        axisLabel: {show:false},
+        splitArea: {show:false},
+        splitLine: {show:false},
+        data : ['Line','Bar','Scatter','K','Map']
+    }
+],
+yAxis : [
+    {
+        type : 'value',
+        axisLabel:{formatter:'{value} ms'}
+    }
+],
+series : [
+    {
+        name:'ECharts2 - 2k数据',
+        type:'bar',
+        itemStyle: {normal: {color:'rgba(193,35,43,1)', label:{show:true}}},
+        data:[40,155,95,75, 0]
+    },
+    {
+        name:'ECharts1 - 2k数据',
+        type:'bar',
+        xAxisIndex:1,
+        itemStyle: {normal: {color:'rgba(193,35,43,0.5)', label:{show:true,formatter:function(p){return p.value > 0 ? (p.value +'\n'):'';}}}},
+        data:[96,224,164,124,0]
+    }
+]
+};
+                
+	myChart1.setOption(option1);
+	myChart2.setOption(option2);
+	myChart3.setOption(option3);
+	myChart4.setOption(option2);
+
+$(function(){
+    window.onload = function()
+    {
+        var $li = $('#tab li');
+        var $ul = $('#content ul');
+        $li.click(function(){
+            $li.removeClass();
+            var $t = $(this).index();
+            $(this).addClass('current');
+            $ul.css('display','none');
+            $ul.eq($t).css('display','block');
+        })
+    }
+
+	
+});
+</script>
+</html>

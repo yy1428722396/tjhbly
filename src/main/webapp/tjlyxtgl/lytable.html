@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="js/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="js/mmgrid/mmGrid.css">
+		<link rel="stylesheet"
+			href="js/mmgrid/theme/bootstrap/mmGrid-bootstrap.css">
+			<link rel="stylesheet" href="js/mmgrid/mmPaginator.css">
+				<link rel="stylesheet"
+					href="js/mmgrid/theme/bootstrap/mmPaginator-bootstrap.css">
+</head>
+
+
+<body>
+
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">基础信息管理</a></li>
+			<li><a href="#">楼宇基础信息管理</a></li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+
+		<ul class="seachform">
+
+			<li><label>楼宇名称</label><input id="s_name" type="text"
+				class="scinput" /></li>
+			<li><label>产权性质</label>
+				<div>
+					<select id="s_right" class="span1">
+						<option value="0">全部</option>
+						<option value="单产权">单产权</option>
+						<option value="多产权">多产权</option>
+					</select>
+				</div></li>
+
+			<li><label>楼宇级别</label>
+				<div>
+					<select id="s_class" class="span1">
+						<option value="0">全部</option>
+						<option value="国际甲级">国际甲级</option>
+						<option value="甲级">甲级</option>
+						<option value="乙级">乙级</option>
+						<option value="丙级">丙级</option>
+						<option value="其他">其他</option>
+					</select>
+				</div></li>
+
+			<li><label>楼宇类别</label>
+				<div>
+					<select id="s_type" class="span1">
+						<option value="0">全部</option>
+						<option value="写字楼">写字楼</option>
+						<option value="城市综合体">城市综合体</option>
+						<option value="商住两用楼">商住两用楼</option>
+						<option value="其他">其他</option>
+					</select>
+				</div></li>
+
+			<li style="float: right;"><label>&nbsp;</label><input name=""
+				type="button" class="btn btn-info" value="查询" onclick="search()" /></li>
+
+		</ul>
+
+		<div class="tools">
+			<ul class="toolbar">
+				<li class="click"><a href="lyform.html" target="rightFrame"
+					style="text-decoration: none;"><span><img
+							src="images/t01.png" /></span>添加</a></li>
+				<li class="click"><a href="javascript:void(0)"
+					style="text-decoration: none;" id="edit"><span><img
+							src="images/t02.png" /></span>修改</a></li>
+				<li class="click"><a href="javascript:void(0)"
+					style="text-decoration: none;" id="imgupload"><span><img
+							src="images/t03.png" /></span>图片上传</a></li>
+				<li class="click"><a href="javascript:void(0)"
+					style="text-decoration: none;" id="del"><span><img
+							src="images/t03.png" /></span>删除</a></li>
+				<li class="click"><a href="javascript:void(0)"
+					style="text-decoration: none;" id="exp"><span><img
+							src="images/f03.png" /></span>模版导出</a></li>
+			</ul>
+			<br>
+		</div>
+
+		<div>
+			<table id="mmg" class="mmg">
+				<tr>
+					<th rowspan="" colspan=""></th>
+				</tr>
+			</table>
+			<div id="pg" style="text-align: right;"></div>
+		</div>
+
+		<div class="tip" style="width:600px;height:500px;">
+			<div class="tiptop">
+				<span>上传图片</span><a></a>
+			</div>
+
+			<div class="tipinfo" style="width:400px;height:400px;">
+				<div id="preview" style="width:300px;height:300px;"></div>
+				<input id="imgfile" type="file" onchange="preview(this)" />
+			</div>
+
+			<div class="tipbtn" style="margin-top:-50px;padding-left:60px;">
+				<input id="sureBtn" type="button" class="btn" value="确定" />&nbsp; <input
+					name="" type="button" class="btn" value="取消" onclick="cancel()" />
+			</div>
+
+		</div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/ajaxfileupload.js"></script>
+<script src="js/mmgrid/mmGrid.js"></script>
+<script src="js/mmgrid/mmPaginator.js"></script>
+
+<script>
+	var fixed2 = function(val) {
+		if (typeof val != 'number') {
+			return '';
+		}
+		return val.toFixed(2);
+	}
+	var cols = [ {
+		title : '楼宇名称',
+		name : 'buildname',
+		width : 100,
+		align : 'center',
+		sortable : false,
+		type : 'number'
+	}, {
+		title : '参考租金范围',
+		name : 'rent',
+		width : 100,
+		align : 'center',
+		sortable : true,
+		type : 'number',
+		renderer : function(val) {
+			var value = val + '元/月/平方米';
+			return value;
+		}
+	}, {
+		title : '可出租面积',
+		name : 'rentarea',
+		width : 60,
+		align : 'center',
+		sortable : true,
+		type : 'number',
+		renderer : function(val) {
+			var value = val + '平方米';
+			return value;
+		}
+	}, {
+		title : '当前空置面积',
+		name : 'emptyarea',
+		width : 60,
+		align : 'center',
+		sortable : true,
+		type : 'number',
+		renderer : function(val) {
+			var value = val + '平方米';
+			return value;
+		}
+	}, {
+		title : '物业公司名称',
+		name : 'propertyname',
+		width : 100,
+		align : 'center',
+		sortable : false
+	}, {
+		title : '物业联系方式',
+		name : 'toucheman',
+		width : 100,
+		align : 'center',
+		sortable : false
+	} ];
+
+	var mmg = $('.mmg').mmGrid({
+		height : 473,
+		width : '99%',
+		indexCol : false,
+		cols : cols,
+		url : '../build_base/list',
+		method : 'get',
+		root : 'data',
+		multiSelect : false,
+		checkCol : false,
+		fullWidthRows : true,
+		nowrap : true,
+		plugins : [ $('#pg').mmPaginator({}) ]
+	});
+
+	$("#imgupload").click(function() {
+		var rows = mmg.selectedRows();
+		if (rows.length == 0) {
+			alert("请选择需要上传图片的记录");
+			return;
+		} else {
+			$('.tip').show();
+			$.get("../build_base/img_get", {
+				buildid : rows[0].id,
+				type:1
+			}, function(json) {
+				var imgurl = json.data[0].imgurl;
+				$('#imgfile').attr('value','');
+				$('#preview').empty().append('<img src="../attached/' + rows[0].id + '/' + imgurl + '" />');
+			});
+		}
+	});
+	
+	$("#edit").click(function() {
+		var rows = mmg.selectedRows();
+		if (rows.length == 0) {
+			alert("请选择需要编辑的记录");
+			return;
+		} else {
+			window.location = "lyform.html?id=" + rows[0].id;
+
+		}
+	});
+
+	$("#del").click(function() {
+		var rows = mmg.selectedRows();
+		if (rows.length == 0) {
+			alert("请选择需要删除的记录");
+			return;
+		} else {
+			var r = confirm("您确定要删除该条记录吗？");
+			if (r) {
+				$.post("../build_base/delete", {
+					id : rows[0].id
+				}, function(json) {
+					if (json) {
+						alert("删除成功！");
+						search();
+					} else
+						alert("操作失败");
+				});
+			}
+
+		}
+	});
+
+	$("#exp").click(function() {
+
+	});
+
+	function search() {
+		mmg.load({
+			name : $("#s_name").val(),
+			type : $("#s_type").val(),
+			classValue : $("#s_class").val(),
+			right : $("#s_right").val()
+		});
+	}
+	
+	$('.tiptop a').click(function() {
+		cancel();
+	});
+	function cancel() {
+		$('.tip').hide();
+		$('#preview').empty();
+	}
+	
+	$('#sureBtn').click(function(){
+		var rows = mmg.selectedRows();
+		var arrId = [];
+		arrId[0] = 'imgfile';
+		$.ajaxFileUpload({
+			url : "../build_base/uploadimg",
+			secureuri : false,
+			dataType : 'json',
+			fileElementId : arrId,
+			data : {
+				buildid : rows[0].id,
+				type:1
+			},
+			success : function(msg) {
+				alert("图片上传成功！");
+				cancel();
+			},
+			error : function(msg) {
+				alert("上传失败，失败原因:可能是您上传的图片超过了2M!");
+			}
+		});
+	});
+
+	function preview(file) {
+	    var prevDiv = document.getElementById('preview');
+	    if (file.files && file.files[0]) {
+	      var reader = new FileReader();
+	      reader.onload = function(evt) {
+	        prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
+	      }
+	      reader.readAsDataURL(file.files[0]);
+	    } else {
+	      prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+	    }
+	  }
+</script>
+</html>

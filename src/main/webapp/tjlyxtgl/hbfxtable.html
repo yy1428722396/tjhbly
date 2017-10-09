@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="js/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="js/mmgrid/mmGrid.css">
+		<link rel="stylesheet"
+			href="js/mmgrid/theme/bootstrap/mmGrid-bootstrap.css">
+			<link rel="stylesheet" href="js/mmgrid/mmPaginator.css">
+				<link rel="stylesheet"
+					href="js/mmgrid/theme/bootstrap/mmPaginator-bootstrap.css">
+</head>
+
+
+<body>
+
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">报表统计</a></li>
+			<li><a href="#">全区基本情况</a></li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+
+		<ul class="seachform">
+
+			<li style="width: 400px;"><label>统计年月</label><input
+				id="s_countdate" type="text" class="scinput" style="width:100px;" /></li>
+			
+			<li style="float: right;"><label>&nbsp;</label><input name=""
+				type="button" class="btn btn-info" value="查询" onclick="search()" /></li>
+
+		</ul>
+
+
+		<div>
+			<table id="mmg" class="mmg">
+				<tr>
+					<th rowspan="" colspan=""></th>
+				</tr>
+			</table>
+			<div id="pg" style="text-align: right;"></div>
+		</div>
+
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/mmgrid/mmGrid.js"></script>
+<script src="js/mmgrid/mmPaginator.js"></script>
+
+<script>
+	var fixed2 = function(val) {
+		if (typeof val != 'number') {
+			return '';
+		}
+		return val.toFixed(2);
+	}
+	var cols = [{
+		title : '统计年月',
+		name : 'countmonth',
+		width : 100,
+		align : 'center',
+		sortable : false,
+		type : 'number'
+	}, {
+		title : '楼宇个数',
+		name : 'buildnum',
+		width : 100,
+		align : 'center',
+		sortable : false,
+		type : 'number'
+	}, {
+		title : '入驻企业总数',
+		name : 'unitnum',
+		width : 100,
+		align : 'center',
+		sortable : false,
+		type : 'number'
+	}, {
+		title : '本月新净增企业数量',
+		name : 'incrunitnum',
+		width : 60,
+		align : 'center',
+		sortable : false,
+		type : 'number'
+	}, {
+		title : '从业人数总数',
+		name : 'workmannum',
+		width : 30,
+		align : 'center',
+		sortable : true,
+		type : 'number'
+	}, {
+		title : '本月新净增从业人数',
+		name : 'incrworkmannum',
+		width : 30,
+		align : 'center',
+		sortable : true,
+		type : 'number'
+	}, {
+		title : '累计纳税总额',
+		name : 'restaurant',
+		width : 60,
+		align : 'center',
+		sortable : false,
+		type : 'number'
+	}, {
+		title : '本月纳税总额',
+		name : 'taxnum',
+		width : 100,
+		align : 'center',
+		sortable : false,
+		type : 'number'
+	}, {
+		title : '可出租面积',
+		name : 'emptyarea',
+		width : 30,
+		align : 'center',
+		sortable : true,
+		type : 'number'
+	} , {
+		title : '实际出租面积',
+		name : 'rentarea',
+		width : 30,
+		align : 'center',
+		sortable : true,
+		type : 'number'
+	} , {
+		title : '本月新净增出租面积',
+		name : 'incrrentarea',
+		width : 30,
+		align : 'center',
+		sortable : true,
+		type : 'number'
+	} , {
+		title : '楼宇空置率',
+		name : 'emptyrate',
+		width : 30,
+		align : 'center',
+		sortable : true,
+		type : 'number'
+	} ];
+
+	var mmg = $('.mmg').mmGrid({
+		height : 473,
+		width : '99%',
+		indexCol : false,
+		cols : cols,
+		url: '../month_count/tjhb_basis',
+		method : 'get',
+		root : 'data',
+		multiSelect : false,
+		checkCol : false,
+		fullWidthRows : true,
+		nowrap : true,
+		plugins : [ $('#pg').mmPaginator({}) ]
+	});
+
+	
+	
+	function search() {
+		mmg.load({
+			countdate : $("#s_countdate").val()
+		});
+	}
+</script>
+</html>

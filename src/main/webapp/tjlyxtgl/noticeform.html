@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="js/bootstrap/css/bootstrap.css">
+</head>
+
+<body>
+
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">综合信息</a></li>
+			<li><a href="#">通知公告</a></li>
+		</ul>
+	</div>
+
+	<div class="formbody">
+
+
+		<div id="usual1" class="usual">
+
+
+			<div id="tab1" class="tabson">
+
+
+				<ul class="forminfo">
+					<input type="hidden" id="editid"></input>
+
+					<li><label>名称<b>*</b></label><input id="title" name=""
+						type="text" class="dfinput" style="width: 300px" /></li>
+					<li><label>内容<b>*</b></label> <textarea id="content"
+							name="content" style="width: 700px; height: 250px;"></textarea></li>
+					<li>
+						<div>
+							<label>&nbsp;</label><input id="submitBtn" type="button"
+								class="btn btn-info" value="提交" /> <label>&nbsp;</label><label>&nbsp;</label><input
+								name="" type="button" class="btn btn-info" value="取消" />
+						</div>
+					</li>
+				</ul>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+
+</body>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
+
+<script>
+	var url = window.location + "";
+	var id = "";
+	if (url.indexOf("?id=") >= 0) {
+		id = url.substring(url.indexOf("?id=") + 4, url.length);
+	}
+	if (id != null && id != "") {
+		$.get("../news/info", {
+			id : id
+		}, function(json) {
+			$('#editid').prop('value', json.id);
+			$('#title').prop('value', json.title);
+			$('#content').prop('value', json.content);
+		});
+	}
+
+	$('#submitBtn').click(function() {
+		var id = $('#editid').val();
+		if (id == null || id == "") {
+			$.post("../news/add", {
+				type : 3,
+				title : $("#title").val(),
+				content : $("#content").val()
+			}, function(json) {
+				alert("添加成功！");
+				window.history.go(-1);
+			});
+		} else {
+
+			$.post("../news/edit", {
+				id : id,
+				type : 3,
+				title : $("#title").val(),
+				content : $("#content").val()
+			}, function(json) {
+				alert("修改成功！");
+				window.history.go(-1);
+			});
+		}
+	});
+</script>
+</html>

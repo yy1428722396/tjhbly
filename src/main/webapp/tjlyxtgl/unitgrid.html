@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="js/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="js/mmgrid/mmGrid.css">
+		<link rel="stylesheet"
+			href="js/mmgrid/theme/bootstrap/mmGrid-bootstrap.css">
+			<link rel="stylesheet" href="js/mmgrid/mmPaginator.css">
+				<link rel="stylesheet"
+					href="js/mmgrid/theme/bootstrap/mmPaginator-bootstrap.css">
+</head>
+
+
+<body>
+
+	<div class="rightinfo">
+
+		<ul class="seachform">
+
+			<li><label>运行单位名称</label><input id="s_name" type="text"
+				class="scinput" /></li>
+
+			<li style="float: right;"><label>&nbsp;</label><input name=""
+				type="button" class="btn btn-info" value="查询" onclick="search()" /></li>
+
+		</ul>
+
+
+		<div>
+			<table id="mmg" class="mmg">
+				<tr>
+					<th rowspan="" colspan=""></th>
+				</tr>
+			</table>
+			<div id="pg" style="text-align: right;"></div>
+		</div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/mmgrid/mmGrid.js"></script>
+<script src="js/mmgrid/mmPaginator.js"></script>
+
+<script>
+	var cols = [ {
+		title : '运行单位名称',
+		name : 'unitname',
+		width : 100,
+		align : 'center',
+		sortable : false,
+		type : 'number'
+	},  {
+		title : '单位地址',
+		name : 'address',
+		width : 60,
+		align : 'center'
+	},{
+		title : '联系人',
+		name : 'touchman',
+		width : 60,
+		align : 'center'
+	}, {
+		title : '联系电话',
+		name : 'telphone',
+		width : 100,
+		align : 'center',
+		sortable : false
+	},
+	{title:'操作',name:'',width:200,align:'center',lockWidth:true,lockDisplay: true,renderer: function(val){
+        return '<button type="button" class="btn edit">选择</button>';
+    }}];
+
+	var mmg = $('.mmg').mmGrid({
+		height : 473,
+		width : '99%',
+		indexCol : false,
+		cols : cols,
+		url : '../rununit/list',
+		method : 'get',
+		root : 'data',
+		multiSelect : false,
+		checkCol : false,
+		fullWidthRows : true,
+		nowrap : true,
+		plugins : [ $('#pg').mmPaginator({}) ]
+	});
+
+	function search() {
+		mmg.load({
+			unitname : $("#s_name").val()
+		});
+	}
+	
+	mmg.on('cellSelected', function(e, item, rowIndex, colIndex){
+	     if($(e.target).is('.edit')){
+	         e.stopPropagation();
+	         var returnValue = item.id + "," + item.unitname;
+	         window.opener.transferValue(returnValue);
+	         window.close();
+	     }
+	 });
+</script>
+</html>
