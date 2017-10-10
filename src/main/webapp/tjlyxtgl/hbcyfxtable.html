@@ -6,6 +6,7 @@
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 
 <link rel="stylesheet" href="js/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="css/jquery.monthpicker.css">
 	<style>
 * {
 	margin: 0;
@@ -81,8 +82,8 @@ body, ul, li {
 
 		<ul class="seachform">
 
-			<li style="width: 400px;"><label>统计年月</label><input
-				id="s_month" type="text" class="scinput" style="width: 100px;" /></li>
+			<li style="width: 400px;"><label>统计年月</label><input id="s_month"
+				type="text" class="scinput" style="width: 100px;" /></li>
 
 			<li style="float: right;"><label>&nbsp;</label><input name=""
 				type="button" class="btn btn-info" value="查询" onclick="search()" /></li>
@@ -112,15 +113,22 @@ body, ul, li {
 </body>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script src="js/echarts.common.min.js"></script>
+<script src="js/jquery.monthpicker.js"></script>
 <script>
+	$('#s_month').monthpicker({
+		years : [ 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 ],
+		topOffset : 6
+	})
 	function search() {
 		var mon = $("#s_month").val();
-		if(mon == null || mon == ""){
+		if (mon == null || mon == "") {
 			alert("请输入统计月份");
 			return;
 		}
-		
-		$.get("../month_count/tjhb_industry", {countdate:$('#s_month').val()}, function(json) {
+
+		$.get("../month_count/tjhb_industry", {
+			countdate : $('#s_month').val()
+		}, function(json) {
 			var d = json;
 			var months = d.months;
 			var taxServices = d.taxServices;
@@ -129,12 +137,14 @@ body, ul, li {
 			var incomeData = d.incomeData;
 			var workmannumServices = d.workmannumServices;
 			var workmannumDate = d.workmannumDate;
-			
-			initChart(months,taxServices,taxData,incomeServices,incomeData,workmannumServices,workmannumDate);
+
+			initChart(months, taxServices, taxData, incomeServices, incomeData,
+					workmannumServices, workmannumDate);
 		});
 	}
 
-	function initChart(months,taxServices,taxData,incomeServices,incomeData,workmannumServices,workmannumDate) {
+	function initChart(months, taxServices, taxData, incomeServices,
+			incomeData, workmannumServices, workmannumDate) {
 		var myChart1 = echarts.init(document.getElementById("chart1"));
 		var myChart2 = echarts.init(document.getElementById("chart2"));
 		var myChart3 = echarts.init(document.getElementById("chart3"));
@@ -191,15 +201,15 @@ body, ul, li {
 				name : incomeServices[1],
 				type : 'line',
 				data : incomeData[1]
-			} , {
+			}, {
 				name : incomeServices[2],
 				type : 'line',
 				data : incomeData[2]
-			} , {
+			}, {
 				name : incomeServices[3],
 				type : 'line',
 				data : incomeData[3]
-			} , {
+			}, {
 				name : incomeServices[4],
 				type : 'line',
 				data : incomeData[4]
@@ -250,7 +260,7 @@ body, ul, li {
 					formatter : '{value} 元'
 				}
 			} ],
-			series : [  {
+			series : [ {
 				name : taxServices[0],
 				type : 'line',
 				data : taxData[0]
@@ -258,15 +268,15 @@ body, ul, li {
 				name : taxServices[1],
 				type : 'line',
 				data : taxData[1]
-			} , {
+			}, {
 				name : taxServices[2],
 				type : 'line',
 				data : taxData[2]
-			} , {
+			}, {
 				name : taxServices[3],
 				type : 'line',
 				data : taxData[3]
-			} , {
+			}, {
 				name : taxServices[4],
 				type : 'line',
 				data : taxData[4]
@@ -317,7 +327,7 @@ body, ul, li {
 					formatter : '{value}元'
 				}
 			} ],
-			series : [  {
+			series : [ {
 				name : workmannumServices[0],
 				type : 'line',
 				data : workmannumDate[0]
@@ -325,15 +335,15 @@ body, ul, li {
 				name : workmannumServices[1],
 				type : 'line',
 				data : workmannumDate[1]
-			} , {
+			}, {
 				name : workmannumServices[2],
 				type : 'line',
 				data : workmannumDate[2]
-			} , {
+			}, {
 				name : workmannumServices[3],
 				type : 'line',
 				data : workmannumDate[3]
-			} , {
+			}, {
 				name : workmannumServices[4],
 				type : 'line',
 				data : workmannumDate[4]
