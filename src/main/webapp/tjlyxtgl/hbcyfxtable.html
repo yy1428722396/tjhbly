@@ -82,7 +82,7 @@ body, ul, li {
 		<ul class="seachform">
 
 			<li style="width: 400px;"><label>统计年月</label><input
-				id="s_subway1" type="text" class="scinput" style="width: 100px;" /></li>
+				id="s_month" type="text" class="scinput" style="width: 100px;" /></li>
 
 			<li style="float: right;"><label>&nbsp;</label><input name=""
 				type="button" class="btn btn-info" value="查询" onclick="search()" /></li>
@@ -96,7 +96,6 @@ body, ul, li {
 						style="width:100px;height:120px;" /></li>
 				<li><image src="images/tab2.png" style="width:100px;" /></li>
 				<li><image src="images/tab3.png" style="width:100px;" /></li>
-				<li><image src="images/tab4.png" style="width:100px;" /></li>
 			</ul>
 			<div id="content">
 				<ul style="display: block;">
@@ -108,9 +107,6 @@ body, ul, li {
 				<ul>
 					<div id="chart3" class="chartcss"></div>
 				</ul>
-				<ul>
-					<div id="chart4" class="chartcss"></div>
-				</ul>
 			</div>
 		</div>
 </body>
@@ -118,246 +114,235 @@ body, ul, li {
 <script src="js/echarts.common.min.js"></script>
 <script>
 	function search() {
-		$.get("../month_count/tjhb_industry",{}, function(json) {
-			var d = json.data;
-			var tax = d.tax;
-			var income = d.income;
-			var workmannum = d.workmannum;
+		var mon = $("#s_month").val();
+		if(mon == null || mon == ""){
+			alert("请输入统计月份");
+			return;
+		}
+		
+		$.get("../month_count/tjhb_industry", {countdate:$('#s_month').val()}, function(json) {
+			var d = json;
+			var months = d.months;
+			var taxServices = d.taxServices;
+			var taxData = d.taxData;
+			var incomeServices = d.incomeServices;
+			var incomeData = d.incomeData;
+			var workmannumServices = d.workmannumServices;
+			var workmannumDate = d.workmannumDate;
+			
+			initChart(months,taxServices,taxData,incomeServices,incomeData,workmannumServices,workmannumDate);
 		});
 	}
 
-	var myChart1 = echarts.init(document.getElementById("chart1"));
-	var myChart2 = echarts.init(document.getElementById("chart2"));
-	var myChart3 = echarts.init(document.getElementById("chart3"));
-	var myChart4 = echarts.init(document.getElementById("chart4"));
+	function initChart(months,taxServices,taxData,incomeServices,incomeData,workmannumServices,workmannumDate) {
+		var myChart1 = echarts.init(document.getElementById("chart1"));
+		var myChart2 = echarts.init(document.getElementById("chart2"));
+		var myChart3 = echarts.init(document.getElementById("chart3"));
 
-	option1 = {
-		title : {},
-		tooltip : {
-			trigger : 'axis'
-		},
-		legend : {
-			data : [ '意向', '预购', '成交' ]
-		},
-		toolbox : {
-			show : true,
-			feature : {
-				mark : {
-					show : true
-				},
-				dataView : {
-					show : true,
-					readOnly : false
-				},
-				magicType : {
-					show : true,
-					type : [ 'line', 'bar', 'stack', 'tiled' ]
-				},
-				restore : {
-					show : true
-				},
-				saveAsImage : {
-					show : true
-				}
-			}
-		},
-		calculable : true,
-		xAxis : [ {
-			type : 'category',
-			boundaryGap : false,
-			data : [ '周一', '周二', '周三', '周四', '周五', '周六', '周日' ]
-		} ],
-		yAxis : [ {
-			type : 'value'
-		} ],
-		series : [ {
-			name : '成交',
-			type : 'line',
-			smooth : true,
-			itemStyle : {
-				normal : {
-					areaStyle : {
-						type : 'default'
-					}
-				}
+		option1 = {
+			title : {
+				text : '楼宇营收前五行业（月度）变化情况'
 			},
-			data : [ 10, 12, 21, 54, 260, 830, 710]
-    }
-]
-};
-
-option2 = {
-		title : {
-
-		},
-		tooltip : {
-			trigger : 'axis'
-		},
-		legend : {
-			data : [ '蒸发量', '降水量' ]
-		},
-		toolbox : {
-			show : true,
-			feature : {
-				mark : {
-					show : true
-				},
-				dataView : {
-					show : true,
-					readOnly : false
-				},
-				magicType : {
-					show : true,
-					type : [ 'line', 'bar' ]
-				},
-				restore : {
-					show : true
-				},
-				saveAsImage : {
-					show : true
-				}
-			}
-		},
-		calculable : true,
-		xAxis : [ {
-			type : 'category',
-			data : [ '1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月',
-					'10月', '11月', '12月' ]
-		} ],
-		yAxis : [ {
-			type : 'value'
-		} ],
-		series : [
-
-		{
-			name : '降水量',
-			type : 'bar',
-			data : [ 2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8,
-					6.0, 2.3 ],
-			markPoint : {
-				data : [ {
-					name : '年最高',
-					value : 182.2,
-					xAxis : 7,
-					yAxis : 183,
-					symbolSize : 18
-				}, {
-					name : '年最低',
-					value : 2.3,
-					xAxis : 11,
-					yAxis : 3
-				} ]
+			tooltip : {
+				trigger : 'axis'
 			},
-			markLine : {
-				data : [ {
-					type : 'average',
-					name : '平均值'
-				} ]
-			}
-		} ]
-	};
-                
-option3 = {
-		title : {},
-		tooltip : {
-			trigger : 'axis'
-		},
-		legend : {
-			data : [ 'ECharts1 - 2k数据', 'ECharts1 - 2w数据', 'ECharts1 - 20w数据',
-					'', 'ECharts2 - 2k数据', 'ECharts2 - 2w数据',
-					'ECharts2 - 20w数据' ]
-		},
-		toolbox : {
-			show : true,
-			feature : {
-				mark : {
-					show : true
-				},
-				dataView : {
-					show : true,
-					readOnly : false
-				},
-				magicType : {
-					show : true,
-					type : [ 'line', 'bar' ]
-				},
-				restore : {
-					show : true
-				},
-				saveAsImage : {
-					show : true
-				}
-			}
-		},
-		calculable : true,
-		grid : {
-			y : 70,
-			y2 : 30,
-			x2 : 20
-		},
-		xAxis : [ {
-			type : 'category',
-			data : [ 'Line', 'Bar', 'Scatter', 'K', 'Map' ]
-		}, {
-			type : 'category',
-			axisLine : {
-				show : false
+			legend : {
+				data : incomeServices
 			},
-			axisTick : {
-				show : false
-			},
-			axisLabel : {
-				show : false
-			},
-			splitArea : {
-				show : false
-			},
-			splitLine : {
-				show : false
-			},
-			data : [ 'Line', 'Bar', 'Scatter', 'K', 'Map' ]
-		} ],
-		yAxis : [ {
-			type : 'value',
-			axisLabel : {
-				formatter : '{value} ms'
-			}
-		} ],
-		series : [ {
-			name : 'ECharts2 - 2k数据',
-			type : 'bar',
-			itemStyle : {
-				normal : {
-					color : 'rgba(193,35,43,1)',
-					label : {
+			toolbox : {
+				show : true,
+				feature : {
+					mark : {
+						show : true
+					},
+					dataView : {
+						show : true,
+						readOnly : false
+					},
+					magicType : {
+						show : true,
+						type : [ 'line', 'bar' ]
+					},
+					restore : {
+						show : true
+					},
+					saveAsImage : {
 						show : true
 					}
 				}
 			},
-			data : [ 40, 155, 95, 75, 0 ]
-		}, {
-			name : 'ECharts1 - 2k数据',
-			type : 'bar',
-			xAxisIndex : 1,
-			itemStyle : {
-				normal : {
-					color : 'rgba(193,35,43,0.5)',
-					label : {
+			calculable : true,
+			xAxis : [ {
+				type : 'category',
+				boundaryGap : false,
+				data : months
+			} ],
+			yAxis : [ {
+				type : 'value',
+				axisLabel : {
+					formatter : '{value}元'
+				}
+			} ],
+			series : [ {
+				name : incomeServices[0],
+				type : 'line',
+				data : incomeData[0]
+			}, {
+				name : incomeServices[1],
+				type : 'line',
+				data : incomeData[1]
+			} , {
+				name : incomeServices[2],
+				type : 'line',
+				data : incomeData[2]
+			} , {
+				name : incomeServices[3],
+				type : 'line',
+				data : incomeData[3]
+			} , {
+				name : incomeServices[4],
+				type : 'line',
+				data : incomeData[4]
+			} ]
+		};
+
+		option2 = {
+			title : {
+				text : '楼宇纳税前五行业（月度）变化情况'
+			},
+			tooltip : {
+				trigger : 'axis'
+			},
+			legend : {
+				data : taxServices
+			},
+			toolbox : {
+				show : true,
+				feature : {
+					mark : {
+						show : true
+					},
+					dataView : {
 						show : true,
-						formatter : function(p) {
-							return p.value > 0 ? (p.value + '\n') : '';
-						}
+						readOnly : false
+					},
+					magicType : {
+						show : true,
+						type : [ 'line', 'bar' ]
+					},
+					restore : {
+						show : true
+					},
+					saveAsImage : {
+						show : true
 					}
 				}
 			},
-			data : [ 96, 224, 164, 124, 0 ]
-		} ]
-	};
+			calculable : true,
+			xAxis : [ {
+				type : 'category',
+				boundaryGap : false,
+				data : months
+			} ],
+			yAxis : [ {
+				type : 'value',
+				axisLabel : {
+					formatter : '{value} 元'
+				}
+			} ],
+			series : [  {
+				name : taxServices[0],
+				type : 'line',
+				data : taxData[0]
+			}, {
+				name : taxServices[1],
+				type : 'line',
+				data : taxData[1]
+			} , {
+				name : taxServices[2],
+				type : 'line',
+				data : taxData[2]
+			} , {
+				name : taxServices[3],
+				type : 'line',
+				data : taxData[3]
+			} , {
+				name : taxServices[4],
+				type : 'line',
+				data : taxData[4]
+			} ]
+		};
 
-	myChart1.setOption(option1);
-	myChart2.setOption(option2);
-	myChart3.setOption(option3);
-	myChart4.setOption(option2);
+		option3 = {
+			title : {
+				text : '楼宇从业人数前五行业（月度）变化情况'
+			},
+			tooltip : {
+				trigger : 'axis'
+			},
+			legend : {
+				data : workmannumServices
+			},
+			toolbox : {
+				show : true,
+				feature : {
+					mark : {
+						show : true
+					},
+					dataView : {
+						show : true,
+						readOnly : false
+					},
+					magicType : {
+						show : true,
+						type : [ 'line', 'bar' ]
+					},
+					restore : {
+						show : true
+					},
+					saveAsImage : {
+						show : true
+					}
+				}
+			},
+			calculable : true,
+			xAxis : [ {
+				type : 'category',
+				boundaryGap : false,
+				data : months
+			} ],
+			yAxis : [ {
+				type : 'value',
+				axisLabel : {
+					formatter : '{value}元'
+				}
+			} ],
+			series : [  {
+				name : workmannumServices[0],
+				type : 'line',
+				data : workmannumDate[0]
+			}, {
+				name : workmannumServices[1],
+				type : 'line',
+				data : workmannumDate[1]
+			} , {
+				name : workmannumServices[2],
+				type : 'line',
+				data : workmannumDate[2]
+			} , {
+				name : workmannumServices[3],
+				type : 'line',
+				data : workmannumDate[3]
+			} , {
+				name : workmannumServices[4],
+				type : 'line',
+				data : workmannumDate[4]
+			} ]
+		};
+		myChart1.setOption(option1);
+		myChart2.setOption(option2);
+		myChart3.setOption(option3);
+	}
 
 	$(function() {
 		window.onload = function() {
@@ -371,7 +356,7 @@ option3 = {
 				$ul.eq($t).css('display', 'block');
 			})
 		}
-
+		search();
 	});
 </script>
 </html>

@@ -1,6 +1,7 @@
 package cn.com.xtgl.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -680,44 +681,260 @@ public class MonthCountController {
 
 		String incomeSQL = "select * from t_tjhb_industry_count where services in (select s.services from (select * from t_tjhb_industry_count where countdate='"
 				+ countdate + "' group by services order by incrincome desc limit 0,5) s ) order by countdate desc";
-		
+
 		String workmannumSQL = "select * from t_tjhb_industry_count where services in (select s.services from (select * from t_tjhb_industry_count where countdate='"
 				+ countdate + "' group by services order by incrworkmannum desc limit 0,5) s ) order by countdate desc";
-		
-		Map taxResult = mySQLDBHelper.retriveMapFromSQL(taxSQL);
-		Map incomeResult = mySQLDBHelper.retriveMapFromSQL(incomeSQL);
-		Map workmannumResult = mySQLDBHelper.retriveMapFromSQL(workmannumSQL);
-		
+
+		List taxResult = mySQLDBHelper.retriveBySQL(taxSQL);
+		List incomeResult = mySQLDBHelper.retriveBySQL(incomeSQL);
+		List workmannumResult = mySQLDBHelper.retriveBySQL(workmannumSQL);
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM");
+		Calendar c = Common.oneYearMonth(countdate);
+
+		String[] month = new String[12];
+		for (int m = 0; m < 12; m++) {
+			month[m] = sdf.format(c.getTime());
+			c.add(Calendar.MONTH, 1);
+		}
+
+		c.add(Calendar.MONTH, -12);
+
+		String[] taxServices = {"","","","",""};
+		double[][] taxData = { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+		if (taxResult != null) {
+			int count = 0;
+			for (int i = 0, l = taxResult.size(); i < l; i++) {
+				Map taxMap = (Map) taxResult.get(i);
+				String countDate = taxMap.get("countdate").toString();
+				String services = taxMap.get("services").toString();
+				String incrtax = taxMap.get("incrtax").toString();
+
+				// 前五名行业的赋值操作
+				if (taxServices[0] != null && !taxServices[0].equals("")) {
+					if (!services.equals(taxServices[count])) {
+						taxServices[count + 1] = services;
+						count++;
+					}
+				} else {
+					taxServices[0] = services;
+				}
+
+				// 12个月里每个月增加的税收的赋值操作
+				int dis = Common.monthDis(sdf.format(c.getTime()), countDate);
+				if (incrtax != null && !incrtax.equals(""))
+					taxData[count][dis] = Double.valueOf(incrtax);
+
+			}
+		}
+
+		String[] incomeServices = new String[5];
+		double[][] incomeData = { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+		if (incomeResult != null) {
+			int count = 0;
+			for (int i = 0, l = incomeResult.size(); i < l; i++) {
+				Map incomeMap = (Map) incomeResult.get(i);
+				String countDate = incomeMap.get("countdate").toString();
+				String services = incomeMap.get("services").toString();
+				String incrincome = incomeMap.get("incrincome").toString();
+
+				// 前五名行业的赋值操作
+				if (incomeServices[0] != null && !incomeServices[0].equals("")) {
+					if (!services.equals(incomeServices[count])) {
+						incomeServices[count + 1] = services;
+						count++;
+					}
+				} else {
+					incomeServices[0] = services;
+				}
+
+				// 12个月里每个月增加的税收的赋值操作
+				int dis = Common.monthDis(sdf.format(c.getTime()), countDate);
+				if (incrincome != null && !incrincome.equals(""))
+					incomeData[count][dis] = Double.valueOf(incrincome);
+
+			}
+		}
+
+		String[] workmannumServices = new String[5];
+		double[][] workmannumDate = { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+		if (workmannumResult != null) {
+			int count = 0;
+			for (int i = 0, l = workmannumResult.size(); i < l; i++) {
+				Map workmannumMap = (Map) workmannumResult.get(i);
+				String countDate = workmannumMap.get("countdate").toString();
+				String services = workmannumMap.get("services").toString();
+				String incrworkmannum = workmannumMap.get("incrworkmannum").toString();
+
+				// 前五名行业的赋值操作
+				if (workmannumServices[0] != null && !workmannumServices[0].equals("")) {
+					if (!services.equals(workmannumServices[count])) {
+						workmannumServices[count + 1] = services;
+						count++;
+					}
+				} else {
+					workmannumServices[0] = services;
+				}
+
+				// 12个月里每个月增加的税收的赋值操作
+				int dis = Common.monthDis(sdf.format(c.getTime()), countDate);
+				if (incrworkmannum != null && !incrworkmannum.equals(""))
+					workmannumDate[count][dis] = Double.valueOf(incrworkmannum);
+
+			}
+		}
+
 		Map result = new HashMap();
-		result.put("tax", taxResult);
-		result.put("income", incomeResult);
-		result.put("workmannum", workmannumResult);
+		result.put("months", month);
+		result.put("taxServices", taxServices);
+		result.put("taxData", taxData);
+		result.put("incomeServices", incomeServices);
+		result.put("incomeData", incomeData);
+		result.put("workmannumServices", workmannumServices);
+		result.put("workmannumDate", workmannumDate);
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/build_industry", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public Map build_industry(HttpServletRequest request) {
 		String countdate = request.getParameter("countdate");
 		String buildid = request.getParameter("buildid");
 
-		String taxSQL = "select * from t_build_industry_count where services in (select s.services from (select * from t_build_industry_count where countdate='"
-				+ countdate + "' and buildid=" + buildid + " group by services order by incrtax desc limit 0,5) s ) and buildid=" + buildid + " order by countdate desc";
+		String taxSQL = "select services,incrtax,countdate from t_build_industry_count where services in (select s.services from (select * from t_build_industry_count where countdate='"
+				+ countdate + "' and buildid=" + buildid
+				+ " group by services order by incrtax desc limit 0,5) s ) and buildid=" + buildid
+				+ " order by countdate desc";
 
-		String incomeSQL = "select * from t_build_industry_count where services in (select s.services from (select * from t_build_industry_count where countdate='"
-				+ countdate + "' and buildid=" + buildid + " group by services order by incrincome desc limit 0,5) s ) and buildid=" + buildid + " order by countdate desc";
-		
-		String workmannumSQL = "select * from t_build_industry_count where services in (select s.services from (select * from t_build_industry_count where countdate='"
-				+ countdate + "' and buildid=" + buildid + " group by services order by incrworkmannum desc limit 0,5) s ) and buildid=" + buildid + " order by countdate desc";
-		
-		Map taxResult = mySQLDBHelper.retriveMapFromSQL(taxSQL);
-		Map incomeResult = mySQLDBHelper.retriveMapFromSQL(incomeSQL);
-		Map workmannumResult = mySQLDBHelper.retriveMapFromSQL(workmannumSQL);
-		
+		String incomeSQL = "select services,incrincome,countdate from t_build_industry_count where services in (select s.services from (select * from t_build_industry_count where countdate='"
+				+ countdate + "' and buildid=" + buildid
+				+ " group by services order by incrincome desc limit 0,5) s ) and buildid=" + buildid
+				+ " order by countdate desc";
+
+		String workmannumSQL = "select services,incrworkmannum,countdate from t_build_industry_count where services in (select s.services from (select * from t_build_industry_count where countdate='"
+				+ countdate + "' and buildid=" + buildid
+				+ " group by services order by incrworkmannum desc limit 0,5) s ) and buildid=" + buildid
+				+ " order by countdate desc";
+
+		List taxResult = mySQLDBHelper.retriveBySQL(taxSQL);
+		List incomeResult = mySQLDBHelper.retriveBySQL(incomeSQL);
+		List workmannumResult = mySQLDBHelper.retriveBySQL(workmannumSQL);
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM");
+		Calendar c = Common.oneYearMonth(countdate);
+
+		String[] month =  new String[12];
+		for (int m = 0; m < 12; m++) {
+			month[m] = sdf.format(c.getTime());
+			c.add(Calendar.MONTH, 1);
+		}
+
+		c.add(Calendar.MONTH, -12);
+
+		String[] taxServices = {"","","","",""};
+		double[][] taxData = { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+		if (taxResult != null) {
+			int count = 0;
+			for (int i = 0, l = taxResult.size(); i < l; i++) {
+				Map taxMap = (Map) taxResult.get(i);
+				String countDate = taxMap.get("countdate").toString();
+				String services = taxMap.get("services").toString();
+				String incrtax = taxMap.get("incrtax").toString();
+
+				// 前五名行业的赋值操作
+				if (taxServices[0] != null && !taxServices[0].equals("")) {
+					if (!services.equals(taxServices[count])) {
+						taxServices[count + 1] = services;
+						count++;
+					}
+				} else {
+					taxServices[0] = services;
+				}
+
+				// 12个月里每个月增加的税收的赋值操作
+				int dis = Common.monthDis(sdf.format(c.getTime()), countDate);
+				if (incrtax != null && !incrtax.equals(""))
+					taxData[count][dis] = Double.valueOf(incrtax);
+
+			}
+		}
+
+		String[] incomeServices = new String[5];
+		double[][] incomeData = { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+		if (incomeResult != null) {
+			int count = 0;
+			for (int i = 0, l = incomeResult.size(); i < l; i++) {
+				Map incomeMap = (Map) incomeResult.get(i);
+				String countDate = incomeMap.get("countdate").toString();
+				String services = incomeMap.get("services").toString();
+				String incrincome = incomeMap.get("incrincome").toString();
+
+				// 前五名行业的赋值操作
+				if (incomeServices[0] != null && !incomeServices[0].equals("")) {
+					if (!services.equals(incomeServices[count])) {
+						incomeServices[count + 1] = services;
+						count++;
+					}
+				} else {
+					incomeServices[0] = services;
+				}
+
+				// 12个月里每个月增加的税收的赋值操作
+				int dis = Common.monthDis(sdf.format(c.getTime()), countDate);
+				if (incrincome != null && !incrincome.equals(""))
+					incomeData[count][dis] = Double.valueOf(incrincome);
+
+			}
+		}
+
+		String[] workmannumServices = new String[5];
+		double[][] workmannumDate = { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+		if (workmannumResult != null) {
+			int count = 0;
+			for (int i = 0, l = workmannumResult.size(); i < l; i++) {
+				Map workmannumMap = (Map) workmannumResult.get(i);
+				String countDate = workmannumMap.get("countdate").toString();
+				String services = workmannumMap.get("services").toString();
+				String incrworkmannum = workmannumMap.get("incrworkmannum").toString();
+
+				// 前五名行业的赋值操作
+				if (workmannumServices[0] != null && !workmannumServices[0].equals("")) {
+					if (!services.equals(workmannumServices[count])) {
+						workmannumServices[count + 1] = services;
+						count++;
+					}
+				} else {
+					workmannumServices[0] = services;
+				}
+
+				// 12个月里每个月增加的税收的赋值操作
+				int dis = Common.monthDis(sdf.format(c.getTime()), countDate);
+				if (incrworkmannum != null && !incrworkmannum.equals(""))
+					workmannumDate[count][dis] = Double.valueOf(incrworkmannum);
+
+			}
+		}
+
 		Map result = new HashMap();
-		result.put("tax", taxResult);
-		result.put("income", incomeResult);
-		result.put("workmannum", workmannumResult);
+		result.put("months", month);
+		result.put("taxServices", taxServices);
+		result.put("taxData", taxData);
+		result.put("incomeServices", incomeServices);
+		result.put("incomeData", incomeData);
+		result.put("workmannumServices", workmannumServices);
+		result.put("workmannumDate", workmannumDate);
 		return result;
 	}
 }
