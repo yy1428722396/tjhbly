@@ -131,7 +131,7 @@ public class NewsController {
 
 		if (type != null && !type.trim().equals("") && !type.trim().equals("0"))
 			sql += " and type=" + type;
-
+		sql += " order by createtime desc";
 		Map result = mySQLDBHelper.retriveBySQL(sql, true, startLine, maxSize);
 		return result;
 	}
@@ -178,6 +178,8 @@ public class NewsController {
 		else
 			sql += " and type<>3";
 
+		sql += " order by createtime desc";
+		
 		Map result = mySQLDBHelper.retriveBySQL(sql, true, startLine, maxSize);
 		return result;
 	}
