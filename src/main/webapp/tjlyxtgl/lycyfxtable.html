@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
-
+<link rel="stylesheet" href="css/jquery.monthpicker.css">
 <link rel="stylesheet" href="js/bootstrap/css/bootstrap.css">
 	<style>
 * {
@@ -85,9 +85,8 @@ body, ul, li {
 				type="text" class="scinput" style="width: 100px;" /></li>
 			<li style="width: 400px;"><label style="padding-left: 21px;">楼宇名称</label><input
 				id="s_buildname" type="text" class="scinput" style="width: 100px;" />
-				<input id="s_buildid" type="hidden"/>
-				<input type="button" class="btn btn-info" value="选择楼宇"
-				onclick="showLYGrid()"></input></li>
+				<input id="s_buildid" type="hidden" /> <input type="button"
+				class="btn btn-info" value="选择楼宇" onclick="showLYGrid()"></input></li>
 			<li style="float: right;"><label>&nbsp;</label><input name=""
 				type="button" class="btn btn-info" value="查询" onclick="search()" /></li>
 
@@ -116,7 +115,12 @@ body, ul, li {
 </body>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script src="js/echarts.common.min.js"></script>
+<script src="js/jquery.monthpicker.js"></script>
 <script>
+	$('#s_month').monthpicker({
+		years : [ 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 ],
+		topOffset : 6
+	})
 	function showLYGrid() {
 		var iWidth = 1000;
 		var iHeight = 600;
@@ -129,23 +133,23 @@ body, ul, li {
 	function transferValue(value) {
 		var ly = value.split(",");
 		$("#s_buildid").prop("value", ly[0]);
-		$("#s_buildname").prop("value",ly[1]);
+		$("#s_buildname").prop("value", ly[1]);
 	}
 
 	function search() {
 		var mon = $("#s_month").val();
 		var build = $("s_buildid").val();
-		if(mon == null || mon == ""){
+		if (mon == null || mon == "") {
 			alert("请输入统计月份");
 			return;
 		}
-		if(build == null || build == ""){
+		if (build == null || build == "") {
 			alert("请输入统计楼宇");
 			return;
 		}
 		$.get("../month_count/build_industry", {
 			countdate : $('#s_month').val(),
-			buildid:$('#s_buildid').val()
+			buildid : $('#s_buildid').val()
 		}, function(json) {
 			var d = json;
 			var months = d.months;

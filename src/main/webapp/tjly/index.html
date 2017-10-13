@@ -10,7 +10,8 @@
 <link rel="stylesheet" type="text/css" href="style/cxzx_list.css" />
 <link rel="stylesheet" type="text/css" href="style/zx_info.css" />
 <link rel="stylesheet" type="text/css" href="style/xmdata.css" />
-
+<link rel="stylesheet" type="text/css"
+	href="style/jquery.pagination.css" />
 </head>
 <body>
 	<script type="text/javascript" src="js/borsertocss.js">
@@ -43,9 +44,11 @@
 				<ul id="beforelogin" class="mynav pull-right login-none nav-tips">
 					<li class="l10"><a href="javascript:void(0)" onclick="login()">登录</a></li>
 				</ul>
-				<ul id="afterlogin" class="mynav pull-right login-none nav-tips" style="display:none">
+				<ul id="afterlogin" class="mynav pull-right login-none nav-tips"
+					style="display: none">
 					<li class="l10" id="loginuser"></li>
-					<li class="l10"><a href="javascript:void(0)" onclick="enterxtgl()">进入管理系统</a></li>
+					<li class="l10"><a href="javascript:void(0)"
+						onclick="enterxtgl()">进入管理系统</a></li>
 				</ul>
 				<ul class="mynav pull-right pl-20 myul">
 
@@ -75,19 +78,20 @@
 			密&nbsp;&nbsp;&nbsp;&nbsp;码：<input id="password" type="password"
 				style="width: 280px;"></input>
 		</div>
-		<div class="tipbtn"  style="padding-top: -60px;">
+		<div class="tipbtn" style="padding-top: -60px;">
 			<select id="type"
 				style="font-size: 14px; width: 150px; height: 36px; border: 1px solid #90a2bc; float: left; margin-right: 70px; text-align: center;">
 				<option value="2">楼宇办用户</option>
 				<option value="1">楼宇运营用户</option>
 			</select>
 		</div>
-		<br/>
-		<div class="tipbtn"  style="padding-top: 40px;">
-			<input id="sureBtn" type="button" class="btn loginbtn" value="登录" />&nbsp; <input
-				name="" type="button" class="btn" value="取消" onclick="cancel()" />
+		<br />
+		<div class="tipbtn" style="padding-top: 40px;">
+			<input id="sureBtn" type="button" class="btn loginbtn" value="登录" />&nbsp;
+			<input name="" type="button" class="btn" value="取消"
+				onclick="cancel()" />
 		</div>
-		<div id="errordiv" class="tipbtn"  style="display:none">
+		<div id="errordiv" class="tipbtn" style="display: none">
 			<lable id="errorinfo" style="color:red"></lable>
 		</div>
 	</div>
@@ -113,6 +117,7 @@
 	<script type="text/javascript" src="js/jquery.lazyload.mini.js"></script>
 	<script type="text/javascript" src="js/function.js"></script>
 	<script type="text/javascript" src="js/list.js"></script>
+	<script type="text/javascript" src="js/jquery.pagination.min.js"></script>
 	<!--[if IE 6]>
 <script type="text/javascript" src="js/DD_belatedPNG.js?v=20130220"></script>
 <script type="text/javascript">
@@ -151,7 +156,7 @@ DD_belatedPNG.fix('img,.ie6png');
 		var lyid;
 		function lyinfo(id) {
 			$('#bodycontent').load('show.html');
-			lyid=id;
+			lyid = id;
 		}
 
 		function showjj() {
@@ -159,6 +164,8 @@ DD_belatedPNG.fix('img,.ie6png');
 		}
 
 		function initpage(id, type, num) {
+
+
 			$
 					.get(
 							"../news/listnosession",
@@ -185,7 +192,28 @@ DD_belatedPNG.fix('img,.ie6png');
 												+ '</h1></td></tr></table></div></div></div></div>';
 									}
 
-									$('#' + id).append(content);
+									$('#' + id).empty().append(content);
+
+									if (num == 1) {
+										var tp = Math.ceil(json.totalCount / 10);
+										$("#pagination")
+												.pagination(
+														{
+															currentPage : 1,
+															totalPage : tp,
+															isShow : false,
+															count : 8,
+															prevPageText : "< 上一页",
+										nextPageText: "下一页 >",
+															callback : function(
+																	current) {
+					
+																initpage(id,
+																		type,
+																		current);
+															}
+														});
+									}
 								}
 							});
 		}
@@ -220,56 +248,59 @@ DD_belatedPNG.fix('img,.ie6png');
 		function cancel() {
 			$('.tip').hide();
 		}
-		
-		$(".loginbtn").click(function() {
-			$.get("../user/login", {
-				username : $("#username").val(),
-				password : $("#password").val(),
-				type : $("#type").val()
-			}, function(json) {
-				if(json){
-					cancel();
-					var userinfo = '<a href="javascript:void(0)">欢迎您，' + $("#username").val() + '</a>';
-					$('#loginuser').empty().append(userinfo);
-					$('#beforelogin').hide();
-					$('#afterlogin').show();
-				}
-				else{
-					$('#errordiv').show();
-					$('#errorinfo').empty().append("您输入的用户名或者密码有误，请重新输入。");
-				}
-			});
-		});
-		
+
+		$(".loginbtn").click(
+				function() {
+					$.get("../user/login", {
+						username : $("#username").val(),
+						password : $("#password").val(),
+						type : $("#type").val()
+					}, function(json) {
+						if (json) {
+							cancel();
+							var userinfo = '<a href="javascript:void(0)">欢迎您，'
+									+ $("#username").val() + '</a>';
+							$('#loginuser').empty().append(userinfo);
+							$('#beforelogin').hide();
+							$('#afterlogin').show();
+						} else {
+							$('#errordiv').show();
+							$('#errorinfo').empty().append(
+									"您输入的用户名或者密码有误，请重新输入。");
+						}
+					});
+				});
+
 		$.get("../user/logininfo", function(json) {
 			var d = json.data;
-			if(d == "error"){
+			if (d == "error") {
 				$('#loginuser').empty();
 				$('#beforelogin').show();
 				$('#afterlogin').hide();
-			}else{
-				$.cookie("cookie_username",json.session_username);
-				$.cookie("cookie_type",json.session_type);
-				$.cookie("cookie_role",json.session_role);
+			} else {
+				$.cookie("cookie_username", json.session_username);
+				$.cookie("cookie_type", json.session_type);
+				$.cookie("cookie_role", json.session_role);
 				cancel();
-				var userinfo = '<a href="javascript:void(0)">欢迎您，' + json.session_username + '</a>';
+				var userinfo = '<a href="javascript:void(0)">欢迎您，'
+						+ json.session_username + '</a>';
 				$('#loginuser').empty().append(userinfo);
 				$('#beforelogin').hide();
 				$('#afterlogin').show();
 			}
 		});
-		
-		function enterxtgl(){
-			
+
+		function enterxtgl() {
+
 			$.get("../user/logininfo", function(json) {
 				var d = json.data;
-				if(d == "error"){
+				if (d == "error") {
 					login();
-				}else{
+				} else {
 					window.location = '../tjlyxtgl/main.html';
 				}
 			});
-			
+
 		}
 	</script>
 </body>

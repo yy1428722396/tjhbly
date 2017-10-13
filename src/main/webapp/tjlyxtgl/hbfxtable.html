@@ -12,6 +12,7 @@
 			<link rel="stylesheet" href="js/mmgrid/mmPaginator.css">
 				<link rel="stylesheet"
 					href="js/mmgrid/theme/bootstrap/mmPaginator-bootstrap.css">
+					<link rel="stylesheet" href="css/jquery.monthpicker.css">
 </head>
 
 
@@ -30,8 +31,8 @@
 		<ul class="seachform">
 
 			<li style="width: 400px;"><label>统计年月</label><input
-				id="s_countdate" type="text" class="scinput" style="width:100px;" /></li>
-			
+				id="s_countdate" type="text" class="scinput" style="width: 100px;" /></li>
+
 			<li style="float: right;"><label>&nbsp;</label><input name=""
 				type="button" class="btn btn-info" value="查询" onclick="search()" /></li>
 
@@ -46,20 +47,23 @@
 			</table>
 			<div id="pg" style="text-align: right;"></div>
 		</div>
-
 </body>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script src="js/mmgrid/mmGrid.js"></script>
 <script src="js/mmgrid/mmPaginator.js"></script>
-
+<script src="js/jquery.monthpicker.js"></script>
 <script>
+	$('#s_countdate').monthpicker({
+		years : [ 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 ],
+		topOffset : 6
+	})
 	var fixed2 = function(val) {
 		if (typeof val != 'number') {
 			return '';
 		}
 		return val.toFixed(2);
 	}
-	var cols = [{
+	var cols = [ {
 		title : '统计年月',
 		name : 'countmonth',
 		width : 100,
@@ -122,21 +126,21 @@
 		align : 'center',
 		sortable : true,
 		type : 'number'
-	} , {
+	}, {
 		title : '实际出租面积',
 		name : 'rentarea',
 		width : 30,
 		align : 'center',
 		sortable : true,
 		type : 'number'
-	} , {
+	}, {
 		title : '本月新净增出租面积',
 		name : 'incrrentarea',
 		width : 30,
 		align : 'center',
 		sortable : true,
 		type : 'number'
-	} , {
+	}, {
 		title : '楼宇空置率',
 		name : 'emptyrate',
 		width : 30,
@@ -150,7 +154,7 @@
 		width : '99%',
 		indexCol : false,
 		cols : cols,
-		url: '../month_count/tjhb_basis',
+		url : '../month_count/tjhb_basis',
 		method : 'get',
 		root : 'data',
 		multiSelect : false,
@@ -160,8 +164,6 @@
 		plugins : [ $('#pg').mmPaginator({}) ]
 	});
 
-	
-	
 	function search() {
 		mmg.load({
 			countdate : $("#s_countdate").val()

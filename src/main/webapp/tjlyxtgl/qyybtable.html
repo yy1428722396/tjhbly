@@ -12,6 +12,7 @@
 			<link rel="stylesheet" href="js/mmgrid/mmPaginator.css">
 				<link rel="stylesheet"
 					href="js/mmgrid/theme/bootstrap/mmPaginator-bootstrap.css">
+					<link rel="stylesheet" href="css/jquery.monthpicker.css">
 </head>
 
 
@@ -35,7 +36,7 @@
 				class="scinput" /></li>
 
 			<li style="float: right;"><label>&nbsp;</label><input name=""
-				type="button" class="btn btn-info" value="查询" onclick="search()"/></li>
+				type="button" class="btn btn-info" value="查询" onclick="search()" /></li>
 
 		</ul>
 
@@ -87,15 +88,20 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script src="js/mmgrid/mmGrid.js"></script>
 <script src="js/mmgrid/mmPaginator.js"></script>
-
+<script src="js/jquery.monthpicker.js"></script>
 <script>
+	$('#s_reportdate').monthpicker({
+		years : [ 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 ],
+		topOffset : 6
+	})
+
 	var fixed2 = function(val) {
 		if (typeof val != 'number') {
 			return '';
 		}
 		return val.toFixed(2);
 	}
-	var cols = [{
+	var cols = [ {
 		title : '企业名称',
 		name : 'unitname',
 		width : 100,
@@ -123,14 +129,14 @@
 		align : 'center',
 		sortable : false,
 		type : 'number'
-	}];
+	} ];
 
 	var mmg = $('.mmg').mmGrid({
 		height : 473,
 		width : '99%',
 		indexCol : false,
 		cols : cols,
-		url: '../unit_report/list',
+		url : '../unit_report/list',
 		method : 'get',
 		root : 'data',
 		multiSelect : false,
@@ -146,7 +152,7 @@
 			alert("请选择需要编辑的记录");
 			return;
 		} else {
-			window.location="qyybform.html?id="+rows[0].id;
+			window.location = "qyybform.html?id=" + rows[0].id;
 
 		}
 	});
@@ -158,23 +164,21 @@
 			return;
 		} else {
 			var r = confirm("您确定要删除该条记录吗？");
-			if(r){
+			if (r) {
 				$.post("../unit_report/delete", {
-					id:rows[0].id
+					id : rows[0].id
 				}, function(json) {
-					if(json){
+					if (json) {
 						alert("删除成功！");
 						search();
-					}
-					else
+					} else
 						alert("操作失败");
 				});
 			}
 
-
 		}
 	});
-	
+
 	function search() {
 		mmg.load({
 			buildname : $("#s_name").val(),

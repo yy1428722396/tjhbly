@@ -4,20 +4,16 @@
 	</div>
 	<div id="zcfgcontent"></div>
 	<div class="pagination center pagination-large pt-20">
-		<image src="images/downjiao.jpg" onclick="add()">
+		<div class="box">
+			<div id="pagination" class="page fl"></div>
+		</div>
 	</div>
 </div>
 
 <!--右侧代码-->
-<div id="contactus" class="span4"></div>
+<div id="contactus" class="span4" style="margin-top:25px;"></div>
 
 <script type="text/javascript">
 	$('#contactus').load('contactus.html');
-	var num = 1;
-	function add() {
-		num++;
-		initpage("zcfgcontent", 1,num);
-	}
-
-	initpage("zcfgcontent", 1,num);
+	initpage("zcfgcontent", 1,1);
 </script>

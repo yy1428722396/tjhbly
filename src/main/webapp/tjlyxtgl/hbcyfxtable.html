@@ -7,7 +7,7 @@
 
 <link rel="stylesheet" href="js/bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" href="css/jquery.monthpicker.css">
-	<style>
+		<style>
 * {
 	margin: 0;
 	padding: 0;
@@ -115,6 +115,13 @@ body, ul, li {
 <script src="js/echarts.common.min.js"></script>
 <script src="js/jquery.monthpicker.js"></script>
 <script>
+	var now = new Date();
+	var month = now.getMonth();
+	var year = now.getFullYear();
+	month = (month < 10 ? "0" + month : month);
+	var mydate = year + "." + month;
+	$("#s_month").attr("value",mydate);
+
 	$('#s_month').monthpicker({
 		years : [ 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 ],
 		topOffset : 6

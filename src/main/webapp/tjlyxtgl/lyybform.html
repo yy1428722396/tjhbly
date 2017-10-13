@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/jquery.monthpicker.css">
 </head>
 
 <body>
@@ -38,17 +39,18 @@
 			<tr>
 				<td style="padding-left: 20px; width: 80px;">填报年月</td>
 				<td style="width: 200px;"><input id="reportdate" type="text"
-					class="dfinput" style="width: 100%" maxlength="7"/></td>
+					class="dfinput" style="width: 100%" maxlength="7" /></td>
 				<td style="padding-left: 100px; width: 100px;">空置面积（㎡）</td>
 				<td style="width: 200px;"><input id="emptyarea" type="text"
-					class="dfinput" style="width: 100%" onkeyup="computearea()" maxlength="10"/></td>
+					class="dfinput" style="width: 100%" onkeyup="computearea()"
+					maxlength="10" /></td>
 			</tr>
 			<tr>
 				<td style="padding-left: 20px; width: 100px;">可出租面积（㎡）</td>
 				<!-- <td style="width: 200px;" id="buildarea"></td> -->
 				<input type="hidden" id="buildarea"></input>
 				<td style="width: 200px;"><input id="rentarea" type="text"
-					class="dfinput" style="width: 100%" maxlength="10"/></td>
+					class="dfinput" style="width: 100%" maxlength="10" /></td>
 				<td style="padding-left: 100px; width: 100px;">空置率</td>
 				<td id="arearate"></td>
 			</tr>
@@ -59,10 +61,10 @@
 			<tr>
 				<td style="padding-left: 20px; width: 100px;">新增企业数</td>
 				<td style="width: 200px;"><input id="incrbusinessnum"
-					type="text" class="dfinput" style="width: 100%" maxlength="5"/></td>
+					type="text" class="dfinput" style="width: 100%" maxlength="5" /></td>
 				<td style="padding-left: 100px; width: 100px;">新减企业数</td>
 				<td style="width: 200px;"><input id="decrbusinessnum"
-					type="text" class="dfinput" style="width: 100%" maxlength="5"/></td>
+					type="text" class="dfinput" style="width: 100%" maxlength="5" /></td>
 			</tr>
 			<tr
 				style="background: #ddd; height: 40px; padding-left: 20px; width: 100%;">
@@ -71,23 +73,23 @@
 			<tr>
 				<td style="padding-left: 20px; width: 100px;">净资产额（元）</td>
 				<td style="width: 200px;"><input id="asset" type="text"
-					class="dfinput" style="width: 100%" maxlength="20"/></td>
+					class="dfinput" style="width: 100%" maxlength="20" /></td>
 				<td style="padding-left: 100px; width: 100px;">主营业务收入（元）</td>
 				<td style="width: 200px;"><input id="income" type="text"
-					class="dfinput" style="width: 100%" maxlength="20"/></td>
+					class="dfinput" style="width: 100%" maxlength="20" /></td>
 			</tr>
 			<tr>
 				<td style="padding-left: 20px; width: 100px;">利润总额（元）</td>
 				<td style="width: 200px;"><input id="profit" type="text"
-					class="dfinput" style="width: 100%" maxlength="20"/></td>
+					class="dfinput" style="width: 100%" maxlength="20" /></td>
 				<td style="padding-left: 100px; width: 100px;">纳税总额（元）</td>
 				<td style="width: 200px;"><input id="tax" type="text"
-					class="dfinput" style="width: 100%" maxlength="20"/></td>
+					class="dfinput" style="width: 100%" maxlength="20" /></td>
 			</tr>
 			<tr>
 				<td style="padding-left: 20px; width: 100px;">从业人数</td>
 				<td style="width: 200px;"><input id="workmannum" type="text"
-					class="dfinput" style="width: 100%" maxlength="10"/></td>
+					class="dfinput" style="width: 100%" maxlength="10" /></td>
 				<td colspan="2"></td>
 			</tr>
 		</table>
@@ -98,10 +100,16 @@
 	</div>
 </body>
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/jquery.monthpicker.js"></script>
 <script>
+	$('#reportdate').monthpicker({
+		years : [ 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 ],
+		topOffset : 6
+	})
+
 	var url = window.location + "";
 	var id = "";
-	if(url.indexOf("?id=") >= 0){
+	if (url.indexOf("?id=") >= 0) {
 		id = url.substring(url.indexOf("?id=") + 4, url.length);
 	}
 	if (id != null && id != "") {
@@ -121,24 +129,25 @@
 			$("#tax").prop('value', json.data[0].tax);
 			$("#workmannum").prop('value', json.data[0].workmannum);
 			$("#lyname").empty().append(json.data[0].buildname);
-			$("#buildarea").prop("value",json.data[0].buildarea);
+			$("#buildarea").prop("value", json.data[0].buildarea);
 			computearea();
 		});
 	}
 
 	function showLYGrid() {
 		var iWidth = 1000;
-	    var iHeight = 600;
-	    var iTop = (window.screen.availHeight - 30 - iHeight) / 2;
-	    var iLeft = (window.screen.availWidth - 10 - iWidth) / 2;
-	    var win = window.open("lygrid.html", "弹出窗口", "width=" + iWidth + ", height=" + iHeight + ",top=" + iTop + ",left=" + iLeft);
+		var iHeight = 600;
+		var iTop = (window.screen.availHeight - 30 - iHeight) / 2;
+		var iLeft = (window.screen.availWidth - 10 - iWidth) / 2;
+		var win = window.open("lygrid.html", "弹出窗口", "width=" + iWidth
+				+ ", height=" + iHeight + ",top=" + iTop + ",left=" + iLeft);
 	}
 
-	function transferValue(value){
+	function transferValue(value) {
 		var ly = value.split(",");
 		$("#lyid").prop("value", ly[0]);
 		$("#lyname").empty().append(ly[1]);
-		$("#buildarea").prop("value",ly[2]);
+		$("#buildarea").prop("value", ly[2]);
 	}
 	$('#submitBtn').click(function() {
 		var id = $('#editid').val();
