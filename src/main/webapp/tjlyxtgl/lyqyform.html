@@ -1,0 +1,422 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">基础信息管理</a></li>
+			<li><a href="#">商务楼宇入驻企业基础信息管理</a></li>
+		</ul>
+	</div>
+
+	<div class="formbody">
+
+		<div class="formtitle">
+			<span>基本信息</span>
+		</div>
+		<input type="hidden" id="editid"></input>
+		<table class="infotable" border="1" cellspacing="0" cellpadding="0">
+			
+			<tr style="background: #ccc; height: 40px;">
+				<td style="width: 5%">序号</td>
+				<td style="width: 20%">数据项</td>
+				<td style="width: 70%" colspan="3">数据内容</td>
+			</tr>
+			<tr>
+				<td>1*</td>
+				<td>入驻楼宇名称</td>
+				<input type="hidden" id="lyid">
+				<td colspan="3" style="text-align:left;"><input id="buildname" type="text"
+					class="dfinput" style="width: 50%"/><input type="button" class="btn btn-info"
+					value="选择楼宇" onclick="showLYGrid()"></input></td>
+			</tr>
+			<tr>
+				<td>2*</td>
+				<td>入驻单位名称</td>
+				<td colspan="3"><input id="unitname" type="text"
+					class="dfinput" style="width: 99%" maxlength="50"/></td>
+			</tr>
+			<tr>
+				<td>3*</td>
+				<td>统一社会信用代码</td>
+				<td colspan="3"><input id="societycode" type="text"
+					class="dfinput" style="width: 99%" maxlength="20"/></td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>注册资金</td>
+				<td><input id="registryasset" type="text" class="dfinput"
+					style="width: 99%" maxlength="15"/></td>
+				<td>万元</td>
+				<td>注：以工商营业执照上的资金额为准。</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>联系电话</td>
+				<td colspan="3" style="text-align:left;"><label style="margin-left: 20px;">固话：</label><input id="telphone"
+					type="text" class="dfinput" style="width: 30%" maxlength="12"/><label
+					style="margin-left: 50px;">手机：</label><input id="mobile" type="text"
+					class="dfinput" style="width: 30%" maxlength="11"/></td>
+			</tr>
+			<tr>
+				<td>6*</td>
+				<td>注册地址</td>
+				<td colspan="3"><input id="registryaddress" type="text"
+					class="dfinput" style="width: 99%" maxlength="200"/></td>
+			</tr>
+			<tr>
+				<td>7*</td>
+				<td>网站地址</td>
+				<td colspan="3"><input id="url" type="text" class="dfinput"
+					style="width: 99%" maxlength="200"/></td>
+			</tr>
+			<tr>
+				<td>8*</td>
+				<td>主要产品（或服务）</td>
+				<td colspan="3"><input id="services" type="text"
+					class="dfinput" style="width: 99%" maxlength="100"/></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>所属行业</td>
+				<td colspan="3">
+					<div id="oneCheck1">
+						<input type="checkbox" name="oneBox1" value="金融业">金融业
+						<input type="checkbox" name="oneBox1" value="批发零售业">批发零售业 
+						<input type="checkbox" name="oneBox1" value="健康服务业">健康服务业 
+						<input type="checkbox" name="oneBox1" value="教育与培训服务业">教育与培训服务业 
+						<input type="checkbox" name="oneBox1" value="居民服务业">居民服务业 
+						<input type="checkbox" name="oneBox1" value="商务服务业">商务服务业 
+						<input type="checkbox" name="oneBox1" value="城市公共服务业">城市公共服务业 
+						<input type="checkbox" name="oneBox1" value="中介服务">中介服务 
+						<input type="checkbox" name="oneBox1" value="咨询服务业">咨询服务业 
+						<input type="checkbox" name="oneBox1" value="餐饮业、旅馆业">餐饮业、旅馆业 
+						<input type="checkbox" name="oneBox1" value="电信与网络服务业">电信与网络服务业 
+						<input type="checkbox" name="oneBox1" value="电子商务服务业">电子商务服务业 
+						<input type="checkbox" name="oneBox1" value="计算机软件与信息服务业">计算机软件与信息服务业 
+						<input type="checkbox" name="oneBox1" value="高新技术产业">高新技术产业 
+						<input type="checkbox" name="oneBox1" value="文化艺术">文化艺术 
+						<input type="checkbox" name="oneBox1" value="新闻出版">新闻出版 
+						<input type="checkbox" name="oneBox1" value="广播、电视、电影">广播、电视、电影 
+						<input type="checkbox" name="oneBox1" value="广告会展">广告会展 
+						<input type="checkbox" name="oneBox1" value="设计服务">设计服务 
+						<input type="checkbox" name="oneBox1" value="旅游业">旅游业 
+						<input type="checkbox" name="oneBox1" value="体育、休闲娱乐">体育、休闲娱乐 
+						<input type="checkbox" name="oneBox1" value="物流相关行业">物流相关行业 
+						<input type="checkbox" name="oneBox1" value="房地产业、建筑业、工程安装">房地产业、建筑业、工程安装 
+						<input type="checkbox" name="oneBox1" value="科学研究">科学研究 
+						<input type="checkbox" name="oneBox1" value="社团组织">社团组织 
+						<input type="checkbox" name="oneBox1" value="农林牧副渔">农林牧副渔 
+						<input type="checkbox" name="oneBox1" value="加工、制造业">加工、制造业 
+						<input type="checkbox" name="oneBox1" value="其他行业">其他行业 
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>10*</td>
+				<td>是否公司总部</td>
+				<td colspan="3">
+					<div id="oneCheck2">
+						<input id="isfirstcompany" type="checkbox" name="oneBox2" value="是">是
+							<input type="checkbox" name="oneBox2" value="否">否 
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>11*</td>
+				<td>是否独立法人</td>
+				<td colspan="3">
+					<div id="oneCheck3">
+						<input id="isentity" type="checkbox" name="oneBox3" value="是">是
+							<input type="checkbox" name="oneBox3" value="否">否 
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>12*</td>
+				<td>从业人数</td>
+				<td colspan="3"><input id="workmannum" type="text"
+					class="dfinput" style="width: 99%" maxlength="15"/></td>
+			</tr>
+			<tr>
+				<td>13*</td>
+				<td>所属楼层</td>
+				<td><input id="floor" type="text" class="dfinput"
+					style="width: 99%" maxlength="3"/></td>
+				<td>房间号</td>
+				<td><input id="roomno" type="text" class="dfinput"
+					style="width: 99%" maxlength="6"/></td>
+			</tr>
+			<tr>
+				<td>14*</td>
+				<td>迁入时间</td>
+				<td colspan="3"><input id="eyear" type="text" class="dfinput"
+					style="width: 20%; margin: 10px;" maxlength="4"/>年<input id="emonth"
+					type="text" class="dfinput" style="width: 20%; margin: 10px;" maxlength="2"/>月<input
+					id="eday" type="text" class="dfinput"
+					style="width: 20%; margin: 10px;" maxlength="2"/>日</td>
+			</tr>
+			<tr>
+				<td>15*</td>
+				<td>迁出时间</td>
+				<td colspan="3"><input id="lyear" type="text" class="dfinput"
+					style="width: 20%; margin: 10px;" maxlength="4"/>年<input id="lmonth"
+					type="text" class="dfinput" style="width: 20%; margin: 10px;" maxlength="2"/>月<input
+					id="lday" type="text" class="dfinput"
+					style="width: 20%; margin: 10px;" maxlength="2"/>日</td>
+			</tr>
+			<tr>
+				<td>16</td>
+				<td>租住面积</td>
+				<td colspan="3" style="text-align:left;"><input id="area" type="text" class="dfinput"
+					style="width: 20%" maxlength="20"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平方米</td>
+			</tr>
+			<tr>
+				<td>17</td>
+				<td>对现有楼宇的满意度</td>
+				<td colspan="3">
+					<div id="oneCheck4">
+						<input id="satisfay" class="" type="checkbox" name="oneBox4"
+							value="满意">满意 <input id="" type="checkbox" name="oneBox4"
+							value="一般">一般 <input id="" type="checkbox" name="oneBox4"
+								value="不满意">不满意 
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>18</td>
+				<td>近期是否有搬迁意向</td>
+				<td colspan="3">
+					<div id="oneCheck5">
+						<input id="willleave" class="" name="oneBox5" type="checkbox"
+							value="无">无 <input id="" type="checkbox" name="oneBox5"
+							value="有">有 ：如有，说明理由 <input id="leavereason" type="text"
+								class="dfinput" style="width: 70%" maxlength="100"/>
+					</div>
+				</td>
+
+			</tr>
+		</table>
+		<br>
+			<div style="text-align: center;">
+				<input id="submitBtn" type="button" class="btn btn-info" value="提交" />
+			</div>
+	</div>
+</body>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>
+	$(function() {
+
+		var url = window.location + "";
+		var id = "";
+		if(url.indexOf("?id=") >= 0){
+			id = url.substring(url.indexOf("?id=") + 4, url.length);
+		}
+		if (id != null && id != "") {
+			$.get("../build_unit/info", {
+				id : id
+			}, function(json) {
+				$("#editid").prop('value', id);
+				$("#unitname").prop('value', json.data[0].unitname);
+				$("#societycode").prop('value', json.data[0].societycode);
+				$("#registryasset").prop('value', json.data[0].registryasset);
+				$("#registryaddress").prop('value', json.data[0].registryaddress);
+				$("#url").prop('value', json.data[0].url);
+				$("#services").prop('value', json.data[0].services);
+				$("#workmannum").prop('value', json.data[0].workmannum);
+				$("#floor").prop('value', json.data[0].floor);
+				$("#roomno").prop('value', json.data[0].roomno);
+				var entertime = json.data[0].entertime;
+				if(entertime != null && entertime != ""){
+					if(entertime.indexOf("-") > 0 ){
+						var etimeArray = entertime.split("-");
+						$("#eyear").prop('value', etimeArray[0]);
+						$("#emonth").prop('value', etimeArray[1]);
+						$("#eday").prop('value', etimeArray[2]);
+					}
+				}
+				var leavetime = json.data[0].leavetime;
+				if(leavetime != null && leavetime != ""){
+					if(leavetime.indexOf("-") > 0 ){
+						var ltimeArray = leavetime.split("-");
+						$("#lyear").prop('value', ltimeArray[0]);
+						$("#lmonth").prop('value', ltimeArray[1]);
+						$("#lday").prop('value', ltimeArray[2]);
+					}
+				}
+				$("#area").prop('value', json.data[0].area);
+				$("#leavereason").prop('value',json.data[0].leavereason);
+				$("#lyid").prop('value', json.data[0].buildid);
+				$("#telphone").prop('value', json.data[0].telphone);
+				$("#mobile").prop('value', json.data[0].mobile);
+				$("#buildname").prop('value', json.data[0].buildname);
+				
+				var belongto = json.data[0].belongto;
+				var isfirstcompany = json.data[0].isfirstcompany;
+				var isentity = json.data[0].isentity;
+				var satisfay = json.data[0].satisfay;
+				var willleave = json.data[0].willleave;
+				$.each($('input:checkbox'),function(){
+	                if(this.value == belongto || this.value == isfirstcompany || this.value == isentity || this.value == satisfay || this.value == willleave){
+	                    this.checked = true;
+	                }
+	            });
+			});
+		}
+
+		var fanxiBox1 = $("#oneCheck1 input:checkbox");
+		fanxiBox1.click(function() {
+			if (this.checked || this.checked == 'checked') {
+
+				fanxiBox1.removeAttr("checked");
+				//这里需注意jquery1.6以后必须用prop()方法
+				//$(this).attr("checked",true);
+				$(this).prop("checked", true);
+			}
+		});
+
+		var fanxiBox2 = $("#oneCheck2 input:checkbox");
+		fanxiBox2.click(function() {
+			if (this.checked || this.checked == 'checked') {
+
+				fanxiBox2.removeAttr("checked");
+				//这里需注意jquery1.6以后必须用prop()方法
+				//$(this).attr("checked",true);
+				$(this).prop("checked", true);
+			}
+		});
+
+		var fanxiBox3 = $("#oneCheck3 input:checkbox");
+		fanxiBox3.click(function() {
+			if (this.checked || this.checked == 'checked') {
+
+				fanxiBox3.removeAttr("checked");
+				//这里需注意jquery1.6以后必须用prop()方法
+				//$(this).attr("checked",true);
+				$(this).prop("checked", true);
+			}
+		});
+
+		var fanxiBox4 = $("#oneCheck4 input:checkbox");
+		fanxiBox4.click(function() {
+			if (this.checked || this.checked == 'checked') {
+
+				fanxiBox4.removeAttr("checked");
+				//这里需注意jquery1.6以后必须用prop()方法
+				//$(this).attr("checked",true);
+				$(this).prop("checked", true);
+			}
+		});
+
+		var fanxiBox5 = $("#oneCheck5 input:checkbox");
+		fanxiBox5.click(function() {
+			if (this.checked || this.checked == 'checked') {
+
+				fanxiBox5.removeAttr("checked");
+				//这里需注意jquery1.6以后必须用prop()方法
+				//$(this).attr("checked",true);
+				$(this).prop("checked", true);
+			}
+		});
+	});
+
+
+	function showLYGrid() {
+		var iWidth = 1000;
+	    var iHeight = 600;
+	    var iTop = (window.screen.availHeight - 30 - iHeight) / 2;
+	    var iLeft = (window.screen.availWidth - 10 - iWidth) / 2;
+	    var win = window.open("lygrid.html", "弹出窗口", "width=" + iWidth + ", height=" + iHeight + ",top=" + iTop + ",left=" + iLeft);
+	}
+
+	function transferValue(value){
+		var ly = value.split(",");
+		$("#lyid").prop("value", ly[0]);
+		$("#buildname").prop("value", ly[1]);
+	}
+
+	$('#submitBtn').click(function() {
+		var lyid = $("#lyid").val();
+		if(lyid == null || lyid == ''){
+			alert("请选择所在楼宇");
+			return;
+		}
+		
+		var eyear = $('#eyear').val();
+		var emonth = $('#emonth').val();
+		var eday = $('#eday').val();
+
+		var lyear = $('#lyear').val();
+		var lmonth = $('#lmonth').val();
+		var lday = $('#lday').val();
+
+		var edate = eyear + "-" + emonth + "-" + eday;
+		var ldate = lyear + "-" + lmonth + "-" + lday;
+		var id = $('#editid').val();
+		if (id == null || id == "") {
+			$.post("../build_unit/add", {
+				unitname : $("#unitname").val(),
+				societycode : $("#societycode").val(),
+				registryasset : $("#registryasset").val(),
+				registryaddress : $("#registryaddress").val(),
+				url : $("#url").val(),
+				services : $("#services").val(),
+				belongto : $("input[name='oneBox1']:checked").val(),
+				isfirstcompany : $("input[name='oneBox2']:checked").val(),
+				isentity : $("input[name='oneBox3']:checked").val(),
+				workmannum : $("#workmannum").val(),
+				floor : $("#floor").val(),
+				roomno : $("#roomno").val(),
+				entertime : edate,
+				leavetime : ldate,
+				area : $("#area").val(),
+				willleave : $("input[name='oneBox5']:checked").val(),
+				leavereason : $("#leavereason").val(),
+				telphone : $("#telphone").val(),
+				mobile : $("#mobile").val(),
+				buildid : $("#lyid").val(),
+				satisfay : $("input[name='oneBox4']:checked").val()
+			}, function(json) {
+				alert("添加成功！");
+				window.history.go(-1);
+			});
+		} else {
+			$.post("../build_unit/edit", {
+				unitname : $("#unitname").val(),
+				id:id,
+				societycode : $("#societycode").val(),
+				registryasset : $("#registryasset").val(),
+				registryaddress : $("#registryaddress").val(),
+				url : $("#url").val(),
+				services : $("#services").val(),
+				belongto : $("input[name='oneBox1']:checked").val(),
+				isfirstcompany : $("input[name='oneBox2']:checked").val(),
+				isentity : $("input[name='oneBox3']:checked").val(),
+				workmannum : $("#workmannum").val(),
+				floor : $("#floor").val(),
+				roomno : $("#roomno").val(),
+				entertime : edate,
+				leavetime : ldate,
+				area : $("#area").val(),
+				willleave : $("input[name='oneBox5']:checked").val(),
+				leavereason : $("#leavereason").val(),
+				telphone : $("#telphone").val(),
+				mobile : $("#mobile").val(),
+				buildid : $("#lyid").val(),
+				satisfay : $("input[name='oneBox4']:checked").val()
+			}, function(json) {
+				alert("修改成功！");
+				window.history.go(-1);
+			});
+		}
+	});
+</script>
+</html>

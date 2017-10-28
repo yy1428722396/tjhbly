@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="js/bootstrap/css/bootstrap.css">
+</head>
+
+<body>
+
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">综合信息</a></li>
+			<li><a href="#">信息管理</a></li>
+		</ul>
+	</div>
+
+	<div class="formbody">
+
+
+		<div id="usual1" class="usual">
+
+
+			<div id="tab1" class="tabson">
+
+
+				<ul class="forminfo">
+					<input type="hidden" id="editid"></input>
+					<li><label>信息类型<b>*</b></label> <select id="type"
+						class="span1" style="width: 160px;">
+							<option value="1">政策法规</option>
+							<option value="2">工作动态</option>
+					</select></li>
+					<li><label>名称<b>*</b></label><input id="title" name=""
+						type="text" class="dfinput" style="width: 300px" /></li>
+					<li><label>副标题</label><input id="subtitle" name="" type="text"
+						class="dfinput" style="width: 300px" /></li>
+					<li><label>摘要</label><input id="summary" name="" type="text"
+						class="dfinput" style="width: 300px;" /></li>
+					<li><label>发布内容<b>*</b></label> <textarea id="content"
+							name="content"
+							style="width: 700px; height: 250px; visibility: hidden;"></textarea>
+
+					</li>
+					<li>
+						<div>
+							<label>&nbsp;</label><input id="submitBtn" type="button"
+								class="btn btn-info" value="提交" /> <label>&nbsp;</label><label>&nbsp;</label><input
+								name="" type="button" class="btn btn-info" value="取消" />
+						</div>
+					</li>
+				</ul>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+
+</body>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
+<script type="text/javascript" src="js/kindeditor/kindeditor-all-min.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="js/kindeditor/lang/zh-CN.js"></script>
+<script>
+	KindEditor.ready(function(K) {
+		var editor = K.create('#content', {
+			//自定义工具栏  
+			items : [ 'code', '|', 'justifyleft', 'justifycenter',
+					'justifyright', 'justifyfull', 'insertorderedlist',
+					'insertunorderedlist', 'indent', 'outdent', 'clearhtml',
+					'quickformat', 'selectall', '|', 'fullscreen',
+					'formatblock', 'fontname', 'fontsize', '|', 'forecolor',
+					'hilitecolor', 'bold', 'italic', 'underline',
+					'strikethrough', 'lineheight', 'removeformat', '|',
+					'image', 'multiimage', 'insertfile', 'table', 'hr',
+					'emoticons', 'baidumap', 'pagebreak', 'anchor', 'link',
+					'unlink' ],
+			uploadJson : 'js/kindeditor/jsp/upload_json.jsp', //图片上传Action  
+			allowImageRemote : false
+		});
+
+		var url = window.location + "";
+		var id = "";
+		if(url.indexOf("?id=") >= 0){
+			id = url.substring(url.indexOf("?id=") + 4, url.length);
+		}
+		if (id != null && id != "") {
+			$.get("../news/info", {
+				id : id
+			}, function(json) {
+				$('#editid').prop('value', json.id);
+				$('#type').prop('value', json.type);
+				$('#title').prop('value', json.title);
+				$('#subtitle').prop('value', json.subtitle);
+				$('#summary').prop('value', json.summary);
+				editor.html(json.content);
+			});
+		}
+
+		$('#submitBtn').click(function() {
+			var id = $('#editid').val();
+			if (id == null || id == "") {
+				$.post("../news/add", {
+					type : $("#type").val(),
+					title : $("#title").val(),
+					subtitle : $("#subtitle").val(), //find("option:selected").text(),
+					summary : $("#summary").val(),
+					content : editor.html()
+				}, function(json) {
+					alert("添加成功！");
+					window.history.go(-1);
+				});
+			} else {
+
+				$.post("../news/edit", {
+					id : id,
+					type : $("#type").val(),
+					title : $("#title").val(),
+					subtitle : $("#subtitle").val(), //find("option:selected").text(),
+					summary : $("#summary").val(),
+					content : editor.html()
+				}, function(json) {
+					alert("修改成功！");
+					window.history.go(-1);
+				});
+			}
+		});
+	});
+</script>
+</html>

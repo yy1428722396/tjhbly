@@ -1,0 +1,397 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#preview, .img, img {
+	width: 200px;
+	height: 200px;
+}
+
+#preview {
+	border: none;
+}
+</style>
+</head>
+
+<body>
+
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">基础信息管理</a></li>
+			<li><a href="#">商务楼宇基础信息管理</a></li>
+		</ul>
+	</div>
+
+	<div class="formbody">
+
+		<div class="formtitle">
+			<span>基本信息</span>
+		</div>
+		<input type="hidden" id="editid"></input>
+		<table class="infotable" border="1" cellspacing="0" cellpadding="0">
+			<tr style="background: #ccc; height: 40px;">
+				<td style="width: 5%">序号</td>
+				<td style="width: 20%">数据项</td>
+				<td style="width: 70%" colspan="3">数据内容</td>
+			</tr>
+			<tr>
+				<td>1*</td>
+				<td>楼宇名称</td>
+				<td colspan="3"><input id="name" type="text" class="dfinput"
+					style="width: 99%" maxlength="50"/></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>楼宇原名称</td>
+				<td colspan="3"><input id="prename" type="text" class="dfinput"
+					style="width: 99%" maxlength="50"/></td>
+			</tr>
+			<tr>
+				<td>3*</td>
+				<td>参考租金范围</td>
+				<td colspan="2"><input id="rent" type="text" class="dfinput"
+					style="width: 99%" maxlength="10"/></td>
+				<td>元/月/平方米</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>物业费</td>
+				<td colspan="2"><input id="property" type="text"
+					class="dfinput" style="width: 99%" maxlength="10"/></td>
+				<td>元/月/平方米</td>
+			</tr>
+			<tr>
+				<td>5*</td>
+				<td>建筑面积</td>
+				<td><input id="buildarea" type="text" class="dfinput"
+					style="width: 99%" maxlength="10"/></td>
+				<td>米²</td>
+				<td>备注：登记产权总面积</td>
+			</tr>
+			<tr>
+				<td>6*</td>
+				<td>地上建筑面积</td>
+				<td><input id="eartharea" type="text" class="dfinput"
+					style="width: 99%" maxlength="10"/></td>
+				<td>米²</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>7*</td>
+				<td>可出租面积</td>
+				<td><input id="rentarea" type="text" class="dfinput"
+					style="width: 99%" maxlength="10"/></td>
+				<td>米²</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>8*</td>
+				<td>当前空置面积</td>
+				<td><input id="emptyarea" type="text" class="dfinput"
+					style="width: 99%" maxlength="10"/></td>
+				<td>米²</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9*</td>
+				<td>楼宇产权性质</td>
+				<td colspan="3">
+					<div id="oneCheck1">
+						<input type="checkbox" name="oneBox1" value="单产权">单产权 <input
+							type="checkbox" name="oneBox1" value="多产权">多产权 
+					</div>
+				</td>
+				<!--right-->
+			</tr>
+			<tr>
+				<td>10*</td>
+				<td>楼宇级别</td>
+				<!--class-->
+				<td colspan="3">
+					<div id="oneCheck2">
+						<input type="checkbox" name="oneBox2" value="国际甲级">国际甲级 <input
+							type="checkbox" name="oneBox2" value="甲级">甲级 <input
+								type="checkbox" name="oneBox2" value="乙级">乙级 <input
+									type="checkbox" name="oneBox2" value="丙级">丙级 <input
+										type="checkbox" name="oneBox2" value="其他">其他 
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>11*</td>
+				<td>楼宇类别</td>
+				<!--type-->
+				<td colspan="3">
+					<div id="oneCheck3">
+						<input type="checkbox" name="oneBox3" value="写字楼">写字楼 <input
+							type="checkbox" name="oneBox3" value="城市综合体">城市综合体 <input
+								type="checkbox" name="oneBox3" value="商住两用楼">商住两用楼 <input
+									type="checkbox" name="oneBox3" value="其他">其他 
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>12*</td>
+				<td>主要业态</td>
+				<!--service-->
+				<td colspan="3">
+					<div id="oneCheck4">
+						<input class="" type="checkbox" name="oneBox4" value="金融">金融
+							<input type="checkbox" name="oneBox4" value="高新">高新 <input
+								type="checkbox" name="oneBox4" value="文创">文创 <input
+									type="checkbox" name="oneBox4" value="旅游">旅游 <input
+										type="checkbox" name="oneBox4" value="商业">商业 <input
+											type="checkbox" name="oneBox4" value="信息">信息 <input
+												type="checkbox" name="oneBox4" value="其他">其他 
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>13*</td>
+				<td>楼宇总层数</td>
+				<td colspan="3"><input id="totalfloor" type="number"
+					class="dfinput" style="width: 20%; margin: 10px;" oninput="if(value.length>3)value=value.slice(0,3)"/>，其中地上层数<input
+					id="upfloor" type="number" class="dfinput"
+					style="width: 20%; margin: 10px;" oninput="if(value.length>3)value=value.slice(0,3)"/>地下层数<input id="downfloor"
+					type="number" class="dfinput" style="width: 20%; margin: 10px;" oninput="if(value.length>3)value=value.slice(0,3)" /></td>
+			</tr>
+			<tr>
+				<td>14*</td>
+				<td>楼宇车位数</td>
+				<td><input id="carno" type="number" class="dfinput"
+					style="width: 99%" oninput="if(value.length>4)value=value.slice(0,4)"/></td>
+				<td>邮政编码</td>
+				<td><input id="postcode" type="text" class="dfinput"
+					style="width: 99%" maxlength="6"/></td>
+			</tr>
+			<tr>
+				<td>15*</td>
+				<td>楼宇详细地址</td>
+				<td colspan="2"><input id="address" type="text" class="dfinput"
+					style="width: 99%" maxlength="200"/></td>
+				<td>注：明确到街道、胡同的具体门牌号</td>
+			</tr>
+			<tr>
+				<td>16</td>
+				<td>建成年度</td>
+				<td colspan="3"><input id="buildyear" type="number"
+					class="dfinput" style="width: 99%" maxlength="4"/></td>
+			</tr>
+			<tr>
+				<td>17</td>
+				<td>楼宇开发商名称</td>
+				<td colspan="3"><input id="devname" type="text" class="dfinput"
+					style="width: 99%" maxlength="50"/></td>
+			</tr>
+			<tr>
+				<td>18*</td>
+				<td>所属街道</td>
+				<td colspan="3"><input id="street" type="text" class="dfinput"
+					style="width: 99%" maxlength="50"/></td>
+			</tr>
+			<tr>
+				<td>19*</td>
+				<td>所属商圈</td>
+				<td colspan="3"><input id="cbd" type="text" class="dfinput"
+					style="width: 99%" maxlength="50"/></td>
+			</tr>
+			<tr>
+				<td>20*</td>
+				<td>物业公司名称</td>
+				<td colspan="3"><input id="propertyname" type="text"
+					class="dfinput" style="width: 99%" maxlength="50"/></td>
+			</tr>
+			<tr>
+				<td>21*</td>
+				<td>物业联系方式</td>
+				<td colspan="3">电话<input id="propertytel" type="text"
+					class="dfinput" style="width: 20%; margin: 10px;" maxlength="20"/>联系人<input
+					id="toucheman" type="text" class="dfinput"
+					style="width: 20%; margin: 10px;" maxlength="10"/>房间号<input id="roomno"
+					type="text" class="dfinput" style="width: 20%; margin: 10px;" maxlength="5"/></td>
+			</tr>
+		</table>
+		<br>
+			<div style="text-align: center;">
+				<input id="submitBtn" type="button" class="btn btn-info" value="提交" />
+			</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>
+	$(function() {
+
+		var url = window.location + "";
+		var id = "";
+		if (url.indexOf("?id=") >= 0) {
+			id = url.substring(url.indexOf("?id=") + 4, url.length);
+		}
+		if (id != null && id != "") {
+			$.get("../build_base/info", {
+				id : id
+			}, function(json) {
+				$("#editid").prop('value', id);
+				$("#name").prop('value', json.buildname);
+				$("#prename").prop('value', json.prename);
+				$("#rent").prop('value', json.rent);
+				$("#property").prop('value', json.property);
+				$("#buildarea").prop('value', json.buildarea);
+				$("#eartharea").prop('value', json.eartharea);
+				$("#rentarea").prop('value', json.rentarea);
+				$("#emptyarea").prop('value', json.emptyarea);
+				$("#upfloor").prop('value', json.upfloor);
+				$("#address").prop('value', json.address);
+				$("#postcode").prop('value', json.postcode);
+				$("#buildyear").prop('value', json.buildyear);
+				$("#street").prop('value', json.street);
+				$("#carno").prop('value', json.carno);
+				$("#cbd").prop('value', json.cbd);
+				$("#propertyname").prop('value', json.propertyname);
+				$("#propertytel").prop('value', json.propertytel);
+				$("#downfloor").prop('value', json.downfloor);
+				$("#totalfloor").prop('value', json.totalfloor);
+				$("#toucheman").prop('value', json.toucheman);
+				$("#roomno").prop('value', json.roomno);
+				$("#devname").prop('value', json.devname);
+				$("#lyname").empty().append(json.buildname);
+
+				var right = json.buildright;
+				var classValue = json.classvalue;
+				var type = json.type;
+				var service = json.service;
+				$.each($('input:checkbox'), function() {
+					if (this.value == right || this.value == classValue
+							|| this.value == type || this.value == service) {
+						this.checked = true;
+					}
+				});
+			});
+		}
+
+		var fanxiBox1 = $("#oneCheck1 input:checkbox");
+		fanxiBox1.click(function() {
+			if (this.checked || this.checked == 'checked') {
+
+				fanxiBox1.removeAttr("checked");
+				//这里需注意jquery1.6以后必须用prop()方法
+				//$(this).attr("checked",true);
+				$(this).prop("checked", true);
+			}
+		});
+
+		var fanxiBox2 = $("#oneCheck2 input:checkbox");
+		fanxiBox2.click(function() {
+			if (this.checked || this.checked == 'checked') {
+
+				fanxiBox2.removeAttr("checked");
+				//这里需注意jquery1.6以后必须用prop()方法
+				//$(this).attr("checked",true);
+				$(this).prop("checked", true);
+			}
+		});
+
+		var fanxiBox3 = $("#oneCheck3 input:checkbox");
+		fanxiBox3.click(function() {
+			if (this.checked || this.checked == 'checked') {
+
+				fanxiBox3.removeAttr("checked");
+				//这里需注意jquery1.6以后必须用prop()方法
+				//$(this).attr("checked",true);
+				$(this).prop("checked", true);
+			}
+		});
+
+		var fanxiBox4 = $("#oneCheck4 input:checkbox");
+		fanxiBox4.click(function() {
+			if (this.checked || this.checked == 'checked') {
+
+				fanxiBox4.removeAttr("checked");
+				//这里需注意jquery1.6以后必须用prop()方法
+				//$(this).attr("checked",true);
+				$(this).prop("checked", true);
+			}
+		});
+	});
+
+	$('#submitBtn').click(function() {
+		var id = $('#editid').val();
+		if (id == null || id == "") {
+			$.post("../build_base/add", {
+				name : $("#name").val(),
+				prename : $("#prename").val(),
+				rent : $("#rent").val(), //find("option:selected").text(),
+				property : $("#property").val(),
+				buildarea : $("#buildarea").val(),
+				eartharea : $("#eartharea").val(),
+				rentarea : $("#rentarea").val(),
+				emptyarea : $("#emptyarea").val(),
+				right : $("input[name='oneBox1']:checked").val(),
+				classValue : $("input[name='oneBox2']:checked").val(),
+				type : $("input[name='oneBox3']:checked").val(),
+				service : $("input[name='oneBox4']:checked").val(),
+				upfloor : $("#upfloor").val(),
+				totalfloor : $("#totalfloor").val(),
+				address : $("#address").val(),
+				postcode : $("#postcode").val(),
+				buildyear : $("#buildyear").val(),
+				street : $("#street").val(),
+				cbd : $("#cbd").val(),
+				propertyname : $("#propertyname").val(),
+				propertytel : $("#propertytel").val(),
+				downfloor : $("#downfloor").val(),
+				toucheman : $("#toucheman").val(),
+				roomno : $("#roomno").val(),
+				carno : $("#carno").val(),
+				devname : $('#devname').val()
+			}, function(json) {
+				if (json) {
+					alert("添加成功！");
+					window.history.go(-1);
+				} else
+					alert("操作失败");
+			});
+		} else {
+			$.post("../build_base/edit", {
+				name : $("#name").val(),
+				id : id,
+				prename : $("#prename").val(),
+				rent : $("#rent").val(), //find("option:selected").text(),
+				property : $("#property").val(),
+				buildarea : $("#buildarea").val(),
+				eartharea : $("#eartharea").val(),
+				rentarea : $("#rentarea").val(),
+				emptyarea : $("#emptyarea").val(),
+				right : $("input[name='oneBox1']:checked").val(),
+				classValue : $("input[name='oneBox2']:checked").val(),
+				type : $("input[name='oneBox3']:checked").val(),
+				service : $("input[name='oneBox4']:checked").val(),
+				upfloor : $("#upfloor").val(),
+				totalfloor : $("#totalfloor").val(),
+				address : $("#address").val(),
+				postcode : $("#postcode").val(),
+				buildyear : $("#buildyear").val(),
+				street : $("#street").val(),
+				cbd : $("#cbd").val(),
+				propertyname : $("#propertyname").val(),
+				propertytel : $("#propertytel").val(),
+				downfloor : $("#downfloor").val(),
+				toucheman : $("#toucheman").val(),
+				roomno : $("#roomno").val(),
+				carno : $("#carno").val(),
+				devname : $('#devname').val()
+			}, function(json) {
+				if (json) {
+					alert("修改成功！");
+					window.history.go(-1);
+				} else
+					alert("操作失败");
+			});
+		}
+	});
+	
+</script>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="js/bootstrap/css/bootstrap.css">
+</head>
+
+<body>
+
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">基础信息管理</a></li>
+			<li><a href="#">楼宇运营单位基础信息管理</a></li>
+		</ul>
+	</div>
+
+	<div class="formbody">
+
+
+		<div id="usual1" class="usual">
+
+
+			<div id="tab1" class="tabson">
+
+
+				<ul class="forminfo">
+					<input type="hidden" id="editid"></input>
+					<li><label>单位名称<b>*</b></label><input id="unitname" type="text"
+						class="dfinput" style="width: 300px" maxlength="50"/></li>
+					<li><label>负责人</label><input id="dutyman" type="text"
+						class="dfinput" style="width: 300px" maxlength="200"/></li>
+					<li><label>联系人</label><input id="touchman" type="text"
+						class="dfinput" style="width: 300px" maxlength="20"/></li>
+					<li><label>联系电话</label><input id="telphone" type="text"
+						class="dfinput" style="width: 300px" maxlength="20"/></li>
+					<li><label>&nbsp;</label><input id="submitBtn" type="button"
+						class="btn btn-info" value="提交" /></li>
+				</ul>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+</body>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>
+	var url = window.location + "";
+	var id = "";
+	if(url.indexOf("?id=") >= 0){
+		id = url.substring(url.indexOf("?id=") + 4, url.length);
+	}
+	if (id != null && id != "") {
+		$.get("../rununit/info", {
+			id : id
+		}, function(json) {
+			$('#editid').prop('value', json.data[0].id);
+			$('#unitname').prop('value', json.data[0].unitname);
+			$('#dutyman').prop('value', json.data[0].dutyman);
+			$('#touchman').prop('value', json.data[0].touchman);
+			$('#telphone').prop('value', json.data[0].telphone);
+		});
+	}
+	$('#submitBtn').click(function() {
+		var id = $('#editid').val();
+		if (id == null || id == "") {
+			$.post("../rununit/add", {
+				unitname : $("#unitname").val(),
+				address : '',
+				touchman : $("#touchman").val(),
+				dutyman : $("#dutyman").val(),
+				telphone : $("#telphone").val()
+			}, function(json) {
+				if (json) {
+					alert("添加成功！");
+					window.history.go(-1);
+				}
+			});
+		} else {
+
+			$.post("../rununit/edit", {
+				id : id,
+				unitname : $("#unitname").val(),
+				address : '',
+				touchman : $("#touchman").val(),
+				dutyman : $("#dutyman").val(),
+				telphone : $("#telphone").val()
+			}, function(json) {
+				if (json) {
+					alert("修改成功！");
+					window.history.go(-1);
+				}
+			});
+		}
+	});
+</script>
+</html>
