@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="js/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="js/mmgrid/mmGrid.css">
+		<link rel="stylesheet"
+			href="js/mmgrid/theme/bootstrap/mmGrid-bootstrap.css">
+			<link rel="stylesheet" href="js/mmgrid/mmPaginator.css">
+				<link rel="stylesheet"
+					href="js/mmgrid/theme/bootstrap/mmPaginator-bootstrap.css">
+					<link rel="stylesheet" href="css/jquery.monthpicker.css">
+</head>
+
+
+<body>
+
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">数据汇总</a></li>
+			<li><a href="#">企业数据汇总</a></li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+
+		<ul class="seachform">
+
+			
+			<li><input id="imgfile" type="file"  /></li>
+			
+			
+			<li><label>数据日期</label><input id="s_reportdate" type="text"
+				class="scinput" /></li>
+
+			<li><label>&nbsp;</label><input name=""
+				type="button" class="btn btn-info" value="导入数据" onclick="importdata()" /></li>
+		</ul>
+		
+		<ul class="seachform" style="margin-top:100px;">
+
+             <li><label>转换数据月份</label><input id="ppreportdate" type="text"
+				class="scinput" /></li>
+       <li><label>&nbsp;</label><input name=""
+				type="button" class="btn btn-info" value="国税数据转换" onclick="doguobatch()"/></li>
+		</ul>
+       
+      
+		</div>
+
+
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/mmgrid/mmGrid.js"></script>
+<script src="js/mmgrid/mmPaginator.js"></script>
+<script src="js/jquery.monthpicker.js"></script>
+<script>
+	$('#s_reportdate').monthpicker({
+		years : [ 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 ],
+		topOffset : 6
+	})
+
+   $('#ppreportdate').monthpicker({
+		years : [ 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 ],
+		topOffset : 6
+	})
+	
+
+	
+
+	
+
+	function importdata() {
+		var datatime= $("#s_reportdate").val();
+		if(datatime==""){
+			alert("请选择要导入的数据日期");
+		}else{
+		if($("#imgfile")==""){
+			alert("请选择要导入文件");
+		}
+		var formData = new FormData();
+		formData.append("upguoshuifile",$("#imgfile")[0].files[0]);
+		formData.append("datatime",datatime);
+		$.ajax({ 
+			url : "../build_imExport/uploadguoshui.do", 
+			type : 'POST', 
+			data : formData, 
+			// 告诉jQuery不要去处理发送的数据
+			processData : false, 
+			// 告诉jQuery不要去设置Content-Type请求头
+			contentType : false,
+			beforeSend:function(){
+			console.log("正在进行，请稍候");
+			},
+			success : function(data) { 
+			if(data){
+			alert("导入成功");
+			}
+			}, 
+			error : function(responseStr) { 
+			console.log("error");
+			} 
+			});
+
+		}
+		
+	}
+	function  doguobatch(){
+		
+		var datatime= $("#ppreportdate").val();
+		if(datatime==""){
+			alert("请选择跑批的数据日期");
+		}else{
+		$.ajax({
+	        cache: true,
+	        type : "GET",
+	        url  :'../build_batch/guoshuibatch',
+	        data :{datatime:datatime},
+	        async: false,
+	        success : function(data) { 
+				if(data){
+				alert("导入成功");
+				}
+				}, 
+	        error: function(request) {
+	            alert("Connection error");
+	        },
+	        success: function(data) {
+	        	
+	        	
+	        }
+	    });
+		}
+	}
+	
+</script>
+</html>

@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+
+</head>
+
+<body style="background: #f0f9fd;">
+	<div class="lefttop">
+		<span></span>信息管理
+	</div>
+	<input type="hidden" id="session_username" />
+	<input type="hidden" id="session_type" />
+	<input type="hidden" id="session_role" />
+	<dl class="leftmenu">
+
+		<dd>
+			<div class="title">
+				<span><img src="images/leftico02.png" /></span>基础信息管理
+			</div>
+			<ul class="menuson">
+				<li class="active"><cite></cite><a href="lytable.html"
+					target="rightFrame">楼宇基础信息管理</a><i></i></li>
+				<li><cite></cite><a href="lyqytable.html" target="rightFrame">楼宇入驻企业基础信息管理</a><i></i></li>
+				<li><cite></cite><a href="lyhjtable.html" target="rightFrame">楼宇环境基础信息管理</a><i></i></li>
+			</ul>
+		</dd>
+
+		<dd>
+			<div class="title">
+				<span><img src="images/leftico02.png" /></span>经济数据
+			</div>
+			<ul class="menuson">
+				<li><cite></cite><a href="qyybtable.html" target="rightFrame">企业月报</a><i></i></li>
+				<li><cite></cite><a href="lyybtable.html" target="rightFrame">楼宇月报</a><i></i></li>
+			</ul>
+		</dd>
+		<dd>
+			<div class="title">
+				<span><img src="images/leftico04.png" /></span>报表统计
+			</div>
+			<ul class="menuson">
+				<li><cite></cite><a href="hbfxtable.html" target="rightFrame">全区基本情况</a><i></i></li>
+				<li><cite></cite><a href="lyfxtable.html" target="rightFrame">楼宇基本情况</a><i></i></li>
+				<li><cite></cite><a href="hbjjfxtable.html" target="rightFrame">全区经济效益</a><i></i></li>
+				<li><cite></cite><a href="lyjjfxtable.html" target="rightFrame">楼宇经济效益</a><i></i></li>
+				<li><cite></cite><a href="hbcyfxtable.html" target="rightFrame">全区产业分析</a><i></i></li>
+				<li><cite></cite><a href="lycyfxtable.html" target="rightFrame">楼宇产业分析</a><i></i></li>
+			</ul>
+		</dd>
+
+
+		<dd id="newsmenu">
+			
+		</dd>
+
+
+		<dd id="configmenu">
+			
+
+		</dd>
+		</script>
+	</dl>
+</body>
+<script type="text/javascript">
+	$(function() {
+		var role = $.cookie("cookie_role");
+		var type = $.cookie("cookie_type");
+		
+		var newsmenu = '<div class="title"><span><img src="images/leftico03.png" /></span>综合信息</div><ul class="menuson"><li><cite></cite><a href="xxgltable.html" target="rightFrame">信息管理</a><i></i></li><li><cite></cite><a href="noticetable.html" target="rightFrame">通知公告</a><i></i></li><li><cite></cite><a href="lyvrtable.html" target="rightFrame">VR链接地址</a><i></i></li></ul>';
+		var configmenu = '<div class="title"><span><img src="images/leftico04.png" /></span>配置管理</div><ul class="menuson"><li><cite></cite><a href="lyyhtable.html" target="rightFrame">楼宇办用户管理</a><i></i></li><li><cite></cite><a href="unittable.html" target="rightFrame">运行单位管理</a><i></i></li><li><cite></cite><a href="qyyhtable.html" target="rightFrame">运行单位用户管理</a><i></i></li></ul>';
+		if(type == "2"){
+			$('#newsmenu').empty().append(newsmenu);
+			$('#configmenu').empty().append(configmenu);
+		}else if(type == '1'){
+			$('#newsmenu').empty();
+			$('#configmenu').empty();
+		}
+		//导航切换
+		$(".menuson li").click(function() {
+			$(".menuson li.active").removeClass("active")
+			$(this).addClass("active");
+		});
+
+		$('.title').click(function() {
+			var $ul = $(this).next('ul');
+			$('dd').find('ul').slideUp();
+			if ($ul.is(':visible')) {
+				$(this).next('ul').slideUp();
+			} else {
+				$(this).next('ul').slideDown();
+			}
+		});
+	})
+</script>
+
+</html>
