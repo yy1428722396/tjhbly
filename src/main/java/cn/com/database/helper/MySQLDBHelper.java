@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -117,18 +118,18 @@ public class MySQLDBHelper implements IDBHelper {
 	}
 
 	public static Object getObj(Class clazz, ResultSet rs) throws Exception {
-		// 鎵�湁鐨勫睘鎬�
+		// 閹碉拷婀侀惃鍕潣閹拷
 		Field[] field = clazz.getDeclaredFields();
 		Object info = clazz.newInstance();
 		for (int i = 0; i < field.length; i++) {
 			String name = field[i].getName().toUpperCase();
-			// 寰楀埌鏂规硶鍚�
+			// 瀵版鍩岄弬瑙勭《閸氾拷
 			name = "set" + name.charAt(0) + name.substring(1).toLowerCase();
-			// 寰楀埌绫诲瀷
+			// 瀵版鍩岀猾璇茬��
 			Class c = field[i].getType();
-			// 寰楀埌鏂规硶
+			// 瀵版鍩岄弬瑙勭《
 			Method method = clazz.getMethod(name, c);
-			// 瀹炵幇鏂规硶
+			// 鐎圭偟骞囬弬瑙勭《
 			method.invoke(info, rs.getObject(i + 1));
 		}
 		return info;
@@ -180,6 +181,32 @@ public class MySQLDBHelper implements IDBHelper {
 
 	public void executeSQL(String sql) {
 		jdbcTemplate.update(sql);
+	}
+
+	public int[] batchCreate(String table, String[] properties,List<Object[]> valueList) {
+
+		if(properties == null || properties.length == 0)
+			return null;
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("insert into ");
+		sql.append(table);
+		sql.append(" (");
+		
+		String valueTemp = "(";
+		for(int i = 0, l = properties.length ; i < l ; i++) {
+			sql.append(properties[i]);
+			valueTemp += "?";
+			if(i != l - 1) {
+				sql.append(",");
+				valueTemp += ",";
+			}
+		}
+		sql.append(") values ").append(valueTemp + ")");
+		
+		final String sqlClause = sql.toString();
+		
+		return jdbcTemplate.batchUpdate(sqlClause, valueList);
 	}
 
 }

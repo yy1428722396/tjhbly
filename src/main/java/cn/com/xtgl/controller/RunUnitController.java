@@ -30,6 +30,7 @@ public class RunUnitController {
 		String unitname = request.getParameter("unitname");
 		String telphone = request.getParameter("telphone");
 		String address = request.getParameter("address");
+		String dutyman = request.getParameter("dutyman");
 		String touchman = request.getParameter("touchman");
 		
 		Map properties = new HashMap();
@@ -37,6 +38,7 @@ public class RunUnitController {
 		properties.put("telphone", telphone);
 		properties.put("address", address);
 		properties.put("touchman", touchman);
+		properties.put("dutyman", dutyman);
 		properties.put("statusvalue", 1);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -59,12 +61,14 @@ public class RunUnitController {
 		String telphone = request.getParameter("telphone");
 		String address = request.getParameter("address");
 		String touchman = request.getParameter("touchman");
+		String dutyman = request.getParameter("dutyman");
 		
 		Map properties = new HashMap();
 		properties.put("unitname", unitname);
 		properties.put("telphone", telphone);
 		properties.put("address", address);
 		properties.put("touchman", touchman);
+		properties.put("dutyman", dutyman);
 		properties.put("statusvalue", 1);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

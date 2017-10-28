@@ -278,4 +278,33 @@ public class BuildReportController {
 		return mySQLDBHelper.update("t_build_monthreport", temp, "id=" + id);
 
 	}
+	
+	@RequestMapping(value = "/listshuiwu", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public Map listshuiwu(HttpServletRequest request) {
+		String buildname = request.getParameter("buildname");
+		String reportdate = request.getParameter("reportdate");
+
+		String limit = "10";// request.getParameter("limit");
+		String page = request.getParameter("page");
+		int startLine = 0;
+		int maxSize = Integer.valueOf(limit);
+		if (page != null && !page.equals("") && limit != null && !limit.equals("")) {
+			startLine = (Integer.valueOf(page) - 1) * Integer.valueOf(limit);
+		}
+
+		HttpSession session = request.getSession();
+		String userType = "";
+		String unitid = "";
+		if (session.getAttribute("type") != null && !session.getAttribute("type").equals("")) {
+			userType = session.getAttribute("type").toString();
+			unitid = session.getAttribute("unitid").toString();
+		} else
+			return null;
+
+		String sql = "select m.* from t_build_dishui m";
+		
+		Map result = mySQLDBHelper.retriveBySQL(sql, true, startLine, maxSize);
+		return result;
+	}
 }

@@ -12,4 +12,5 @@ public interface IDBHelper {
 	public Map retriveBySQL(String sql,boolean pagination,int startLine,int maxSize);
 	public Map retriveMapFromSQL(String sql);
 	public void executeSQL(String sql);
+	public int[] batchCreate(String table, String[] properties,List<Object[]> valueList);
 }
