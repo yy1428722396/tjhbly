@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="js/bootstrap/css/bootstrap.css">
+</head>
+
+<body>
+
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">配置管理</a></li>
+			<li><a href="#">运行单位用户管理</a></li>
+		</ul>
+	</div>
+
+	<div class="formbody">
+
+
+		<div id="usual1" class="usual">
+
+
+			<div id="tab1" class="tabson">
+
+
+				<ul class="forminfo">
+					<input type="hidden" id="editid"></input>
+					<li><label>角色<b>*</b></label> <select id="role" class="span1"
+						style="width: 160px;">
+							<option value="102">领导</option>
+							<option value="101">岗位人员</option>
+					</select></li>
+					<li><label>用户名<b>*</b></label><input id="username" type="text"
+						class="dfinput" style="width: 300px" maxlength="50"/></li>
+					<li><label>运行单位<b>*</b></label><input type="hidden" id="unitid"></input><input id="unitname" type="text"
+						class="dfinput" style="width: 300px" maxlength="50"/><input type="button" class="btn btn-info" value="选择单位"
+					onclick="showUnitGrid()"></input></li>
+					<li><label>&nbsp;</label><input id="submitBtn" type="button"
+						class="btn btn-info" value="提交" /></li>
+				</ul>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+</body>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>
+	var url = window.location + "";
+	var id = "";
+	if(url.indexOf("?id=") >= 0){
+		id = url.substring(url.indexOf("?id=") + 4, url.length);
+	}
+	if (id != null && id != "") {
+		$.get("../user/info", {
+			id : id
+		}, function(json) {
+			$('#editid').prop('value', json.data[0].id);
+			$('#username').prop('value', json.data[0].username);
+			$('#unitname').prop('value', json.data[0].unitname);
+			$('#unitid').prop('value', json.data[0].unitid);
+			$('#username').prop('disabled', 'true');
+			$('#role').prop('value', json.data[0].role);
+		});
+	}
+	$('#submitBtn').click(function() {
+		var id = $('#editid').val();
+		if (id == null || id == "") {
+			$.post("../user/add", {
+				username : $("#username").val(),
+				type : 1,
+				role : $("#role").val(),
+				unitid : $("#unitid").val()
+			}, function(json) {
+				if (json) {
+					alert("添加成功！");
+					window.history.go(-1);
+				} else {
+					alert("您输入的用户名已经存在，请重新输入！");
+				}
+			});
+		} else {
+
+			$.post("../user/edit", {
+				id : id,
+				username : $("#username").val(),
+				type : 1,
+				unitid : $("#unitid").val(),
+				role : $("#role").val()
+			}, function(json) {
+				if (json) {
+					alert("修改成功！");
+					window.history.go(-1);
+				}
+			});
+		}
+	});
+	
+	function showUnitGrid() {
+		var iWidth = 1000;
+	    var iHeight = 600;
+	    var iTop = (window.screen.availHeight - 30 - iHeight) / 2;
+	    var iLeft = (window.screen.availWidth - 10 - iWidth) / 2;
+	    var win = window.open("unitgrid.html", "弹出窗口", "width=" + iWidth + ", height=" + iHeight + ",top=" + iTop + ",left=" + iLeft);
+	}
+
+	function transferValue(value){
+		var ly = value.split(",");
+		$("#unitid").prop("value", ly[0]);
+		$("#unitname").prop("value",ly[1]);
+	}
+</script>
+</html>

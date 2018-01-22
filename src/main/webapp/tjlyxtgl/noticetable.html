@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="js/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="js/mmgrid/mmGrid.css">
+		<link rel="stylesheet"
+			href="js/mmgrid/theme/bootstrap/mmGrid-bootstrap.css">
+			<link rel="stylesheet" href="js/mmgrid/mmPaginator.css">
+				<link rel="stylesheet"
+					href="js/mmgrid/theme/bootstrap/mmPaginator-bootstrap.css">
+</head>
+
+
+<body>
+
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">综合信息</a></li>
+			<li><a href="#">通知公告</a></li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+
+		<ul class="seachform">
+			<li><label>名称</label><input id="s_title" type="text"
+				class="scinput" /></li>
+
+			<li style="float: right;"><label>&nbsp;</label><input name=""
+				type="button" class="btn btn-info" value="查询" onclick="search()" /></li>
+
+		</ul>
+
+		<div class="tools">
+			<ul class="toolbar">
+				<li class="click"><a href="noticeform.html" target="rightFrame"
+					style="text-decoration: none;"><span><img
+							src="images/t01.png" /></span>添加</a></li>
+				<li class="click"><a href="javascript:void(0)"
+					style="text-decoration: none;" id="edit"><span><img
+							src="images/t02.png" /></span>修改</a></li>
+				<li><span><a href="javascript:void(0)"
+						style="text-decoration: none;" id="del"><img
+							src="images/t03.png" /></span>删除</a></li>
+			</ul>
+			<br>
+		</div>
+
+		<div>
+			<table id="mmg" class="mmg">
+				<tr>
+					<th rowspan="" colspan=""></th>
+				</tr>
+			</table>
+			<div id="pg" style="text-align: right;"></div>
+		</div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/mmgrid/mmGrid.js"></script>
+<script src="js/mmgrid/mmPaginator.js"></script>
+
+<script>
+	var cols = [{
+		title : '名称',
+		name : 'title',
+		width : 100,
+		align : 'center',
+		sortable : false
+	}, {
+		title : '内容',
+		name : 'content',
+		width : 100,
+		align : 'center',
+		sortable : false
+	}, {
+		title : '创建时间',
+		name : 'createtime',
+		width : 200,
+		align : 'center',
+		sortable : false
+	} ];
+
+	var mmg = $('.mmg').mmGrid({
+		height : 473,
+		width : '99%',
+		indexCol : false,
+		cols : cols,
+		url : '../news/list?type=3',
+		method : 'get',
+		root : 'data',
+		multiSelect : false,
+		checkCol : false,
+		fullWidthRows : true,
+		nowrap : true,
+		plugins : [ $('#pg').mmPaginator({}) ]
+	});
+
+	$("#edit").click(function() {
+		var rows = mmg.selectedRows();
+		if (rows.length == 0) {
+			alert("请选择需要编辑的记录");
+			return;
+		} else {
+			window.location="noticeform.html?id="+rows[0].id;
+		}
+	});
+
+	$("#del").click(function() {
+		var rows = mmg.selectedRows();
+		if (rows.length == 0) {
+			alert("请选择需要删除的记录");
+			return;
+		} else {
+			var r = confirm("您确定要删除该条记录吗？");
+			if (r) {
+				$.post("../news/delete", {
+					id : rows[0].id
+				}, function(json) {
+					if (json) {
+						alert("删除成功！");
+						search();
+					} else
+						alert("操作失败");
+				});
+			}
+
+		}
+	});
+
+	function search() {
+		mmg.load({
+			title : $("#s_title").val()
+		});
+	}
+</script>
+</html>
