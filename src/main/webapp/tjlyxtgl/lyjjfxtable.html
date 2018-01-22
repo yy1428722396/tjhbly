@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="js/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="js/mmgrid/mmGrid.css">
+		<link rel="stylesheet"
+			href="js/mmgrid/theme/bootstrap/mmGrid-bootstrap.css">
+			<link rel="stylesheet" href="js/mmgrid/mmPaginator.css">
+				<link rel="stylesheet"
+					href="js/mmgrid/theme/bootstrap/mmPaginator-bootstrap.css">
+					<link rel="stylesheet" href="css/jquery.monthpicker.css">
+</head>
+
+
+<body>
+
+	<div class="place">
+		<span>位置：</span>
+		<ul class="placeul">
+			<li><a href="#">经济数据分析</a></li>
+			<li><a href="#">单座商务楼宇经济效益</a></li>
+		</ul>
+	</div>
+
+	<div class="rightinfo">
+
+		<ul class="seachform">
+
+			<li style="width: 400px;"><label>统计年月</label><input
+				id="s_countdate" type="text" class="scinput" style="width: 100px;" readonly="readonly"/></li>
+			<li style="width: 400px;"><label style="padding-left: 21px;">楼宇名称</label><input
+				id="s_buildname" type="text" class="scinput" style="width: 100px;" /></li>
+			<li style="float: right;"><label>&nbsp;</label><input name=""
+				type="button" class="btn btn-info" value="查询" onclick="search()" /></li>
+
+		</ul>
+
+
+		<div>
+			<table id="mmg" class="mmg">
+				<tr>
+					<th rowspan="" colspan=""></th>
+				</tr>
+			</table>
+			<div id="pg" style="text-align: right;"></div>
+		</div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/mmgrid/mmGrid.js"></script>
+<script src="js/mmgrid/mmPaginator.js"></script>
+<script src="js/jquery.monthpicker.js"></script>
+<script>
+	$('#s_countdate').monthpicker({
+		years :  [2015,2016,2017, 2018, 2019, 2020, 2021, 2022, 2023,2024,2025],
+		topOffset : 6
+	})
+	var fixed2 = function(val) {
+		if (typeof val != 'number') {
+			return '';
+		}
+		return val.toFixed(2);
+	}
+	var cols = [ {
+		title : '统计年月',
+		name : 'countdate',
+		width : 100,
+		align : 'center',
+		sortable : false,
+		type : 'number'
+	}, {
+		title : '楼宇名称',
+		name : 'buildname',
+		width : 100,
+		align : 'center',
+		sortable : false,
+		type : 'number'
+	}, {
+		title : '本楼宇纳税贡献率',
+		name : 'taxrate',
+		width : 100,
+		align : 'center',
+		sortable : false,
+		type : 'number'
+	}, {
+		title : '本月新增纳税额贡献率',
+		name : 'incrtaxrate',
+		width : 100,
+		align : 'center',
+		sortable : false,
+		type : 'number'
+	}, {
+		title : '本楼宇营收贡献率',
+		name : 'incomerate',
+		width : 60,
+		align : 'center',
+		sortable : false,
+		type : 'number'
+	}, {
+		title : '本月新增营收贡献率',
+		name : 'incrincomerate',
+		width : 30,
+		align : 'center',
+		sortable : true,
+		type : 'number'
+	}, {
+		title : '本楼宇就业贡献率',
+		name : 'workmanrate',
+		width : 30,
+		align : 'center',
+		sortable : true,
+		type : 'number'
+	}, {
+		title : '本月新增就业贡献率',
+		name : 'incrworkmanrate',
+		width : 60,
+		align : 'center',
+		sortable : false,
+		type : 'number'
+	}, {
+		title : '楼宇经济水平：每平米税收',
+		name : 'areatax',
+		width : 100,
+		align : 'center',
+		sortable : false,
+		type : 'number'
+	} ];
+
+	var mmg = $('.mmg').mmGrid({
+		height : 473,
+		width : '99%',
+		indexCol : false,
+		cols : cols,
+		url : '../month_count/build_benefit',
+		method : 'get',
+		root : 'data',
+		multiSelect : false,
+		checkCol : false,
+		fullWidthRows : true,
+		nowrap : true,
+		plugins : [ $('#pg').mmPaginator({}) ]
+	});
+
+	function search() {
+		mmg.load({
+			countdate : $("#s_countdate").val(),
+			buildname : $("#s_buildname").val()
+		});
+	}
+</script>
+</html>

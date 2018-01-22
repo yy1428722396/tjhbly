@@ -1,0 +1,46 @@
+
+	<div class="banner1">
+	</div>
+<!-- //banner -->		
+<!-- services -->
+	<div class="services">
+			<div class="container">
+					<h3 class="agile_head">VR展示</h3>
+			<p class="w3_agile_para">全方位、真实的展示楼宇的内部环境</p>
+				</div>
+		<div id="vrsdiv" class="container">
+			
+			</div>
+			</div>	
+		
+	</div>
+	<script>
+	$
+			.get(
+					"../front_page/allvrs",
+					{
+
+					},
+					function(json) {
+						if (json != null && json != "") {
+							var content = '';
+							for (i = 0, l = json.length; i < l; i++) {
+								if(i % 3 == 0){
+								content += '<div class="w3_agile_services_grids" style="margin-top:50px;"><div class="col-md-4 w3_agile_services_grid">'
+										+ '<div class="agile_services_grid"><div class="hover06 column">'
+										+ '<div><a href="http://' + json[i].vrurl + '" target="_blank"><figure><img style="width:80%" src="../attached/' + json[i].id + '/' + json[i].vrpic + '"  alt="" class="img-responsive" /></figure>'
+										+ '</a></div></div></div><h4>' + json[i].buildname + '</h4></div>';
+								}else{
+									content += '<div class="col-md-4 w3_agile_services_grid">'
+										+ '<div class="agile_services_grid"><div class="hover06 column">'
+										+ '<div><a href="http://' + json[i].vrurl + '" target="_blank"><figure><img style="width:80%" src="../attached/' + json[i].id + '/' + json[i].vrpic + '"  alt="" class="img-responsive" /></figure>'
+										+ '</a></div></div></div><h4>' + json[i].buildname + '</h4></div>';
+										if((i + 1) % 3 == 0)
+											content += "</div>";
+								}
+								}
+							$('#vrsdiv').empty().append(content);
+							}
+							
+					});
+	</script>

@@ -1,0 +1,27 @@
+
+<!-- banner -->	
+	<div class="banner1">
+	</div>
+<!-- //banner -->
+<!-- contact -->
+	<div class="services">
+		<div id="newscontent" class="container">
+			
+		</div>
+	</div>
+<!-- //contact -->
+<script>
+$.get("../news/info", {
+	id:newsid
+}, function(json) {
+	var content = '<h3 class="agile_head">' + json.title + '</h3>'
+				+ '<p class="w3_agile_para">' + json.createtime + '</p>'
+				+ '<div class="agileits_w3layouts_contact_grids">'
+				+ '<div class="col-md-12 agileits_w3layouts_contact_gridl">' 
+		  		+ '<div class="agileits_mail_grid_right_grid">'
+				+ '<p>' + json.content + '</p>'
+				+ '</div></div></div>';
+
+	$('#newscontent').empty().append(content);
+});
+</script>

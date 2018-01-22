@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>天津河北区楼宇经济信息系统</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta name="keywords" content="天津河北区,楼宇,VR,天津经济" />
+
+<!-- //for-mobile-apps -->
+<link href="css/bootstrap.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet" />
+<!-- js -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<!-- //js -->
+<link rel="stylesheet" href="css/jquery.gallery.css">
+<!-- pop-up-box -->
+<link href="css/popuo-box.css" rel="stylesheet" />
+<!-- //pop-up-box -->
+<!-- font-awesome icons -->
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<link rel="stylesheet" type="text/css" href="css/jquery.pagination.css" />
+<link rel="stylesheet" href="css/flexslider.css" type="text/css"/>
+<script src="js/echarts.common.min.js"></script>
+<!--[if lt IE 9]>
+	<script src="js/html5shiv.min.js"></script>
+	<script src="js/respond.js"></script>
+<![endif]-->
+</head>
+	
+<body>
+<!-- header -->
+	<div class="header">
+		<div class="container">
+			<div class="agile_header_grid">
+				<div class="w3_agile_logo">
+					<h1><a href="index.html">天津河北区楼宇经济<font style="font-size:0.6em;">信息系统</font></a></h1>
+				</div>
+				<div class="agileits_w3layouts_sign_in">
+					<ul>
+						<li><a href="#small-dialog" class="play-icon popup-with-zoom-anim">登录</a></li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="w3_agileits_nav">
+				<nav class="navbar navbar-default">
+					<div class="navbar-header navbar-left">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+						<nav>
+							<ul class="nav navbar-nav">
+								<li class="active"><a href="index.html">首页</a></li>
+								<li><a href="javascript:void(0)" class="hvr-sweep-to-bottom" onclick="retriveBody(0)">政策法规</a></li>
+								<li><a href="javascript:void(0)" class="hvr-sweep-to-bottom" onclick="retriveBody(1)">工作动态</a></li>
+								<li><a href="javascript:void(0)" class="hvr-sweep-to-bottom" onclick="retriveBody(2)">楼宇展示</a></li>
+								<li><a href="javascript:void(0)" class="hvr-sweep-to-bottom" onclick="retriveBody(3)">楼宇经济</a></li>
+								<li><a href="javascript:void(0)" class="hvr-sweep-to-bottom" onclick="retriveBody(4)">VR展示</a></li>
+							</ul>
+							
+						</nav>
+					</div>
+				</nav>	
+			</div>
+		</div>
+	</div>
+<!-- //header -->
+<!-- pop-up-box -->
+	<div id="small-dialog" class="mfp-hide w3ls_small_dialog wthree_pop">
+		<h3 class="agileinfo_sign">登录</h3>	
+		<div class="agileits_signin_form">
+			<form action="#" method="post">
+				<input type="text" name="username" placeholder="用户名" required="">
+				<input type="password" name="password" placeholder="密码" required="">
+				
+				<input type="submit" value="登录">
+			</form>
+		</div>
+	</div>
+	
+<!-- //pop-up-box -->	
+<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+<script>
+	$(document).ready(function() {
+	$('.popup-with-zoom-anim').magnificPopup({
+		type: 'inline',
+		fixedContentPos: false,
+		fixedBgPos: true,
+		overflowY: 'auto',
+		closeBtnInside: true,
+		preloader: false,
+		midClick: true,
+		removalDelay: 300,
+		mainClass: 'my-mfp-zoom-in'
+	});
+																	
+	});
+</script>
+<!-- banner -->	
+<div id="dynamic_body">
+	<div class="banner">
+		<div class="bannermask">
+		<div class="container">
+				<div class="wthree_banner_grids">
+						<div class="col-md-4 agileits_more" data-wow-duration="0.9s" data-wow-delay="0.9s">
+										<ul>
+											<li><a href="#" class="w3ls_banner_more hvr-icon-hang">商务楼宇介绍</a></li>
+										</ul>
+						</div>
+						<div class="col-md-4 agileits_more" data-wow-duration="0.9s" data-wow-delay="0s">
+										<ul>
+											<li><a href="#" class="w3ls_banner_more hvr-icon-hang">商务楼宇经济</a></li>
+										</ul>
+						</div>
+						<div class="col-md-4 agileits_more" data-wow-duration="0.9s" data-wow-delay="0.9s">
+									<ul>
+										<li><a href="#" class="w3ls_banner_more hvr-icon-hang">商务楼宇VR展示</a></li>
+									</ul>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+			
+		</div>
+		</div>
+	</div>
+<!-- //banner -->
+<!-- banner-bottom -->
+<div class="about" style="margin-bottom:50px;">
+	<div class="container">
+		<div class="agileinfo_about_grids">
+			<div class="col-md-4 agileinfo_about_grid_left">	
+				<div class="wthree_about_grid">
+						<h3>截止到2017年10月</h3>
+						<ul>
+							<li><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>共有商务楼宇数：16个</li>
+							<li><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>共入驻企业：1000个</li>
+							<li><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>本月盘活面积：10000平方米</li>
+							<li><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>本月税收总额：1000万</li>
+							<li><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>本月留区税收：600万</li>
+						</ul>
+				</div>
+			</div>
+			<div class="col-md-8 agileinfo_about_grid_left">	
+				<div class="wthree_about_grid">
+					<img src="images/tjhb.jpg" alt=" " class="img-responsive" onclick="showBuildInfo()"/>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+<!-- //banner-bottom -->
+<!-- stats -->
+<div class="stats">
+	<div class="wthree_stat">
+		<div class="container">
+			<div class="col-md-5 wthree_stat_left">
+				<h3>商务楼宇数据分析</h3>
+				<p>根据商务楼宇入驻企业到经济数据，全方位的分析全区的经济发展情况。</p>
+			</div>
+			<div class="col-md-7 wthree_stat_right">
+				<ul>
+					<li>
+						<div class="wthree_stat_right1">
+							<i class="fa fa-heart" aria-hidden="true"></i>
+							<h4>新盘活面积(平方米)</h4>
+							<p class="counter">324</p>
+						</div>
+					</li>
+					<li>
+						<div class="wthree_stat_right1">
+							<i class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></i>
+							<h4>本月总税收(万元)</h4>
+							<p class="counter">412.23</p> 
+						</div>
+					</li>
+					<li>
+						<div class="wthree_stat_right1">
+							<i class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></i>
+							<h4>本月留区税收(万元)</h4>
+							<p class="counter">231.123</p> 
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+<!-- //stats -->
+<!-- stats -->
+<script src="js/waypoints.min.js"></script> 
+<script src="js/counterup.min.js"></script> 
+<script>
+	jQuery(document).ready(function( $ ) {
+		$('.counter').counterUp({
+			delay: 20,
+			time: 1000
+		});
+	});
+</script>
+<!-- stats -->
+<!-- news -->
+	<div class="news">
+		<div class="container">
+			<h3 class="agile_head">VR展示</h3>
+			<div class="agileits_w3layouts_news_grids">
+				<ul id="flexiselDemo1">	
+					<li>
+						<div class="agileits_w3layouts_news_grid" onclick="showBuildInfo()">
+							<div class="w3_agileits_news_grid">
+								<img src="images/2.jpg" alt=" " class="img-responsive" />
+							</div>
+							<h5><a href="#" data-toggle="modal" data-target="#myModal">远洋大厦</a></h5>
+						</div>
+					</li>
+					<li>
+						<div class="agileits_w3layouts_news_grid" onclick="showBuildInfo()">
+							<div class="w3_agileits_news_grid">
+								<img src="images/2.jpg" alt=" " class="img-responsive" />
+							</div>
+							<h5><a href="#" data-toggle="modal" data-target="#myModal">鼎盛大厦</a></h5>
+						</div>
+					</li>
+					<li>
+						<div class="agileits_w3layouts_news_grid" onclick="showBuildInfo()">
+							<div class="w3_agileits_news_grid">
+								<img src="images/2.jpg" alt=" " class="img-responsive" />
+							</div>
+							<h5><a href="#" data-toggle="modal" data-target="#myModal">金正大厦</a></h5>
+						</div>
+					</li>
+					<li>
+						<div class="agileits_w3layouts_news_grid" onclick="showBuildInfo()">
+							<div class="w3_agileits_news_grid">
+								<img src="images/2.jpg" alt=" " class="img-responsive" />
+							</div>
+							<h5><a href="#" data-toggle="modal" data-target="#myModal">泰鸿大厦</a></h5>
+						</div>
+					</li>
+					<li>
+						<div class="agileits_w3layouts_news_grid" onclick="showBuildInfo()">
+							<div class="w3_agileits_news_grid">
+								<img src="images/2.jpg" alt=" " class="img-responsive" />
+							</div>
+							<h5><a href="#" data-toggle="modal" data-target="#myModal">新闻大厦</a></h5>
+						</div>
+					</li>
+					<li>
+							<div class="agileits_w3layouts_news_grid" onclick="showBuildInfo()">
+								<div class="w3_agileits_news_grid">
+									<img src="images/2.jpg" alt=" " class="img-responsive" />
+								</div>
+								<h5><a href="#" data-toggle="modal" data-target="#myModal">华文商务园</a></h5>
+							</div>
+						</li>
+				</ul>
+				<script type="text/javascript">
+						$(window).load(function() {
+							$("#flexiselDemo1").flexisel({
+								visibleItems: 4,
+								animationSpeed: 1000,
+								autoPlay: true,
+								autoPlaySpeed: 3000,    		
+								pauseOnHover: true,
+								enableResponsiveBreakpoints: true,
+								responsiveBreakpoints: { 
+									portrait: { 
+										changePoint:480,
+										visibleItems: 1
+									}, 
+									landscape: { 
+										changePoint:640,
+										visibleItems:2
+									},
+									tablet: { 
+										changePoint:768,
+										visibleItems: 3
+									}
+								}
+							});
+							
+						});
+				</script>
+				<script type="text/javascript" src="js/jquery.flexisel.js"></script>
+			</div>
+		</div>
+	</div>
+	</div>
+<!-- //news -->
+
+<!-- footer -->
+	
+	<div class="copyright">
+		<div class="container">
+			<div class="w3ls_copyright_left">
+				<ul>
+					<li><a href="services.html">天津楼宇经济</a></li>
+					<li><a href="about.html">天津楼宇经济</a></li>
+					<li><a href="portfolio.html">天津楼宇经济</a></li>
+					<li><a href="contact.html">天津楼宇经济</a></li>
+				</ul>
+				<p>© 2017 天津河北区楼宇办. <a href="https://w3layouts.com/"></a></p>
+			</div>
+			
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+<!-- for bootstrap working -->
+	<script src="js/bootstrap.js"></script>
+<!-- //for bootstrap working -->
+<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {			
+			$().UItoTop({ easingType: 'easeOutQuart' });
+								
+			});
+	</script>
+<!-- //here ends scrolling icon -->
+</body>
+</html>
+<script>
+		function retriveBody(t) {
+			$(".navbar-nav li.active").removeClass("active")
+			$(this).addClass("active");
+
+			if (t == '0') {
+				$('#dynamic_body').empty().load('laws.html');
+			} else if (t == '1') {
+				$('#dynamic_body').empty().load('work.html');
+			} else if (t == '2') {
+				$('#dynamic_body').empty().load('builds.html');
+			} else if (t == '3') {
+				$('#dynamic_body').empty().load('economic.html');
+			}else if (t == '4') {
+				$('#dynamic_body').empty().load('vrs.html');
+			}
+		}
+
+		function showdetail(id){
+			$('#dynamic_body').empty().load('detail.html');
+		}
+		function showBuildEconomic(){
+			$('#dynamic_body').empty().load('buildeconomic.html');
+		}
+		function showBuildInfo(){
+			$('#dynamic_body').empty().load('buildinfo.html');
+		}
+	</script>
+	<script type="text/javascript" src="js/jquery.pagination.min.js"></script>

@@ -1,0 +1,77 @@
+
+<!-- banner -->	
+	<div class="banner1">
+	</div>
+<!-- //banner -->		
+<!-- about -->
+	<div class="about">
+		<div class="container">
+			<div class="agileinfo_about_grids">
+				<div class="col-md-12 agileinfo_about_grid_left">	
+					<div class="wthree_about_grid">
+						<h3><span>工作动态</span></h3>
+						<ul id="work">
+						</ul>
+					</div>
+					<div class="pagination center pagination-large pt-20"  style="text-align:center;margin-bottom:40px;width:100%">
+							<div class="box">
+								<div id="pagination" class="page fl"></div>
+							</div>
+					</div>
+				</div>
+				
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+<!-- about -->
+<script>
+function initpage(p){
+$
+.get(
+		"../front_page/newslist",
+		{
+			limit : 10,
+			type : 2,
+			page : p
+		},
+		function(json) {
+			if (json != null && json != "") {
+				var content = '';
+				for (i = 0, l = json.data.length; i < l; i++) {
+					
+					
+					content += '<li><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>'
+							+ '<a href="javascript:void(0)" onclick="showdetail(' + json.data[i].id + ')">'
+							+ json.data[i].title
+							+ '<font style="float:right">'
+							+ json.data[i].createtime
+							+ '</font></a></li>';
+				}
+
+				$('#work').empty().append(content);
+				if(p == 1){
+					var tp = Math.ceil(json.totalCount / 10);
+					$("#pagination")
+							.pagination(
+									{
+										currentPage : 1,
+										totalPage : tp,
+										isShow : false,
+										count : 8,
+										prevPageText : "< 上一页",
+					nextPageText: "下一页 >",
+										callback : function(
+												current) {
+
+											initpage(current);
+										}
+									});
+				}
+			}
+		});
+}
+		
+initpage(1);
+</script>
+

@@ -1,0 +1,91 @@
+@charset "utf-8";
+    @media only screen and (min-width: 750px) {
+    	#content1{  
+	margin: 2rem auto;
+    width: 77rem;
+    height: 30rem;
+    }
+    #diagram{
+       float: left;
+    margin-top: 10rem;
+    margin-left:10rem;
+    width: 400px;
+    height: 391px;
+    }
+    #diagram>svg{
+       display: inline-block;
+    margin-top: -8rem;
+    margin-left: -6.5rem;
+    width: 160%;
+    		preserveAspectRatio="none"
+    	}
+    .legend{
+    	float:left;
+    	width:250px;
+    	margin-top:140px;
+    	color: #FFFFFF;
+    	}
+    	 .content_nav{
+	    	background: url(../images/55214.jpg);background-size:cover; height:36rem;width: 100%;
+	    }
+#content h1{font-family:'Cabin Sketch', arial, serif;text-shadow:3px 3px 0 #ddd;color:#193340;font-size:40px;height:48px;line-height:48px;margin-bottom:40px;text-align:right;}
+/* skills */
+.skills{float:left;clear:both;width:100%;}
+.skills ul,.skills li{display:block;list-style:none;margin:0;padding:0;}
+.skills li{float:right;clear:both;padding:0 15px;height:35px;line-height:35px;color:#fff;margin-bottom:1px;font-size:18px;}
+.skills .jq{background:#97BE0D;}
+.skills .css{background:#D84F5F;}
+.skills .html{background:#88B8E6;}
+.skills .php{background:#BEDBE9;}
+.skills .sql{background:#88B8E6;}
+.get{display:none;}
+.arc{
+	z-index: 99999999999999999;!important
+}
+    }
+    @media only screen and (min-width: 0px) and (max-width: 750px){
+    	 .content_nav{
+	    	background: url(../images/55214.jpg);background-size:cover; height:45rem;width: 100%;
+	    }
+    	   
+#content h1{font-family:'Cabin Sketch', arial, serif;text-shadow:3px 3px 0 #ddd;color:#193340;font-size:40px;height:48px;line-height:48px;margin-bottom:40px;text-align:right;}
+/* skills */
+.skills{float:left;clear:both;width:100%;}
+.skills ul,.skills li{display:block;list-style:none;margin:0;padding:0;}
+.skills li{float:right;clear:both;padding:0 15px;height:35px;line-height:35px;color:#fff;margin-bottom:1px;font-size:18px;}
+.skills .jq{background:#97BE0D;}
+.skills .css{background:#D84F5F;}
+.skills .html{background:#88B8E6;}
+.skills .php{background:#BEDBE9;}
+.skills .sql{background:#88B8E6;}
+.get{display:none;}
+.arc{
+	z-index: 99999999999999999;!important
+}
+
+    	#diagram{
+    		height:47rem;
+    	}
+    	#diagram>svg{
+       display: inline-block;
+    margin-top: -2rem;
+    margin-left: -6.5rem;
+    width: 160%;
+    		preserveAspectRatio="none"
+    	}
+    	.content_nav{
+    	    overflow:hidden;
+    		background: url(../images/55214.jpg);background-size: cover;
+    		width: 100%;
+    		height:47rem;!important
+    	}
+	 #panel{
+	 	display: none;
+	 }
+	    /*#diagram svg{width: 200px !important;}*/
+	    .legend {
+		        margin: 0 auto;
+		    width: 195px;
+		    color: #FFFFFF;
+		}
+    }

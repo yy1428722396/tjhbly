@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" href="js/bootstrap/css/bootstrap.css">
+<style>
+    .amap-logo ,.amap-copyright {
+	display: none!important;
+    }  
+  </style>
+</head>
+<body>
+
+	<div id="map" tabindex="0" style=" height:500px;margin: 0px;"></div>
+
+	<input type="button" class="btn btn-info" value="确定" onclick="sure()" />
+</body>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.0&key=f772c9c3afdb3575289e5ca1c5527e9f"></script>
+    <script type="text/javascript">
+    var url = window.location + "";
+	var olon,olat;
+	if (url.indexOf("?lon=") >= 0) {
+		olon = url.substring(url.indexOf("?lon=") + 5, url.indexOf("&lat"));
+	}
+	if (url.indexOf("&lat=") >= 0) {
+		olat = url.substring(url.indexOf("&lat=") + 5, url.length);
+	}
+        var marker,map = new AMap.Map('map',{
+            resizeEnable: true,
+            zoom: 13,
+            center: [117.25244,39.106452]
+        });
+        
+        marker=new AMap.Marker({                    
+			icon:"images/poi.gif",  
+			position:new AMap.LngLat(olon,olat)  
+			});  
+			marker.setMap(map); 
+		var lon,lat;
+			var clickEventListener = map.on('click', function(e) {
+				map.remove(marker);
+				 marker = new AMap.Marker({
+			            icon: "images/poi.gif",
+			            position: [e.lnglat.getLng(), e.lnglat.getLat()]
+			        });
+			        marker.setMap(map);
+			        
+			        lon = e.lnglat.getLng();
+			        lat = e.lnglat.getLat();
+			    });
+			
+			function sure(){
+			var returnValue = lon + "," + lat;
+	         window.opener.transferValue(returnValue);
+	         window.close();
+			}
+    </script>
+</html>

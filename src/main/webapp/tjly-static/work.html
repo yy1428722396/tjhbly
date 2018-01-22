@@ -1,0 +1,57 @@
+
+<!-- banner -->	
+	<div class="banner1">
+	</div>
+<!-- //banner -->		
+<!-- about -->
+	<div class="about">
+		<div class="container">
+			<div class="agileinfo_about_grids">
+				<div class="col-md-12 agileinfo_about_grid_left">	
+					<div class="wthree_about_grid">
+						<h3><span>工作动态</span></h3>
+						<ul>
+								<li><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i><a href="javascript:void(0)" onclick="showdetail(1)">工作动态工作动态工作动态工作动态工作动态工作动态1<font style="float:right">2017-10-10</font></a></li>
+								<li><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i><a href="javascript:void(0)" onclick="showdetail(1)">工作动态工作动态工作动态工作动态工作动态工作动态2<font style="float:right">2017-10-10</font></a></li>
+								<li><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i><a href="javascript:void(0)" onclick="showdetail(1)">工作动态工作动态工作动态工作动态工作动态工作动态3<font style="float:right">2017-10-10</font></a></li>
+								<li><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i><a href="javascript:void(0)" onclick="showdetail(1)">工作动态工作动态工作动态工作动态工作动态工作动态4<font style="float:right">2017-10-10</font></a></li>
+								<li><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i><a href="javascript:void(0)" onclick="showdetail(1)">工作动态工作动态工作动态工作动态工作动态工作动态5<font style="float:right">2017-10-10</font></a></li>
+								<li><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i><a href="javascript:void(0)" onclick="showdetail(1)">工作动态工作动态工作动态工作动态工作动态工作动态1<font style="float:right">2017-10-10</font></a></li>
+								<li><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i><a href="javascript:void(0)" onclick="showdetail(1)">工作动态工作动态工作动态工作动态工作动态工作动态2<font style="float:right">2017-10-10</font></a></li>
+								<li><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i><a href="javascript:void(0)" onclick="showdetail(1)">工作动态工作动态工作动态工作动态工作动态工作动态3<font style="float:right">2017-10-10</font></a></li>
+								<li><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i><a href="javascript:void(0)" onclick="showdetail(1)">工作动态工作动态工作动态工作动态工作动态工作动态4<font style="float:right">2017-10-10</font></a></li>
+								<li><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i><a href="javascript:void(0)" onclick="showdetail(1)">工作动态工作动态工作动态工作动态工作动态工作动态5<font style="float:right">2017-10-10</font></a></li>
+						</ul>
+					</div>
+					<div class="pagination center pagination-large pt-20"  style="text-align:center;margin-bottom:40px;width:100%">
+							<div class="box">
+								<div id="pagination" class="page fl"></div>
+							</div>
+					</div>
+				</div>
+				
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+<!-- about -->
+<script>
+			$("#pagination")
+												.pagination(
+														{
+															currentPage : 1,
+															totalPage : 10,
+															isShow : false,
+															count : 6,
+															prevPageText : "< 上一页",
+										nextPageText: "下一页 >",
+															callback : function(
+																	current) {
+					
+																initpage(id,
+																		type,
+																		current);
+															}
+														});
+</script>
+

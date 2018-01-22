@@ -1,0 +1,20 @@
+
+<div id="content">
+
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.base64.js"></script>
+<script>
+
+    $(document).ready(function($){
+       
+        $.get("../app_build/news_detail",{"id":18},function(data){
+            var content = $.base64.decode(data.content);
+            $('#content').html(content);
+        });
+
+        
+    });
+
+   
+</script>

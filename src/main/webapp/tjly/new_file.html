@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+<link href="css/style.css" rel="stylesheet" />
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<script type="text/javascript" src="js/jquery.min.js"></script>
+	</head>
+	<body>
+
+<!-- //banner-bottom -->
+<!-- stats -->
+<div class="stats">
+	<div class="wthree_stat">
+		<div class="container">
+			<div class="col-md-5 wthree_stat_left">
+				<h3>商务楼宇数据分析</h3>
+				<p>根据商务楼宇入驻企业到经济数据，全方位的分析全区的经济发展情况。</p>
+			</div>
+			<div class="col-md-7 wthree_stat_right">
+				<ul>
+					<li>
+						<div class="wthree_stat_right1">
+							<i class="fa fa-heart" aria-hidden="true"></i>
+							<h4>新盘活面积(平方米)</h4>
+							<p class="counter">324</p>
+						</div>
+					</li>
+					<li>
+						<div class="wthree_stat_right1">
+							<i class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></i>
+							<h4>本月总税收(万元)</h4>
+							<p class="counter">412.23</p> 
+						</div>
+					</li>
+					<li>
+						<div class="wthree_stat_right1">
+							<i class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></i>
+							<h4>本月留区税收(万元)</h4>
+							<p class="counter">231.123</p> 
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+<!-- //stats -->
+<!-- stats -->
+<script src="js/waypoints.min.js"></script> 
+<script src="js/counterup.min.js"></script> 
+<script>
+	jQuery(document).ready(function( $ ) {
+		$('.counter').counterUp({
+			delay: 20,
+			time: 1000
+		});
+	});
+
+		$(document).ready(function() {			
+			$().UItoTop({ easingType: 'easeOutQuart' });
+			});
+	</script>
+
+
+
+
+
+	</body>
+</html>

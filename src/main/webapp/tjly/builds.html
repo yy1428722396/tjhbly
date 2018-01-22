@@ -1,0 +1,37 @@
+<div class="banner1">
+</div>
+	<div class="portfolio">
+		<div class="container">
+			<h3 class="agile_head">楼宇展示</h3>
+			<p class="w3_agile_para">展示楼宇风采，关注未来发展</p>
+		</div>
+			<div  class="w3_agile_portfolio_grids">
+			</div>
+			<div class="clearfix"> </div>
+	</div>
+	<script>
+
+		$
+				.get(
+						"../front_page/allbuilds",
+						{
+	
+						},
+						function(json) {
+							if (json != null && json != "") {
+								var cc = '';
+								for (i = 0, l = json.length; i < l; i++) {
+									cc += '<div class="agile_portfolio_grid"><div class="w3_agileits_portfolio_grid"><a href="javascript:void(0)" onclick="showbuild(' + json[i].id + ')" ><div class="view effect">'
+											+ '<img src="../attached/' + json[i].id + '/' + json[i].imgurl + '"  alt=" " class="img-responsive" />'
+											+ '	<div class="mask"></div><div class="content">'
+											+ '<h4>' + json[i].buildname + '</h4></div></div></a></div></div>';
+									
+								}
+								$('.w3_agile_portfolio_grids').empty().append(cc);
+							}
+						});
+	
+		function showbuild(id) {
+			lyinfo(id);
+		}
+	</script>

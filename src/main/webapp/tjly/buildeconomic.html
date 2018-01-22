@@ -1,0 +1,166 @@
+<!-- banner -->	
+	<div class="banner1">
+	</div>
+<!-- //banner -->
+<!-- portfolio -->
+	<div class="portfolio">
+	<div class="container">
+			<h3 class="agile_head" id="buildname"></h3>
+			<p>统计本楼宇今年的总税收、留区税收情况，以及每个月的盘活面积。</p>
+		</div>
+		<!-- two-grids -->
+		<div class="two-grids">
+			<div class="col-md-6 w3_two_grid_right">
+				<h3>单座商务楼宇本年税收数据分析</h3>
+				<div class="w3_two_grid_right1">
+					<div id="chart1" class="echarscss"></div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="col-md-6 w3_two_grid_right">
+				<h3>单座商务楼宇本年盘活面积分析</h3>
+				<div class="w3_two_grid_right1">
+					<div id="chart2" class="echarscss"></div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+			<script>
+			var now = new Date();
+			var year = now.getFullYear();
+			$.get("../month_count/build_charts", {
+				countdate :year,
+				buildid :  buildid
+			}, function(json) {
+				var d = json;
+				var months = d.months;
+				var taxData = d.taxData;
+				var taxStayData = d.taxStayData;
+				var rentareaData = d.rentareaData;
+				$('#buildname').empty().append(d.buildname);
+
+				initChart(months, taxData, taxStayData, rentareaData);
+				initChart2(months, taxData, taxStayData, rentareaData);
+			});
+			
+			function initChart(months, taxData, taxStayData, rentareaData) {
+				var myChart1 = echarts.init(document.getElementById("chart1"));
+
+				option1 = {
+					tooltip : {
+						trigger : 'axis',
+						axisPointer : { // 坐标轴指示器，坐标轴触发有效
+							type : 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+						}
+					},
+					legend : {
+						data : [ '总税收', '留区税收' ]
+					},
+					grid : {
+						left : '3%',
+						right : '4%',
+						bottom : '3%',
+						containLabel : true
+					},
+					xAxis : [ {
+						type : 'category',
+						data : months
+					} ],
+					yAxis : [ {
+						type : 'value'
+					} ],
+					series : [
+
+					{
+						name : '总税收',
+						type : 'bar',
+						stack : '税收',
+						data : taxData
+					}, {
+						name : '留区税收',
+						type : 'bar',
+						stack : '税收',
+						data : taxStayData
+					}
+
+					]
+				};
+
+				myChart1.setOption(option1);
+			}
+			
+			function initChart2(months, taxData, taxStayData, rentareaData) {
+
+				var myChart = echarts.init(document.getElementById("chart2"));
+
+				option = {
+					tooltip : {
+						trigger : 'axis'
+					},
+					legend : {
+						data : [ '可招商面积' ]
+					},
+					toolbox : {
+						show : true,
+						feature : {
+							mark : {
+								show : true
+							},
+							dataView : {
+								show : true,
+								readOnly : false
+							},
+							magicType : {
+								show : true,
+								type : [ 'line', 'bar' ]
+							},
+							restore : {
+								show : true
+							},
+							saveAsImage : {
+								show : true
+							}
+						}
+					},
+					calculable : true,
+					xAxis : [ {
+						type : 'category',
+						boundaryGap : false,
+						data : months
+					} ],
+					yAxis : [ {
+						type : 'value'
+					} ],
+					series : [ {
+						name : '最高气温',
+						type : 'line',
+						data : rentareaData,
+						markPoint : {
+							data : [ {
+								type : 'max',
+								name : '最大值'
+							}, {
+								type : 'min',
+								name : '最小值'
+							} ]
+						},
+						markLine : {
+							data : [ {
+								type : 'average',
+								name : '平均值'
+							} ]
+						}
+					} ]
+				};
+				myChart.setOption(option);
+			}
+			</script>
+	</div>
+	</div>
+<!-- //portfolio -->
+	<script type="text/javascript"  src="js/jquery.gallery.js" ></script>
+	<script>
+		$(function() {
+			$('.w3_agile_portfolio_grids').createSimpleImgGallery();
+		});
+	</script>

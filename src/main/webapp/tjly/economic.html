@@ -1,0 +1,263 @@
+<!-- banner -->	
+	<div class="banner1">
+	</div>
+<!-- //banner -->
+<!-- portfolio -->
+	<div class="portfolio">
+		<!-- two-grids -->
+		<div class="two-grids">
+			<div class="col-md-6 w3_two_grid_right">
+				<h3>全区商务楼宇本年税收数据分析</h3>
+				<div class="w3_two_grid_right1">
+					<div id="chart1" class="echarscss"></div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="col-md-6 w3_two_grid_right">
+				<h3>全区商务楼宇本年税收数据对比分析</h3>
+				<div class="w3_two_grid_right1">
+					<div id="chart2" class="echarscss"></div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="col-md-6 w3_two_grid_right">
+				<h3>全区商务楼宇上月税收数据对比分析</h3>
+				<div class="w3_two_grid_right1">
+					<div id="chart4" class="echarscss"></div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="col-md-6 w3_two_grid_right">
+				<h3>全区商务楼宇上月盘活面积对比分析</h3>
+				<div class="w3_two_grid_right1">
+					<div id="chart3" class="echarscss"></div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+			<script>
+			var now = new Date();
+			var year = now.getFullYear();
+			var month = now.getMonth();
+			month = (month < 10 ? "0" + month : month);
+			var mydate = year + "." + month;
+			
+			$.get("../month_count/tjhb_charts", {
+				countdate : year
+			}, function(json) {
+				var d = json;
+				var months = d.months;
+				var taxData = d.taxData;
+				var taxStayData = d.taxStayData;
+				var rentareaData = d.rentareaData;
+				
+				initChart(months, taxData, taxStayData, rentareaData);
+			});
+			
+			$.get("../month_count/builds_tax_charts", {
+				countdate : year
+			}, function(json) {
+				var d = json;
+				var taxData = d.taxData;
+				var taxStayData = d.taxStayData;
+				var rentareaData = d.rentareaData;
+				var buildnameData = d.buildnameData;
+				
+				initChart1(taxData, taxStayData, rentareaData,buildnameData);
+			});
+			
+			$.get("../month_count/all_build_charts", {
+				countdate : mydate
+			}, function(json) {
+				var d = json;
+				var taxData = d.taxData;
+				var taxStayData = d.taxStayData;
+				var rentareaData = d.rentareaData;
+				var buildnameData = d.buildnameData;
+
+				initChart2(taxData, taxStayData, rentareaData, buildnameData);
+				initChart3(taxData, taxStayData, rentareaData, buildnameData);
+			});
+			
+			function initChart(months, taxData, taxStayData, rentareaData) {
+				var myChart1 = echarts.init(document.getElementById("chart1"));
+
+				option1 = {
+					tooltip : {
+						trigger: 'axis',
+						axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+							type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+						}
+					},
+					legend: {
+						data:['总税收','留区税收']
+					},
+					grid: {
+						left: '3%',
+						right: '4%',
+						bottom: '3%',
+						containLabel: true
+					},
+					xAxis : [
+						{
+							type : 'category',
+							data : months
+						}
+					],
+					yAxis : [
+						{
+							type : 'value'
+						}
+					],
+					series : [
+						{
+							name:'总税收',
+							type:'bar',
+							stack: '税收',
+							data:taxData
+						},
+						{
+							name:'留区税收',
+							type:'bar',
+							stack: '税收',
+							data:taxStayData
+						}
+					  
+					]
+				};
+
+				myChart1.setOption(option1);
+		}
+			
+			function initChart1(taxData, taxStayData, rentareaData,buildnameData) {
+				var myChart2 = echarts.init(document.getElementById("chart2"));
+
+				
+				var option = {
+					tooltip : {
+						trigger: 'item',
+						formatter: "{a} <br/>{b} : {c} ({d}%)"
+					},
+					
+					series : [
+						{
+							name: '',
+							type: 'pie',
+							radius : '55%',
+							center: ['50%', '60%'],
+							data:taxData,
+							itemStyle: {
+								emphasis: {
+									shadowBlur: 10,
+									shadowOffsetX: 0,
+									shadowColor: 'rgba(0, 0, 0, 0.5)'
+								}
+							}
+						}
+					]
+				};
+				
+				myChart2.setOption(option);
+			}
+			
+			function initChart2(taxData, taxStayData, rentareaData, buildnameData) {
+				
+				if(rentareaData == ""){
+					rentareaData = [{"name":"尚未统计数据","value":"0"}];
+				}
+				
+				var myChart = echarts.init(document.getElementById("chart3"));
+
+				var option = {
+					tooltip : {
+						trigger : 'item',
+						formatter : "{a} <br/>{b} : {c} ({d}%)"
+					},
+					
+					series : [ {
+						name : '',
+						type : 'pie',
+						radius : '55%',
+						center : [ '50%', '60%' ],
+						data : rentareaData,
+						itemStyle : {
+							emphasis : {
+								shadowBlur : 10,
+								shadowOffsetX : 0,
+								shadowColor : 'rgba(0, 0, 0, 0.5)'
+							}
+						}
+					} ]
+				};
+				myChart.setOption(option);
+			}
+			
+			function initChart3(taxData, taxStayData, rentareaData, buildnameData) {
+				if(taxData == ""){
+					taxData = [{"name":"尚未统计数据","value":"0"}];
+				}
+				var myChart = echarts.init(document.getElementById("chart4"));
+				var option = {
+					tooltip : {
+						trigger : 'item',
+						formatter : "{a} <br/>{b} : {c} ({d}%)"
+					},
+				
+					series : [ {
+						name : '',
+						type : 'pie',
+						radius : '55%',
+						center : [ '50%', '60%' ],
+						data : taxData,
+						itemStyle : {
+							emphasis : {
+								shadowBlur : 10,
+								shadowOffsetX : 0,
+								shadowColor : 'rgba(0, 0, 0, 0.5)'
+							}
+						}
+					} ]
+				};
+				myChart.setOption(option);
+			}
+			</script>
+	</div>
+	<div id="map_kcon">
+			<!--	<div id="cover"></div>-->
+			<div class="top_slide_wrap">
+				<div id="outer-box">
+					<div id="container_map1" tabindex="0"></div>
+				</div>
+				<!-- UI组件库 1.0 -->
+				<script type="text/javascript">
+					//创建地图
+					var map1 = new AMap.Map('container_map1', {
+						resizeEnable : false,
+						zoom : 13,
+						scrollWheel : false,
+						center : [ 117.25244, 39.106452 ]
+					});
+					
+					for (var i = 0, l = buildList.length; i < l; i++) {
+						var marker1 = new AMap.Marker({
+							icon : "images/poi.gif",
+							position : new AMap.LngLat(
+									buildList[i].lon, buildList[i].lat)
+						});
+						marker1.setMap(map1);
+						marker1.setTitle(buildList[i].buildname);
+						marker1.setLabel({
+							offset : new AMap.Pixel(0, 25),
+							content : buildList[i].buildname
+						});
+						var bid = buildList[i].id;
+						marker1.id = bid;
+						AMap.event.addListener(marker1, 'click',
+								function(e) {
+									buildeconomic(e.target.id);
+								});
+					}
+				</script>
+			</div>
+		</div>
+</div>

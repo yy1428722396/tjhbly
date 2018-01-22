@@ -1,0 +1,132 @@
+ 
+ <style type="text/css">
+ 	#outer-box{
+ 		position: relative;
+ 	}
+ </style>
+ <div class="banner1">
+</div>
+ <div id="outer-box">
+                    <div id="container_map" tabindex="0"></div>
+                    <div id="panel" class="scrollbar1">
+                        <div id="intro">
+                            <h2>楼宇经济</h2>
+                        </div>
+                        <ul id="btnList"></ul>
+                        </ul>
+                    </div>
+                </div>
+           </div>
+       <script type="text/javascript" src='//webapi.amap.com/maps?v=1.4.1&key=486c772a6e41c16765d673f05f2a0e67'></script>
+                <!-- UI组件库 1.0 -->
+                   <script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script> 
+                <script type="text/javascript">
+                    //创建地图
+                    var map = new AMap.Map('container_map', {
+                        zoom: 9
+                    });
+                    AMapUI.loadUI(['misc/MarkerList', 'overlay/SimpleMarker', 'overlay/SimpleInfoWindow'],
+                        function(MarkerList, SimpleMarker, SimpleInfoWindow) {
+                            var markerList = new MarkerList({
+                                //关联的map对象
+                                map: map,
+                                //列表的dom容器的id
+                                listContainer: 'btnList',
+                                //返回数据项的Id
+                                getDataId: function(dataItem, index) {
+                                    //index表示该数据项在数组中的索引位置，从0开始，如果确实没有id，可以返回index代替
+                                    return dataItem.id;
+                                },
+                                //返回数据项的位置信息，需要是AMap.LngLat实例，或者是经纬度数组，比如[116.79, 39.90]
+                                getPosition: function(dataItem) {
+                                    return dataItem.position;
+                                },
+                                //返回数据项对应的Marker
+                                getMarker: function(dataItem, context, recycledMarker) {
+                                    //存在可回收利用的marker
+                                    if (recycledMarker) {
+                                        //直接更新内容返回
+                                        recycledMarker.setIconLabel(context.id);
+                                        recycledMarker.setIconStyle(dataItem.iconStyle);
+                                        return recycledMarker;
+                                    }
+                                    //返回一个新的Marker
+                                    return new SimpleMarker({
+                                        containerClassNames: 'my-marker',
+                                        iconStyle: dataItem.iconStyle,
+                                        iconLabel: context.id
+                                    });
+                                },
+                                //返回数据项对应的infoWindow
+                                getInfoWindow: function(dataItem, context, recycledInfoWindow) {
+                                    if (recycledInfoWindow) {
+                                        //存在可回收利用的infoWindow, 直接更新内容返回
+                                        recycledInfoWindow.setInfoTitle(dataItem.title);
+                                        recycledInfoWindow.setInfoBody(dataItem.desc);
+                                        return recycledInfoWindow;
+                                    }
+                                    //返回一个新的InfoWindow
+                                    return new SimpleInfoWindow({
+                                        offset: new AMap.Pixel(0, -37),
+                                        infoTitle: dataItem.title,
+                                        infoBody: dataItem.desc
+                                    });
+                                },
+                                getListElement: function(dataItem, context, recycledListElement) {
+                                    var tpl = '<button style="background-color:<%= dataItem.iconStyle %>">' +
+                                        '<%- dataId %></button> <%- dataItem.title %>';
+                                    var content = MarkerList.utils.template(tpl, {
+                                        dataItem: dataItem,
+                                        dataId: context.id
+                                    });
+                                    if (recycledListElement) {
+                                        //存在可回收利用的listElement, 直接更新内容返回
+                                        recycledListElement.innerHTML = content;
+                                        return recycledListElement;
+                                    }
+                                    //返回一段html，MarkerList将利用此html构建一个新的dom节点
+                                    return '<li>' + content + '</li>';
+                                }
+                            });
+                            //构建一个数据项数组，数据项本身没有格式要求，但需要支持下述的getDataId和getPosition
+                            var data = [{
+                                id: 'A',
+                                position: [116.02, 39.90],
+                                iconStyle: 'red',
+                                title: '路劲大厦',
+                                desc: '金水区商务外环14号'
+                            }, {
+                                id: 'B',
+                                position: [116.41, 39.90],
+                                iconStyle: 'green',
+                                title: '万达广场',
+                                desc: '郑州大玉米向南一百米'
+                            }, {
+                                id: 'C',
+                                position: [116.79, 39.90],
+                                iconStyle: 'purple',
+                                title: '北京天安门',
+                                desc: '北京天安门是一个有魅力的地方'
+                            }, {
+                                id: 'D',
+                                position: [116.45, 39.90],
+                                iconStyle: 'green',
+                                title: '深圳大梅沙',
+                                desc: '深圳大梅沙馆是一个适合拍摄的地方'
+                            }, {
+                                id: 'E',
+                                position: [116.44, 39.95],
+                                iconStyle: 'green',
+                                title: '深圳南山腾讯大厦',
+                                desc: '有中国硅谷之称呼，适合喜欢IT的人进去。'
+                            }, {
+                                id: 'F',
+                                position: [116.41, 39.91],
+                                iconStyle: 'green',
+                                title: '深圳大外滩',
+                                desc: '这里聚集了一些喜欢游泳的人'
+                            }];
+                            //展示该数据
+                            markerList.render(data);
+                        });
+                </script>
