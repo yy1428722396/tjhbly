@@ -28,6 +28,7 @@ public class BuildUnitController {
 	@ResponseBody
 	public boolean add(HttpServletRequest request) {
 		String unitname = request.getParameter("unitname");
+		String unitsimplename = request.getParameter("unitsimplename");
 		String societycode = request.getParameter("societycode");
 		String registryasset = request.getParameter("registryasset");
 		String registryaddress = request.getParameter("registryaddress");
@@ -51,6 +52,7 @@ public class BuildUnitController {
 		
 		Map properties = new HashMap();
 		properties.put("unitname", unitname);
+		properties.put("unitsimplename", unitsimplename);
 		properties.put("societycode", societycode);
 		properties.put("registryasset", registryasset);
 		properties.put("registryaddress", registryaddress);
@@ -97,6 +99,7 @@ public class BuildUnitController {
 	public boolean edit(HttpServletRequest request) {
 		String id = request.getParameter("id");
 		String unitname = request.getParameter("unitname");
+		String unitsimplename = request.getParameter("unitsimplename");
 		String societycode = request.getParameter("societycode");
 		String registryasset = request.getParameter("registryasset");
 		String registryaddress = request.getParameter("registryaddress");
@@ -128,6 +131,7 @@ public class BuildUnitController {
 
 		Map properties = new HashMap();
 		properties.put("unitname", unitname);
+		properties.put("unitsimplename", unitsimplename);
 		properties.put("societycode", societycode);
 		properties.put("registryasset", registryasset);
 		properties.put("registryaddress", registryaddress);

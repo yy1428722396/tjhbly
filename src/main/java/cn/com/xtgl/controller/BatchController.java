@@ -49,7 +49,7 @@ public class BatchController {
 	//地税跑批
 	@RequestMapping(value = "/dishuibatch", method = RequestMethod.GET,produces = "application/json")
 	@ResponseBody
-	public String dodishuishuibatch(HttpServletRequest request,HttpServletResponse response) throws IOException {
+	public boolean dodishuishuibatch(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		String[] properties = {"socialCreCode","salesTax","bisnessTax","personalTax","landaddTax","addTax","constractionTax","buildTax","stampTax","landuseTax","vesselTax","deedTax","eduTax","localeduTax","resourseTax","otherTax","otheradTas","disableTax","fineTax","importtime","datatime"};
 		List<Object[]> valueList = new ArrayList<Object[]>();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
@@ -113,7 +113,7 @@ public class BatchController {
 		propertiies.put("datatime", datatime);
 		propertiies.put("importtime", importtime);
 		mySQLDBHelper.create("t_build_batchstatus", propertiies);
-		return "success";
+		return true;
 		
 	}
 	
@@ -214,7 +214,7 @@ public class BatchController {
 	//国税跑批
 	@RequestMapping(value = "/guoshuibatch", method = RequestMethod.GET,produces = "application/json")
 	@ResponseBody
-	public String doguoshuishuibatch(HttpServletRequest request,HttpServletResponse response) throws IOException {
+	public boolean doguoshuishuibatch(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		String[] properties = {"socialCreCode","addTax","consumTax","bisnessTax","constractionTax","personTax","importtime","datatime"};
 		List<Object[]> valueList = new ArrayList<Object[]>();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
@@ -278,7 +278,7 @@ public class BatchController {
 		propertiies.put("datatime", datatime);
 		propertiies.put("importtime", importtime);
 		mySQLDBHelper.create("t_build_batchstatus", propertiies);
-		return "success";
+		return true;
 		
 	}	
 	public Object[] getfirstobj1(HashMap<String, Object> map,String importtime){

@@ -1,307 +1,788 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="zh-hans">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Language" content="zh-CN" />
-<title>天津河北区楼宇经济</title>
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-<link rel="stylesheet" type="text/css" href="style/basic.css" />
-<link rel="stylesheet" type="text/css" href="style/cxzx_list.css" />
-<link rel="stylesheet" type="text/css" href="style/zx_info.css" />
-<link rel="stylesheet" type="text/css" href="style/xmdata.css" />
-<link rel="stylesheet" type="text/css"
-	href="style/jquery.pagination.css" />
+<style>
+.about .pagination {
+	background: transparent;
+}
+
+.about .box {
+	border: none;
+}
+
+@font-face {
+	font-family: myfont;
+	src: url('fonts/glyphicons-halflings-regular.eot');
+	src: url('fonts/glyphicons-halflings-regular.eot?iefix')
+		format('embedded-opentype'),
+		url('fonts/glyphicons-halflings-regular.woff') format('woff'),
+		url('fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+		url('fonts/glyphicons-halflings-regular.svg#svgFontName')
+		format('svg');
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="images/logo.png" type="image/png">
+<meta name="keywords" content="天津楼宇">
+<meta name="news_keywords" content="天津楼宇">
+<link rel="stylesheet" type="text/css" href="./css/reset.css">
+<link rel="stylesheet" type="text/css" href="./css/index.css">
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.css" />
+<link href="./css/style.css" rel="stylesheet" />
+<link href="./css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/default.css" />
+<title>天津楼宇</title>
+
+<meta content="width=device-width, initial-scale=1" name="viewport">
+
+<link type="text/css" rel="stylesheet"
+	href="./css/css_4KJZBJUoaM4enx-Tai0AqgnChLVuPVQNTXt5OjaY3Ok.css"
+	media="all">
+<link type="text/css" rel="stylesheet"
+	href="./css/css_O09xZbtltGa96LY4N0Qw-Z-yRxMAnPxkxe9Z8cmv6WE.css"
+	media="all">
+<link type="text/css" rel="stylesheet"
+	href="./css/css_zIesD3NfRh8IE3JUUqHZ-ioQZSvEaTrJUWseTbfi0sY.css"
+	media="all">
+<link rel="stylesheet" href="./css/index.min.css">
+<link rel="stylesheet" href="css/jquery.gallery.css">
+<link href="css/popuo-box.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/jquery.pagination.css" />
+<link rel="stylesheet" href="css/flexslider.css" type="text/css" />
+<style>
+.amap-logo, .amap-copyright {
+	display: none !important;
+}
+</style>
+<script type="text/javascript" async="" src="./js/vds.js"></script>
+<script src="./js/js_Xjzh1hVfcgVAixhmmB6Go8TUMPOiprA-2vkC-oWXARQ.js"></script>
+<script src="./js/js_5ZvYbR_RpAnAa4Gy_hGCjwhuaBQEWzQIAwlMCStkIuU.js"></script>
+<script src="js/jquery-1.11.3.min.js" type="text/javascript"
+	charset="utf-8"></script>
+<script src="./js/webflow.js"></script>
+<script src="js/echarts.common.min.js"></script>
+<script type="text/javascript" src="js/jquery.pagination.min.js"></script>
+<script type="text/javascript">
+	lang = 'zh-hans ';
+</script>
+<!--[if lt IE 9]>
+	<script src="js/html5shiv.min.js"></script>
+	<script src="js/respond.js"></script>
+<![endif]-->
 </head>
 <body>
-	<script type="text/javascript" src="js/borsertocss.js">
-		
+	<div class="loaderd"></div>
+	<style>
+body {
+	font-family: Roboto, "PingFang SC", "微軟正黑體", "Microsoft JhengHei",
+		"微软雅黑", "Microsoft Yahei", sans-serif !important;
+	-webkit-font-smoothing: antialiased;
+}
+
+#map img {
+	max-width: none;
+}
+</style>
+	<script type="text/javascript">
+		lang = 'zh-hans';
+		country_lang = 'zh-cn';
 	</script>
-	<!-- 判断在IE9以下浏览器中根据像素的不同而设置的样式 -->
+	<script type="text/javascript">
+		setTimeout(function() {
+			$('.loaderd').fadeOut();
+		}, 2000);
+		var _vds = _vds || [];
+		window._vds = _vds;
+		(function() {
+			_vds.push([ 'setAccountId', 'b07596d797a03413' ]);
+			(function() {
+				var vds = document.createElement('script');
+				vds.type = 'text/javascript';
+				vds.async = true;
+				vds.src = 'js/vds.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(vds, s);
+			})();
+		})();
+	</script>
 
+	<div class="preloader loaded" data-c-lang="zh-cn" data-ix="preloader"
+		style="display: none; transition: opacity 400ms; opacity: 0;">
+		<img class="loading-gid" src="./images/rolling-2.gif" width="60">
+	</div>
+	<header class="mini-header"
+		style="transform-style: preserve-3d; transition: transform 300ms; transform: translateX(0px) translateY(0px) translateZ(0px);">
+		<div class="navbar w-nav" data-animation="default"
+			data-collapse="medium" data-duration="400">
+			<div class="header w-clearfix wrapper">
+				<a class="logo mini w-nav-brand"
+					hrefs="http://www.nwcl.com.hk/zh-hans/"><img height=""
+					src="./images/footer-logo-nwgm.png" title="天津楼宇" alt="天津楼宇">
+				</a>
+				<div class="menu-button w-nav-button">
+					<div class="w-icon-nav-menu"></div>
+				</div>
+				<nav class="navmenu w-nav-menu" role="navigation">
 
-	<!--头部代码开始-->
+					<a href="index.html">
+						<div class="nav-dropdown w-dropdown" data-delay="0" data-hover="1"
+							style="">
+							<div class="mini nav-dropdown-toggle w-dropdown-toggle"
+								data-ix="nav-stroke-appear">
+								<div>首页</div>
+								<div class="red-stroke"
+									style="transform-style: preserve-3d; transition: transform 200ms; transform: translateX(-110%) translateY(0px) translateZ(0px);"></div>
+							</div>
+						</div>
+					</a> <a href="javascript:;" onclick="retriveBody(0)">
+						<div class="nav-dropdown w-dropdown" data-delay="0" data-hover="1">
+							<div class="mini nav-dropdown-toggle w-dropdown-toggle"
+								data-ix="nav-stroke-appear">
+								<div>魅力河北</div>
+								<div class="red-stroke"></div>
+							</div>
+						</div>
+					</a> <a href="javascript:;" onclick="retriveBody(1)">
+						<div class="nav-dropdown w-dropdown" data-delay="0" data-hover="1">
+							<div class="mini nav-dropdown-toggle w-dropdown-toggle"
+								data-ix="nav-stroke-appear">
+								工作动态
+								<div class="red-stroke"></div>
+							</div>
+						</div>
+					</a> <a href="javascript:;" onclick="retriveBody(2)">
+						<div class="nav-dropdown w-dropdown" data-delay="0" data-hover="1">
+							<div class="mini nav-dropdown-toggle w-dropdown-toggle"
+								data-ix="nav-stroke-appear">
+								<div>数据楼宇</div>
+								<div class="red-stroke"></div>
+							</div>
+						</div>
+					</a> <a href="javascript:;" onclick="retriveBody(3)">
+						<div class="nav-dropdown w-dropdown" data-delay="0" data-hover="1">
+							<div class="mini nav-dropdown-toggle w-dropdown-toggle"
+								data-ix="nav-stroke-appear">
+								<div>楼宇载体</div>
+								<div class="red-stroke"></div>
+							</div>
+						</div>
+					</a> <a href="javascript:;" onclick="retriveBody(4)">
+						<div class="nav-dropdown w-dropdown" data-delay="0" data-hover="1">
+							<div class="mini nav-dropdown-toggle w-dropdown-toggle"
+								data-ix="nav-stroke-appear">
+								<div>全景VR</div>
+								<div class="red-stroke"></div>
+							</div>
+						</div>
+					</a>
+				</nav>
+			</div>
+			<div class="w-nav-overlay" data-wf-ignore=""></div>
+		</div>
+	</header>
+	<header class="header" data-ix="mini-header-appear">
+		<div class="navbar w-nav" data-animation="default"
+			data-collapse="medium" data-duration="400">
+			<div class="header w-clearfix wrapper">
+				<a class="logo w-nav-brand" hrefs="http://www.nwcl.com.hk/zh-hans/"><img
+					height="" src="./images/footer-logo-nwgm.png" title="天津楼宇"
+					alt="天津楼宇"> </a>
+				<div class="menu-button w-nav-button">
+					<div class="w-icon-nav-menu"></div>
+				</div>
+				<nav class="navmenu w-nav-menu" role="navigation">
+					<a href="index.html">
+						<div class="nav-dropdown w-dropdown" data-delay="0" data-hover="1">
+							<div class="nav-dropdown-toggle w-dropdown-toggle"
+								data-ix="nav-stroke-appear">
+								<div>首页</div>
+								<div class="red-stroke"></div>
+							</div>
+						</div>
+					</a> <a href="javascript:;" onclick="retriveBody(0)">
+						<div class="nav-dropdown w-dropdown" data-delay="0" data-hover="1"
+							style="">
+							<div class="nav-dropdown-toggle w-dropdown-toggle"
+								data-ix="nav-stroke-appear">
+								<div>魅力河北</div>
+								<div class="red-stroke"
+									style="transform-style: preserve-3d; transition: transform 200ms; transform: translateX(-110%) translateY(0px) translateZ(0px);"></div>
+							</div>
+						</div>
+					</a> <a href="javascript:;" onclick="retriveBody(1)">
+						<div class="nav-dropdown w-dropdown" data-delay="0" data-hover="1"
+							style="">
+							<div class="nav-dropdown-toggle w-dropdown-toggle"
+								data-ix="nav-stroke-appear">
+								工作动态
+								<div class="red-stroke"
+									style="transform-style: preserve-3d; transition: transform 200ms; transform: translateX(-110%) translateY(0px) translateZ(0px);"></div>
+							</div>
+						</div>
+					</a> <a href="javascript:;" onclick="retriveBody(2)">
+						<div class="nav-dropdown w-dropdown" data-delay="0" data-hover="1">
+							<div class="nav-dropdown-toggle w-dropdown-toggle"
+								data-ix="nav-stroke-appear">
+								<div>数据楼宇</div>
+								<div class="red-stroke"></div>
+							</div>
+						</div>
+					</a> <a href="javascript:;" onclick="retriveBody(3)">
+						<div class="nav-dropdown w-dropdown" data-delay="0" data-hover="1"
+							style="">
+							<div class="nav-dropdown-toggle w-dropdown-toggle"
+								data-ix="nav-stroke-appear">
+								<div>楼宇载体</div>
+								<div class="red-stroke"
+									style="transform-style: preserve-3d; transition: transform 200ms; transform: translateX(-110%) translateY(0px) translateZ(0px);"></div>
+							</div>
+						</div>
+					</a> <a href="javascript:;" onclick="retriveBody(4)">
+						<div class="nav-dropdown w-dropdown" data-delay="0" data-hover="1"
+							style="">
+							<div class="nav-dropdown-toggle w-dropdown-toggle"
+								data-ix="nav-stroke-appear">
+								<div>全景VR</div>
+								<div class="red-stroke"
+									style="transform-style: preserve-3d; transition: transform 200ms; transform: translateX(-110%) translateY(0px) translateZ(0px);"></div>
+							</div>
+						</div>
+					</a>
+				</nav>
+			</div>
+			<div class="w-nav-overlay" data-wf-ignore=""></div>
+		</div>
+	</header>
+	<div id="dynamic_body">
+		<section class="hero hash" id="hero-banner">
+			<div class="hero-slider w-slider" data-animation="slide"
+				data-autoplay="1" data-delay="8000" data-duration="800"
+				data-infinite="1">
+				<div class="w-slider-mask">
+					<div class="hero-slide w-slide"
+						style="transform: translateX(-1903px); opacity: 1; transition: transform 800ms;">
+						<div class="slide-content">
+							<div class="hero-slide-bg" data-ix="slide-bg-enlarge"
+								style="background-image: linear-gradient(rgba(84, 43, 82, 0.25), rgba(84, 43, 82, 0.25)), url(images/banner1.jpg); transform: rotateX(0.001deg) rotateY(0.001deg) rotateZ(0.001deg) scaleX(1) scaleY(1); transition: transform 1000ms;"></div>
+							<div class="slider-content-group">
+								<div class="slide-cat" data-ix="slide-from-top-slider"
+									style="opacity: 0; transform: translateX(-40px) translateY(0px) translateZ(0px); transition: opacity 200ms, transform 200ms;">亮点</div>
+								<h1 class="slider-h1" data-ix="slide-from-top-slider-2"
+									style="opacity: 0; transform: translateX(-60px) translateY(0px) translateZ(0px); transition: opacity 200ms, transform 200ms;">天津楼宇名镌</h1>
+								<a class="button w-inline-block"
+									data-ix="slide-from-top-slider-3"
+									hrefs="http://www.nwcl.com.hk/zh-hans/property/current-projects/%E6%B7%B1%E5%9C%B3%E6%96%B0%E4%B8%96%E7%95%8C%E5%90%8D%E9%95%8C"
+									style="transition: background-color 0.3s ease 0s, color 0.3s ease 0s, opacity 200ms, transform 200ms; opacity: 0; transform: translateX(-60px) translateY(0px) translateZ(0px);">
+									<div>查看详情</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="hero-slide w-slide"
+						style="transform: translateX(-1903px); opacity: 1; transition: transform 800ms;">
+						<div class="slide-content">
+							<div class="hero-slide-bg" data-ix="slide-bg-enlarge"
+								style="background-image: linear-gradient(rgba(84, 43, 82, 0.25), rgba(84, 43, 82, 0.25)), url(images/banner2.jpg); transform: rotateX(0.001deg) rotateY(0.001deg) rotateZ(0.001deg) scaleX(1.1) scaleY(1.1); transition: transform 6000ms;"></div>
+							<div class="slider-content-group">
+								<div class="slide-cat" data-ix="slide-from-top-slider"
+									style="opacity: 1; transform: translateX(0px) translateY(0px) translateZ(0px); transition: opacity 250ms, transform 250ms;">亮点</div>
+								<h1 class="slider-h1" data-ix="slide-from-top-slider-2"
+									style="opacity: 1; transform: translateX(0px) translateY(0px) translateZ(0px); transition: opacity 250ms, transform 250ms;">天津楼宇展示</h1>
+								<a class="button w-inline-block"
+									data-ix="slide-from-top-slider-3"
+									hrefs="http://www.nwcl.com.hk/zh-hans/property/current-projects/%E5%AE%81%E6%B3%A2%E6%96%B0%E4%B8%96%E7%95%8C"
+									style="transition: background-color 0.3s ease 0s, color 0.3s ease 0s, opacity 250ms, transform 250ms; opacity: 1; transform: translateX(0px) translateY(0px) translateZ(0px);">
+									<div>查看详情</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="hero-slide w-slide"
+						style="transform: translateX(-1903px); opacity: 1; transition: transform 800ms;">
+						<div class="slide-content">
+							<div class="hero-slide-bg" data-ix="slide-bg-enlarge"
+								style="background-image: linear-gradient(rgba(84, 43, 82, 0.25), rgba(84, 43, 82, 0.25)), url(images/banner3.jpg); transform: rotateX(0.001deg) rotateY(0.001deg) rotateZ(0.001deg) scaleX(1) scaleY(1); transition: transform 1000ms;"></div>
+							<div class="slider-content-group">
+								<div class="slide-cat" data-ix="slide-from-top-slider"
+									style="opacity: 0; transform: translateX(-40px) translateY(0px) translateZ(0px); transition: opacity 200ms, transform 200ms;">亮点</div>
+								<h1 class="slider-h1" data-ix="slide-from-top-slider-2"
+									style="opacity: 0; transform: translateX(-60px) translateY(0px) translateZ(0px); transition: opacity 200ms, transform 200ms;">名胜楼盘
+									• 天津楼宇</h1>
+								<a class="button w-inline-block"
+									data-ix="slide-from-top-slider-3"
+									hrefs="http://www.nwcl.com.hk/zh-hans/property/current-projects/%E6%B2%88%E9%98%B3%E5%B0%9A%E6%99%AF-%E2%80%A2-%E6%96%B0%E4%B8%96%E7%95%8C"
+									style="transition: background-color 0.3s ease 0s, color 0.3s ease 0s, opacity 200ms, transform 200ms; opacity: 0; transform: translateX(-60px) translateY(0px) translateZ(0px);">
+									<div>查看详情</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="hero-slide w-slide"
+						style="transform: translateX(-1903px); opacity: 1; transition: transform 800ms;">
+						<div class="slide-content">
+							<div class="hero-slide-bg" data-ix="slide-bg-enlarge"
+								style="background-image: linear-gradient(rgba(84, 43, 82, 0.25), rgba(84, 43, 82, 0.25)), url(images/banner4.jpg); transform: rotateX(0.001deg) rotateY(0.001deg) rotateZ(0.001deg) scaleX(1) scaleY(1); transition: transform 1000ms;"></div>
+							<div class="slider-content-group">
+								<div class="slide-cat" data-ix="slide-from-top-slider"
+									style="opacity: 0; transform: translateX(-40px) translateY(0px) translateZ(0px); transition: opacity 200ms, transform 200ms;">亮点</div>
+								<h1 class="slider-h1" data-ix="slide-from-top-slider-2"
+									style="opacity: 0; transform: translateX(-60px) translateY(0px) translateZ(0px); transition: opacity 200ms, transform 200ms;">天津楼宇
+									• 云逸</h1>
+								<a class="button w-inline-block"
+									data-ix="slide-from-top-slider-3"
+									hrefs="http://www.nwcl.com.hk/zh-hans/property/current-projects/%E5%B9%BF%E5%B7%9E%E5%B2%AD%E5%8D%97%E6%96%B0%E4%B8%96%E7%95%8C-%E2%80%A2-%E4%BA%91%E9%80%B8"
+									style="transition: background-color 0.3s ease 0s, color 0.3s ease 0s, opacity 200ms, transform 200ms; opacity: 0; transform: translateX(-60px) translateY(0px) translateZ(0px);">
+									<div>查看详情</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="hero-arrow w-hidden-small w-hidden-tiny w-slider-arrow-left">
+					<img src="./images/hero-arrow-l.svg">
+				</div>
+				<div
+					class="hero-arrow w-hidden-small w-hidden-tiny w-slider-arrow-right">
+					<img src="./images/hero-arrow.svg">
+				</div>
+				<div class="slider-nav w-round w-slider-nav">
+					<div class="w-slider-dot" data-wf-ignore=""></div>
+					<div class="w-slider-dot w-active" data-wf-ignore=""></div>
+					<div class="w-slider-dot" data-wf-ignore=""></div>
+					<div class="w-slider-dot" data-wf-ignore=""></div>
+				</div>
+			</div>
+		</section>
 
-	<div class="navbar navbar-fixed-top"
-		style="_position: relative; _z-index: 10000;">
-		<div class="navbar-inner">
-			<div class="container">
+		<div class="mission section hash" id="mission-section">
+			<div
+				class="field field-name-field-mission-section field-type-text-with-summary field-label-hidden">
+				<div class="field-items">
+					<div class="field-item even">
+						<div class="wrapper">
+							<div class="flexbox">
+								<div class="col-33">
+									<div class="bar-wrapper" data-ix="square">
+										<h2 class="h2">
+											关于<br>楼宇经济
+										</h2>
+									</div>
+								</div>
+								<div class="col-66">
+									<p>楼宇经济是近年来中国城市经济发展中涌现的一种新型经济形态。它是以商务楼、功能性板块和区域性设施为主要载体，以开发、出租楼宇引进各种企业，从而引进税源，带动区域经济发展为目的，以体现集约型、高密度为特点的一种经济形态。主要表现为现代服务业，如金融业、咨询业、广告策划、影视制作、网络公司、律师事务所、会计事务所、咨询中介公司、高科技企业、娱乐服务企业、房地产开发企业、旅游服务企业、交通通讯企业等国内外各类企业和公司。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="property section hash" id="property-section">
+			<div class="center wrapper">
 
-				<div class="nav-collapse">
-					<ul class="mynav" id="navID">
+				<div
+					class="field field-name-field-property-section field-type-text-with-summary field-label-hidden">
+					<div class="field-items">
+						<div class="field-item even">
+							<!--	<div class="section-cat">核心业务</div>-->
+							<h2 class="blue h2">VR项目</h2>
+							<p class="blue section-description">在优质地段，我们发展具国际水准的物业项目，更提供优质的管理服务，使资产价值得以恒久保持。</p>
+						</div>
+					</div>
+				</div>
 
-						<li class="active"><a href="javascript:void(0)"
-							onclick="retriveBody(0)"><b>首页</b></a></li>
-						<li class=""><a href="javascript:void(0)"
-							onclick="retriveBody(1)"><b>政策法规</b></a></li>
-						<li class=""><a href="javascript:void(0)"
-							onclick="retriveBody(2)"><b>楼宇信息</b></a></li>
-						<li class=""><a href="javascript:void(0)"
-							onclick="retriveBody(3)"><b>楼宇经济</b></a></li>
+				<div class="floor-body city-list">
+					<ul id="vrli">
+
 					</ul>
 				</div>
-				<!--/.nav-collapse -->
-				<ul id="beforelogin" class="mynav pull-right login-none nav-tips">
-					<li class="l10"><a href="javascript:void(0)" onclick="login()">登录</a></li>
-				</ul>
-				<ul id="afterlogin" class="mynav pull-right login-none nav-tips"
-					style="display: none">
-					<li class="l10" id="loginuser"></li>
-					<li class="l10"><a href="javascript:void(0)"
-						onclick="enterxtgl()">进入管理系统</a></li>
-				</ul>
-				<ul class="mynav pull-right pl-20 myul">
+			</div>
+			<a class="button w-inline-block"
+				hrefs="http://www.nwcl.com.hk/zh-hans/property/current-projects">
+				<div onclick="retriveBody(4)">所有项目</div>
+			</a>
+		</div>
+		<div class="press section hash" id="press-section">
+			<div class="center wrapper">
+				<div
+					class="field field-name-field-press-section field-type-text-with-summary field-label-hidden">
+					<div class="field-items">
+						<div class="field-item even">
+							<div class="red-purple section-cat"></div>
+							<h2 class="h2 redpurple">工作动态</h2>
+						</div>
+					</div>
+				</div>
+				<div class="news-flex">
 
-				</ul>
+					<a class="home-news-item news w-clearfix w-inline-block "
+						data-ix="" target=""
+						href="javascript:void(0)" id="news1">
+						<div class="news-pic wrap">
+							<img width="100%"
+								sizes="(max-width: 479px) 83vw, (max-width: 767px) 87vw, (max-width: 991px) 41vw, 24vw"
+								src="./images/sedca.jpg">
+						</div>
+						<div class="news-text-group">
+							<div class="black news-item-title" id="newstitle1"></div>
+						</div>
+						<div class="date-block ver-b">
+							<div data-ix="" id="newsday1"></div>
+							<div class="date-block-month" data-ix="" id="newsmonth1"></div>
+						</div>
+					</a> <a class="home-news-item news w-clearfix w-inline-block "
+						data-ix="" target=""
+						href="javascript:void(0)" id="news2">
+						<div class="news-pic wrap">
+							<img width="100%"
+								sizes="(max-width: 479px) 83vw, (max-width: 767px) 87vw, (max-width: 991px) 41vw, 24vw"
+								src="images/sedcc.jpg">
+						</div>
+						<div class="news-text-group">
+							<div id="newstitle2" class="black news-item-title"></div>
+						</div>
+						<div class="date-block ver-b">
+							<div data-ix="" id="newsday2"></div>
+							<div class="date-block-month" data-ix="" id="newsmonth2"></div>
+						</div>
+					</a> <a class="home-news-item news w-clearfix w-inline-block "
+						data-ix="" target=""
+						href="javascript:void(0)" id="news3">
+						<div class="news-pic wrap">
+							<img width="100%"
+								sizes="(max-width: 479px) 83vw, (max-width: 767px) 87vw, (max-width: 991px) 41vw, 24vw"
+								src="./images/sedcb.jpg">
+						</div>
+						<div class="news-text-group">
+							<div id="newstitle3" class="black news-item-title"></div>
+						</div>
+						<div class="date-block ver-b">
+							<div data-ix="" id="newsday3"></div>
+							<div class="date-block-month" data-ix="" id="newsmonth3"></div>
+						</div>
+					</a>
+				</div>
+				<a class="button w-inline-block"
+					hrefs="http://www.nwcl.com.hk/zh-hans/press-room/news">
+					<div onclick="retriveBody(1)">查看所有动态</div>
+				</a>
+			</div>
+		</div>
+
+		<div id="map_kcon">
+			<!--	<div id="cover"></div>-->
+			<div class="top_slide_wrap">
+				<div id="outer-box">
+					<div id="container_map" tabindex="0"></div>
+				</div>
+				<!-- UI组件库 1.0 -->
+				<script type="text/javascript"
+					src="http://webapi.amap.com/maps?v=1.4.0&key=f772c9c3afdb3575289e5ca1c5527e9f"></script>
+				<script type="text/javascript">
+					//创建地图
+					var map = new AMap.Map('container_map', {
+						resizeEnable : false,
+						zoom : 13,
+						scrollWheel : false,
+						center : [ 117.25244, 39.106452 ]
+					});
+				</script>
+			</div>
+		</div>
+
+
+		<div class="content_nav">
+			<div id="content1">
+				<div class="legend">
+					<h1>楼宇经济</h1>
+					<div class="skills">
+						<ul>
+							<li id="incrarea1" class="jq"></li>
+							<li id="taxmonth1" class="css"></li>
+							<li id="taxmonthall1" class="html"></li>
+							<li id="staytaxmonth1" class="php"></li>
+							<li id="staytaxmonthall1" class="sql"></li>
+						</ul>
+					</div>
+				</div>
+				<div id="diagram"></div>
+			</div>
+			<div class="get">
+				<div class="arc">
+					<span class="text" id="incrarea2"></span> <input type="hidden"
+						class="percent" id="areavalue" /> <input type="hidden"
+						class="color" value="#97BE0D" />
+				</div>
+				<div class="arc">
+
+					<span class="text" id="taxmonth2"></span> <input type="hidden"
+						class="percent" id="taxvalue" /> <input type="hidden"
+						class="color" value="#D84F5F" />
+				</div>
+
+				<div class="arc">
+					<span class="text" id="taxmonthall2"></span> <input type="hidden"
+						class="percent" id="taxyearvalue" /> <input type="hidden"
+						class="color" value="#88B8E6" />
+				</div>
+
+				<div class="arc">
+					<span class="text" id="staytaxmonth2"></span> <input type="hidden"
+						class="percent" id="staytaxvalue" /> <input type="hidden"
+						class="color" value="#BEDBE9" />
+				</div>
+
+				<div class="arc">
+					<span class="text" id="staytaxmonthall2"></span> <input
+						type="hidden" class="percent" id="staytaxyearvalue" /> <input
+						type="hidden" class="color" value="#EDEBEE" />
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="top-div"></div>
-	<!--头部代码结束-->
+	<section class="footer">
+		<div class="w-clearfix wrapper">
+			<div class="footer-logo" style="display: none">
+				<img src="./images/footer-logo.svg" title="天津楼宇" alt="天津楼宇">
+			</div>
+			<div class="footer-flex">
+				<div class="footer-col">
+					<div class="footer-title">关于天津楼宇</div>
+					<a target="" class="footer-link"
+						hrefs="http://www.nwcl.com.hk/zh-hans/content/corporate-profile">
+						公司简介 </a> <a target="" class="footer-link"
+						hrefs="http://www.nwcl.com.hk/zh-hans/about-nwcl/missions-and-values">
+						使命和愿景 </a> <a target="" class="footer-link"
+						hrefs="http://www.nwcl.com.hk/zh-hans/about-nwcl/directors&amp;management">
+						董事及管理层 </a> <a target="" class="footer-link"
+						hrefs="http://www.nwcl.com.hk/zh-hans/about-nwcl/milestones">
+						里程碑 </a> <a target="" class="footer-link"
+						hrefs="http://www.nwcl.com.hk/zh-hans/about-nwcl/awards"> 奖项 </a>
+					<a target="" class="footer-link"
+						hrefs="http://www.nwcl.com.hk/zh-hans/about-nwcl/corporate-profile">
+						集团架构 </a>
+				</div>
+				<div class="footer-col">
+					<div class="footer-title">房地产物业</div>
+					<a target="" class="footer-link"
+						hrefs="http://www.nwcl.com.hk/zh-hans/property/current-projects">
+						现有发展项目 </a> <a target="" class="footer-link"
+						hrefs="http://www.nwcl.com.hk/zh-hans/property/past-developments">
+						昔日发展项目 </a> <a target="_blank" class="footer-link"
+						hrefs="http://www.nwd.com.hk/zh-hans/property"> 天津楼宇发展旗下项目 </a> <a
+						target="_blank" class="footer-link"
+						hrefs="http://www.nwcl.com.hk/zh-hans/property/photo-library">
+						图片库 </a>
+				</div>
+				<div class="footer-col">
+					<div class="footer-title">政策法规</div>
+					<a target="" class="footer-link"
+						hrefs="http://www.nwcl.com.hk/zh-hans/sustainability/overview">
+						概览 </a> <a target="" class="footer-link"
+						hrefs="http://www.nwcl.com.hk/zh-hans/sustainability/environment">
+						环境 </a> <a target="" class="footer-link"
+						hrefs="http://www.nwcl.com.hk/zh-hans/sustainability/community">
+						社区活动 </a>
+				</div>
+				<div class="footer-col">
+					<div class="footer-title">
+						<a class="footer-title-link"
+							hrefs="http://www.nwcl.com.hk/zh-hans/press-room/news"> 新闻中心
+						</a>
+					</div>
+					<div class="footer-title">
+						<a class="footer-title-link"
+							hrefs="http://www.nwcl.com.hk/zh-hans/nwcl-club"> 楼宇经济 </a>
+					</div>
+					<div class="footer-title">
+						<a class="footer-title-link"
+							hrefs="http://www.nwcl.com.hk/zh-hans/investor"> 投资者 </a>
+					</div>
+					<div class="footer-title">
+						<a class="footer-title-link"
+							hrefs="http://www.nwcl.com.hk/zh-hans/contactus"> 联系我们 </a>
+					</div>
+				</div>
+				<div class="footer-col">
+					<div class="footer-title">在微信关注我们</div>
+					<img src="./images/nwcl-wechat-qr.jpg" width="100" title="天津楼宇"
+						alt="天津楼宇">
+				</div>
+			</div>
 
+		</div>
+	</section>
 
-	<div class="hr tp-div-nexthr"
-		style="margin-top: 0; margin-bottom: 0; padding: 0;"></div>
-	<div class="container pb-15">
-		<div id="bodycontent" class="row"></div>
-	</div>
-
-	<div class="tip">
-		<div class="tiptop">
-			<span>登录</span><a></a>
-		</div>
-
-		<div class="tipinfo" style="padding-top: 40px;">
-			用户名：<input id="username" type="text" style="width: 280px;"></input>
-		</div>
-		<div class="tipinfo">
-			密&nbsp;&nbsp;&nbsp;&nbsp;码：<input id="password" type="password"
-				style="width: 280px;"></input>
-		</div>
-		<div class="tipbtn" style="padding-top: -60px;">
-			<select id="type"
-				style="font-size: 14px; width: 150px; height: 36px; border: 1px solid #90a2bc; float: left; margin-right: 70px; text-align: center;">
-				<option value="2">楼宇办用户</option>
-				<option value="1">楼宇运营用户</option>
-			</select>
-		</div>
-		<br />
-		<div class="tipbtn" style="padding-top: 40px;">
-			<input id="sureBtn" type="button" class="btn loginbtn" value="登录" />&nbsp;
-			<input name="" type="button" class="btn" value="取消"
-				onclick="cancel()" />
-		</div>
-		<div id="errordiv" class="tipbtn" style="display: none">
-			<lable id="errorinfo" style="color:red"></lable>
-		</div>
-	</div>
-
-	<!--右侧代码结束-->
-
-	<div class="footer">
-		<div class="clearfix" style="background: #EDEDED;">
-			<ul class="about-ul">
-				<li>客服电话 400-100-8888</li>
-				<li><span>|</span></li>
-				<li><a title="广告投放" href="javascript:;" class="fc666"
-					target="_blank">广告投放</a></li>
-				<div class="clear"></div>
-			</ul>
-			<p>Copyright ©2013 备8888888888号</p>
-		</div>
-	</div>
-
-	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="js/jquery.cookie.js"></script>
-	<script type="text/javascript" src="js/bioV4.min.js"></script>
-	<script type="text/javascript" src="js/jquery.lazyload.mini.js"></script>
-	<script type="text/javascript" src="js/function.js"></script>
-	<script type="text/javascript" src="js/list.js"></script>
-	<script type="text/javascript" src="js/jquery.pagination.min.js"></script>
-	<!--[if IE 6]>
-<script type="text/javascript" src="js/DD_belatedPNG.js?v=20130220"></script>
-<script type="text/javascript">
-DD_belatedPNG.fix('img,.ie6png');
-</script>
-<![endif]-->
 	<script type="text/javascript">
-		//回到顶部
-		backToTop('body');
-
 		function retriveBody(t) {
-			$(".mynav li.active").removeClass("active")
-			$(this).addClass("active");
-
+			// $(".navbar-nav li.active").removeClass("active")
+			// $(this).addClass("active");
 			if (t == '0') {
-				$('#bodycontent').load('gzdt.html');
+				$('#dynamic_body').empty().load('laws.html');
 			} else if (t == '1') {
-				$('#bodycontent').load('zcfg.html');
+				$('#dynamic_body').empty().load('work.html');
 			} else if (t == '2') {
-				$('#bodycontent').load('lylist.html');
+				$('#dynamic_body').empty().load('economic.html');
 			} else if (t == '3') {
-				$('#bodycontent').load('lyjjindex.html');
+				$('#dynamic_body').empty().load('builds.html');
+			} else if (t == '4') {
+				$('#dynamic_body').empty().load('vrs.html');
 			}
 		}
 
-		function login() {
-			$('.tip').show();
+		var newsid = "";
+		function showdetail(id) {
+			newsid = id;
+			$('#dynamic_body').empty().load('detail.html');
+			
 		}
 
-		var temp;
-		function showinfo(t) {
-			$('#bodycontent').load('info.html');
-			temp = t.id;
-		}
+		var date = new Date;
+		var year = date.getFullYear();
+		var month = date.getMonth();
+		month = (month < 10 ? "0" + month : month);
+		var mydate = (year.toString() + "." + month.toString());
+
+		$('#incrarea1').empty().append(year + '年盘活面积');
+		$('#incrarea2').empty().append(year + '年盘活面积');
+
+		$('#taxmonth1').empty().append(month + '月税收');
+		$('#taxmonth2').empty().append(month + '月税收');
+
+		$('#taxmonthall1').empty().append('1～' + month + '月税收');
+		$('#taxmonthall2').empty().append('1～' + month + '月税收');
+
+		$('#staytaxmonth1').empty().append(month + '月留区税收');
+		$('#staytaxmonth2').empty().append(month + '月留区税收');
+
+		$('#staytaxmonthall1').empty().append('1～' + month + '月留区税收');
+		$('#staytaxmonthall2').empty().append('1～' + month + '月留区税收');
+
+		var buildList;
+		$.ajaxSetup({
+			async : false
+		});
+		$
+				.get(
+						"../front_page/index",
+						{
+							datetime : mydate
+						},
+						function(json) {
+							var newsList = json.newsList;
+							var vrList = json.vrList;
+							 buildList = json.buildList;
+
+							//统计经济数据
+							var numList = json.numList;
+						if(numList != null && numList != ""){
+							if (numList[0].btaxtotalnum != null
+									&& numList[0].btaxtotalnum != "" && typeof(numList[0].btaxtotalnum) != undefined)
+								$('#taxvalue').attr('value',
+										numList[0].btaxtotalnum);
+							else
+								$('#taxvalue').attr('value', 0);
+
+							if (numList[0].bcountstayareatax != null
+									&& numList[0].bcountstayareatax != "")
+								$('#staytaxvalue').attr('value',
+										numList[0].bcountstayareatax);
+							else
+								$('#staytaxvalue').attr('value', 0);
+
+							if (numList[1].ttaxtotalnum != null
+									&& numList[1].ttaxtotalnum != "")
+								$('#taxyearvalue').attr('value',
+										numList[1].ttaxtotalnum);
+							else
+								$('#taxyearvalue').attr('value', 0);
+
+							if (numList[1].tcountstayareatax != null
+									&& numList[1].tcountstayareatax != "")
+								$('#staytaxyearvalue').attr('value',
+										numList[1].tcountstayareatax);
+							else
+								$('#staytaxyearvalue').attr('value', 0);
+
+							if (numList[1].tincrrentarea != null
+									&& numList[1].tincrrentarea != "")
+								$('#areavalue').attr('value',
+										numList[1].tincrrentarea);
+							else
+								$('#areavalue').attr('value', 0);
+						}
+
+							//vr
+							var vrli = "";
+							for (var i = 0, l = vrList.length; i < l; i++) {
+								vrli += '<li class="col-xs-6 col-sm-3"><div class="city-img">'
+										+ '<a href="http://' + vrList[i].vrurl +'" target="_blank">'
+										+ '<img data-original="../attached/' + vrList[i].id + '/' + vrList[i].vrpic + '" alt="" class="lazy" width="280" src="../attached/' + vrList[i].id + '/' + vrList[i].vrpic + '"'
+						+ 'style="display: inline;"><div class="sexangle">'
+										+ '<span><big>'
+										+ vrList[i].buildname
+										+ '</big></span></div></a></div></li>'
+							}
+							$('#vrli').empty().append(vrli);
+
+							//build poi
+							for (var i = 0, l = buildList.length; i < l; i++) {
+								var marker = new AMap.Marker({
+									map:map,
+									icon : "images/poi.gif",
+									position : new AMap.LngLat(
+											buildList[i].lon, buildList[i].lat)
+								});
+								marker.setLabel({
+									offset : new AMap.Pixel(0, 25),
+									content : buildList[i].buildname
+								});
+								var bid = buildList[i].id;
+								marker.id = bid;
+								AMap.event.addListener(marker, 'click',
+										function(e) {
+											lyinfo(e.target.id);
+										});
+							}
+
+							//news
+							if (newsList != null && newsList.length > 0) {
+								for (var i = 0, l = newsList.length; i < l; i++) {
+									$('#newstitle' + (i + 1)).empty().append(
+											newsList[i].title);
+									var createtime = newsList[i].createtime;
+									var day = createtime.substring(createtime
+											.indexOf("-") + 4, createtime
+											.indexOf(" "))
+									var month = createtime.substring(createtime
+											.indexOf("-") + 1, createtime
+											.indexOf("-") + 3);
+									$('#newsday' + (i + 1)).empty().append(day);
+									$('#newsmonth' + (i + 1)).empty().append(
+											month + '月');
+									var id = newsList[i].id;
+									$('#news' + (i + 1)).attr('href','javascript:showdetail(' + id + ')');
+									
+								}
+							}
+						});
+
 
 		var lyid;
 		function lyinfo(id) {
-			$('#bodycontent').load('show.html');
 			lyid = id;
+			$('#dynamic_body').empty().load('buildinfo.html');
 		}
-
-		function showjj() {
-			$('#bodycontent').load('lyjjtj.html');
-		}
-
-		function initpage(id, type, num) {
-
-
-			$
-					.get(
-							"../news/listnosession",
-							{
-								limit : 10,
-								type : type,
-								page : num
-							},
-							function(json) {
-								if (json != null && json != "") {
-									var content = '';
-									for (i = 0, l = json.data.length; i < l; i++) {
-										content += '<div class="label-div b-10" style="position: relative; padding-left: 0;"><div class="news-list"><div class="clearfix pt-3"><div><table style="width:100%;font-size:1.5em;line-height:90px;">'
-												+ '<tr><td style="padding-left:20px;line-height:1.5em;"><h1>'
-												+ '<a id="'
-												+ json.data[i].id
-												+ '" href="javascript:;" onclick="showinfo(this)">'
-												+ json.data[i].title
-												+ '</a>'
-												+ '</h1></td><td><h1>'
-												+ '<a target="_blank" href="javascript:;" style="float:right">'
-												+ json.data[i].createtime
-												+ '</a>'
-												+ '</h1></td></tr></table></div></div></div></div>';
-									}
-
-									$('#' + id).empty().append(content);
-
-									if (num == 1) {
-										var tp = Math.ceil(json.totalCount / 10);
-										$("#pagination")
-												.pagination(
-														{
-															currentPage : 1,
-															totalPage : tp,
-															isShow : false,
-															count : 8,
-															prevPageText : "< 上一页",
-										nextPageText: "下一页 >",
-															callback : function(
-																	current) {
-					
-																initpage(id,
-																		type,
-																		current);
-															}
-														});
-									}
-								}
-							});
-		}
-		$(document).ready(function() {
-			$('#bodycontent').load('gzdt.html');
-			var flag = 0;
-			$(".friend-link").hide();
-			//Down
-			$("#zk_btn").click(function() {
-				if (flag == 0) {
-					$(".friend-link").slideDown(400);
-					$(this).removeClass('down-class');
-					$(this).addClass('up-class');
-					$("html,body").animate({
-						scrollTop : ($(".friend-link").offset().top + 2000)
-					}, 600);
-					flag = 1;
-				} else {
-					$(".friend-link").slideUp(400);
-					$(this).removeClass('up-class');
-					$(this).addClass('down-class');
-					flag = 0;
-				}
-			});
-
-		});
-
-		$('.tiptop a').click(function() {
-			cancel();
-		});
-
-		function cancel() {
-			$('.tip').hide();
-		}
-
-		$(".loginbtn").click(
-				function() {
-					$.get("../user/login", {
-						username : $("#username").val(),
-						password : $("#password").val(),
-						type : $("#type").val()
-					}, function(json) {
-						if (json) {
-							cancel();
-							var userinfo = '<a href="javascript:void(0)">欢迎您，'
-									+ $("#username").val() + '</a>';
-							$('#loginuser').empty().append(userinfo);
-							$('#beforelogin').hide();
-							$('#afterlogin').show();
-						} else {
-							$('#errordiv').show();
-							$('#errorinfo').empty().append(
-									"您输入的用户名或者密码有误，请重新输入。");
-						}
-					});
-				});
-
-		$.get("../user/logininfo", function(json) {
-			var d = json.data;
-			if (d == "error") {
-				$('#loginuser').empty();
-				$('#beforelogin').show();
-				$('#afterlogin').hide();
-			} else {
-				$.cookie("cookie_username", json.session_username);
-				$.cookie("cookie_type", json.session_type);
-				$.cookie("cookie_role", json.session_role);
-				cancel();
-				var userinfo = '<a href="javascript:void(0)">欢迎您，'
-						+ json.session_username + '</a>';
-				$('#loginuser').empty().append(userinfo);
-				$('#beforelogin').hide();
-				$('#afterlogin').show();
-			}
-		});
-
-		function enterxtgl() {
-
-			$.get("../user/logininfo", function(json) {
-				var d = json.data;
-				if (d == "error") {
-					login();
-				} else {
-					window.location = '../tjlyxtgl/main.html';
-				}
-			});
-
+		
+		var buildid;
+		function buildeconomic(id) {
+			buildid = id;
+			$('#dynamic_body').empty().load('buildeconomic.html');
 		}
 	</script>
+	<script src="js/init.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/raphael.js" type="text/javascript" charset="utf-8"></script>
+
 </body>
 </html>

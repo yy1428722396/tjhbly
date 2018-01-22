@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -37,7 +38,9 @@ public class BuildReportController {
 		String income = request.getParameter("income");
 		String profit = request.getParameter("profit");
 		String tax = request.getParameter("tax");
+		String areadetail = request.getParameter("areadetail");
 		String workmannum = request.getParameter("workmannum");
+		String incrrentarea = request.getParameter("incrrentarea");
 
 		HttpSession session = request.getSession();
 		String role = "";
@@ -50,13 +53,16 @@ public class BuildReportController {
 		properties.put("buildid", buildid);
 		properties.put("reportdate", reportdate);
 		properties.put("emptyarea", emptyarea);
+		properties.put("rentarea", emptyarea);
 		properties.put("incrbusinessnum", incrbusinessnum);
 		properties.put("decrbusinessnum", decrbusinessnum);
 		properties.put("asset", asset);
 		properties.put("income", income);
 		properties.put("profit", profit);
 		properties.put("tax", tax);
+		properties.put("areadetail", areadetail);
 		properties.put("workmannum", workmannum);
+		properties.put("incrrentarea", incrrentarea);
 
 		properties.put("statusvalue", role);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -71,13 +77,18 @@ public class BuildReportController {
 		double incrtax = 0;
 		int incrworkmannum = 0;
 
+		Pattern pattern = Pattern.compile("^[-\\+]?[.\\d]*$");
+		
 		if (lreport != null) {
 			if (lreport.get("income") != null && !lreport.get("income").equals("")) {
 				double temp_income = Double.valueOf(lreport.get("income").toString());
 				if (income != null && !income.equals(""))
 					incrincome = Double.valueOf(income) - temp_income;
 			} else {
-				incrincome = Double.valueOf(income);
+				if (income != null && !income.equals(""))
+					incrincome = Double.valueOf(income);
+				else
+					incrincome = 0;
 			}
 
 			if (lreport.get("profit") != null && !lreport.get("profit").equals("")) {
@@ -85,7 +96,11 @@ public class BuildReportController {
 				if (profit != null && !profit.equals(""))
 					incrprofit = Double.valueOf(profit) - temp_profit;
 			} else {
-				incrprofit = Double.valueOf(profit);
+				
+				if (profit != null && !profit.equals(""))
+					incrprofit = Double.valueOf(profit);
+				else
+					incrprofit = 0;
 			}
 
 			if (lreport.get("tax") != null && !lreport.get("tax").equals("")) {
@@ -93,7 +108,11 @@ public class BuildReportController {
 				if (tax != null && !tax.equals(""))
 					incrtax = Double.valueOf(tax) - temp_tax;
 			} else {
-				incrtax = Double.valueOf(tax);
+				
+				if (tax != null && !tax.equals(""))
+					incrtax = Double.valueOf(profit);
+				else
+					incrtax = 0;
 			}
 
 			if (lreport.get("workmannum") != null && !lreport.get("workmannum").equals("")) {
@@ -101,7 +120,11 @@ public class BuildReportController {
 				if (workmannum != null && !workmannum.equals(""))
 					incrworkmannum = Integer.valueOf(workmannum) - temp_workmannum;
 			} else {
-				incrworkmannum = Integer.valueOf(workmannum);
+				
+				if (workmannum != null && !workmannum.equals(""))
+					incrworkmannum = Integer.valueOf(workmannum);
+				else
+					incrworkmannum = 0;
 			}
 		}
 		properties.put("incrincome", incrincome);
@@ -110,6 +133,11 @@ public class BuildReportController {
 		properties.put("incrworkmannum", incrworkmannum);
 
 		long id = mySQLDBHelper.create("t_build_monthreport", properties);
+		
+		Map p = new HashMap();
+		p.put("rentarea", emptyarea);
+		p.put("emptyarea", emptyarea);
+		mySQLDBHelper.update("t_build_basis", p, "id=" + buildid);
 
 		if (id != 0)
 			return true;
@@ -130,8 +158,10 @@ public class BuildReportController {
 		String income = request.getParameter("income");
 		String profit = request.getParameter("profit");
 		String tax = request.getParameter("tax");
+		String areadetail = request.getParameter("areadetail");
 		String workmannum = request.getParameter("workmannum");
-
+		String incrrentarea = request.getParameter("incrrentarea");
+		
 		HttpSession session = request.getSession();
 		String role = "";
 		if (session.getAttribute("role") != null && !session.getAttribute("role").equals("")) {
@@ -143,14 +173,17 @@ public class BuildReportController {
 		properties.put("buildid", buildid);
 		properties.put("reportdate", reportdate);
 		properties.put("emptyarea", emptyarea);
+		properties.put("rentarea", emptyarea);
 		properties.put("incrbusinessnum", incrbusinessnum);
 		properties.put("decrbusinessnum", decrbusinessnum);
 		properties.put("asset", asset);
 		properties.put("income", income);
 		properties.put("profit", profit);
 		properties.put("tax", tax);
+		properties.put("areadetail", areadetail);
 		properties.put("workmannum", workmannum);
-
+		properties.put("incrrentarea", incrrentarea);
+		
 		properties.put("statusvalue", role);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String now = sdf.format(new Date());
@@ -202,7 +235,14 @@ public class BuildReportController {
 		properties.put("incrtax", incrtax);
 		properties.put("incrworkmannum", incrworkmannum);
 
-		return mySQLDBHelper.update("t_build_monthreport", properties, "id=" + id);
+		mySQLDBHelper.update("t_build_monthreport", properties, "id=" + id);
+		
+		Map p = new HashMap();
+		p.put("rentarea", emptyarea);
+		p.put("emptyarea", emptyarea);
+		mySQLDBHelper.update("t_build_basis", p, "id=" + buildid);
+		
+		return true;
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")

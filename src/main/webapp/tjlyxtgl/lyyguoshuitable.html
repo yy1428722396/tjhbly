@@ -13,6 +13,13 @@
 				<link rel="stylesheet"
 					href="js/mmgrid/theme/bootstrap/mmPaginator-bootstrap.css">
 					<link rel="stylesheet" href="css/jquery.monthpicker.css">
+<style type="text/css">     
+    .mask {       
+            position: absolute; top: 0px; filter: alpha(opacity=60); background-color: #777;     
+            z-index: 1002; left: 0px;     
+            opacity:0.5; -moz-opacity:0.5;     
+        }     
+</style>   
 </head>
 
 
@@ -35,23 +42,33 @@
 			
 			
 			<li><label>数据日期</label><input id="s_reportdate" type="text"
-				class="scinput" /></li>
+				class="scinput" readonly="readonly"/></li>
 
 			<li><label>&nbsp;</label><input name=""
 				type="button" class="btn btn-info" value="导入数据" onclick="importdata()" /></li>
 		</ul>
 		
 		<ul class="seachform" style="margin-top:100px;">
-
+<li><label style="color:red;">导入完某月所有数据后需要转换成系统的数据</label></li>
              <li><label>转换数据月份</label><input id="ppreportdate" type="text"
-				class="scinput" /></li>
+				class="scinput"  readonly="readonly"/></li>
        <li><label>&nbsp;</label><input name=""
 				type="button" class="btn btn-info" value="国税数据转换" onclick="doguobatch()"/></li>
 		</ul>
        
       
 		</div>
-
+<div id="mask" class="mask" style="height: 100%;width: 100%;min-width: 980px; " >
+   <div style="margin-top: 70px;margin: auto;  width: 100px;height: 100px;">
+     <div style="margin-top: 200px;">
+       <img src="./images/dengdai.gif" style="height: auto;
+         max-width: 100%;
+          vertical-align: middle;
+          border: 0;" />
+     </div>
+  
+   </div>
+</div>    
 
 </body>
 <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -60,15 +77,15 @@
 <script src="js/jquery.monthpicker.js"></script>
 <script>
 	$('#s_reportdate').monthpicker({
-		years : [ 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 ],
+		years :   [2015,2016,2017, 2018, 2019, 2020, 2021, 2022, 2023,2024,2025],
 		topOffset : 6
 	})
 
    $('#ppreportdate').monthpicker({
-		years : [ 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 ],
+		years :   [2015,2016,2017, 2018, 2019, 2020, 2021, 2022, 2023,2024,2025],
 		topOffset : 6
 	})
-	
+	 $("#mask").hide();    
 
 	
 
@@ -82,6 +99,7 @@
 		if($("#imgfile")==""){
 			alert("请选择要导入文件");
 		}
+		showMask(); 
 		var formData = new FormData();
 		formData.append("upguoshuifile",$("#imgfile")[0].files[0]);
 		formData.append("datatime",datatime);
@@ -97,11 +115,19 @@
 			console.log("正在进行，请稍候");
 			},
 			success : function(data) { 
-			if(data){
+			if(data=='result'){
+				hideMask();
 			alert("导入成功");
+			cannel();
+			}else{
+				hideMask(); 
+				alert("本月数据已经统计完成，禁止导入");
+				cannel();
 			}
 			}, 
 			error : function(responseStr) { 
+				alert("导入失败");
+				hideMask();
 			console.log("error");
 			} 
 			});
@@ -109,33 +135,36 @@
 		}
 		
 	}
-	function  doguobatch(){
+function  doguobatch(){
 		
 		var datatime= $("#ppreportdate").val();
 		if(datatime==""){
 			alert("请选择跑批的数据日期");
 		}else{
-		$.ajax({
-	        cache: true,
-	        type : "GET",
-	        url  :'../build_batch/guoshuibatch',
-	        data :{datatime:datatime},
-	        async: false,
-	        success : function(data) { 
-				if(data){
-				alert("导入成功");
-				}
-				}, 
-	        error: function(request) {
-	            alert("Connection error");
-	        },
-	        success: function(data) {
-	        	
-	        	
-	        }
-	    });
+			showMask();
+		
+		$.get("../build_batch/guoshuibatch", {
+			datatime:datatime
+		}, function(json) {
+			hideMask();
+			if(json){
+				alert("转换成功");
+			}
+			else
+				alert("转换失败");
+		});
 		}
 	}
-	
+	 function showMask(){     
+	        $("#mask").show();     
+	    }  
+	   
+	 function hideMask(){     
+	        $("#mask").hide();     
+	    }  
+	 function cannel(){
+	    	$('#imgfile').empty();
+	    	//$("#s_reportdate").val('');
+	    }	
 </script>
 </html>

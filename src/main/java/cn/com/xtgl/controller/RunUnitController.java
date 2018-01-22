@@ -32,6 +32,7 @@ public class RunUnitController {
 		String address = request.getParameter("address");
 		String dutyman = request.getParameter("dutyman");
 		String touchman = request.getParameter("touchman");
+		String buildid = request.getParameter("buildid");
 		
 		Map properties = new HashMap();
 		properties.put("unitname", unitname);
@@ -40,6 +41,7 @@ public class RunUnitController {
 		properties.put("touchman", touchman);
 		properties.put("dutyman", dutyman);
 		properties.put("statusvalue", 1);
+		properties.put("buildid", buildid);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String now = sdf.format(new Date());
@@ -62,6 +64,7 @@ public class RunUnitController {
 		String address = request.getParameter("address");
 		String touchman = request.getParameter("touchman");
 		String dutyman = request.getParameter("dutyman");
+		String buildid = request.getParameter("buildid");
 		
 		Map properties = new HashMap();
 		properties.put("unitname", unitname);
@@ -70,6 +73,7 @@ public class RunUnitController {
 		properties.put("touchman", touchman);
 		properties.put("dutyman", dutyman);
 		properties.put("statusvalue", 1);
+		properties.put("buildid", buildid);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String now = sdf.format(new Date());
@@ -114,7 +118,7 @@ public class RunUnitController {
 	@ResponseBody
 	public Map info(HttpServletRequest request) {
 		String id = request.getParameter("id");
-		Map result = mySQLDBHelper.retriveBySQL("SELECT * from t_rununit where statusvalue<>0 and id=" + id, false, 0,0);
+		Map result = mySQLDBHelper.retriveBySQL("SELECT r.*,b.buildname from t_rununit r,t_build_basis b where r.buildid=b.id and r.statusvalue<>0 and r.id=" + id, false, 0,0);
 		return result;
 	}
 

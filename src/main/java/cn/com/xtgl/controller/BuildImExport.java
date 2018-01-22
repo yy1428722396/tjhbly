@@ -23,6 +23,9 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -57,7 +60,7 @@ public class BuildImExport {
 		//String path=new java.io.File(application.getRealPath(request.getRequestURI())).getParent(); 
 	
 		String path= request.getSession().getServletContext().getRealPath("/");
-		path=path+"tjlyxtgl\\temp\\aaaa.xls";
+		path=path+"tjlyxtgl/temp/basic.xls";
 		
 		System.out.println(path);
 		String name = request.getParameter("name");
@@ -90,63 +93,34 @@ public class BuildImExport {
 		
 		
 		
-		Map result=new HashMap<>();
+		
 		List listbuild = mySQLDBHelper.retriveBySQL(sql);
-	
-		String[] excelHeader = { "序号", "楼宇名称","地址","楼宇业态","招商方向","建筑面积","商务面积","空置面积","租金","物业","产权单位","经营管理单位","物业公司","责任单位","楼宇分类","楼内重点企业","提升改造情况"};
-		HSSFWorkbook wb = new HSSFWorkbook();    
-        HSSFSheet sheet = wb.createSheet("楼宇基本情况表");    
-        HSSFRow row = sheet.createRow((int) 0);    
-        HSSFCellStyle style = wb.createCellStyle();    
-        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);   
-        for (int i = 0; i < excelHeader.length; i++) {    
-            HSSFCell cell = row.createCell(i);    
-            cell.setCellValue(excelHeader[i]);    
-            cell.setCellStyle(style);    
-            sheet.autoSizeColumn(i);    
-        }    
-        for (int i = 0; i < listbuild.size(); i++) {    
-            row = sheet.createRow(i + 1); 
-            HashMap map=new HashMap();
-             map=(HashMap<String, Object>) listbuild.get(i);
-             row.createCell(0).setCellValue((datauntil.setValue(map.get("id"))).toString());
-             row.createCell(1).setCellValue((datauntil.setValue(map.get("buildname"))).toString());
-             row.createCell(2).setCellValue((datauntil.setValue(map.get("prename"))).toString());
-             row.createCell(3).setCellValue((datauntil.setValue(map.get("rent"))).toString());
-             row.createCell(4).setCellValue((datauntil.setValue(map.get("property"))).toString());
-             row.createCell(5).setCellValue((datauntil.setValue(map.get("buildarea"))).toString());
-             row.createCell(6).setCellValue((datauntil.setValue(map.get("eartharea"))).toString());
-             row.createCell(7).setCellValue((datauntil.setValue(map.get("rentarea"))).toString());
-             row.createCell(8).setCellValue((datauntil.setValue(map.get("emptyarea"))).toString());
-             row.createCell(9).setCellValue((datauntil.setValue(map.get("buildright"))).toString());
-             row.createCell(10).setCellValue((datauntil.setValue(map.get("classvalue"))).toString());
-             row.createCell(11).setCellValue((datauntil.setValue(map.get("type"))).toString());
-             row.createCell(12).setCellValue((datauntil.setValue(map.get("service"))).toString());
-             row.createCell(13).setCellValue((datauntil.setValue(map.get("upfloor"))).toString());
-             row.createCell(14).setCellValue((datauntil.setValue(map.get("address"))).toString());
-             row.createCell(15).setCellValue((datauntil.setValue(map.get("postcode"))).toString());
-             row.createCell(16).setCellValue((datauntil.setValue(map.get("buildyear"))).toString());
-             row.createCell(17).setCellValue((datauntil.setValue(map.get("devname"))).toString());
-             row.createCell(18).setCellValue((datauntil.setValue(map.get("street"))).toString());
-             row.createCell(19).setCellValue((datauntil.setValue(map.get("cbd"))).toString());
-             row.createCell(20).setCellValue((datauntil.setValue(map.get("propertyname"))).toString());
-             row.createCell(21).setCellValue((datauntil.setValue(map.get("propertytel"))).toString());
-             row.createCell(22).setCellValue((datauntil.setValue(map.get("createtime"))).toString());
-             row.createCell(23).setCellValue((datauntil.setValue(map.get("downfloor"))).toString());
-             row.createCell(24).setCellValue((datauntil.setValue(map.get("toucheman"))).toString());
-             row.createCell(25).setCellValue((datauntil.setValue(map.get("roomno"))).toString());
-             row.createCell(26).setCellValue((datauntil.setValue(map.get("statusvalue"))).toString());
-             row.createCell(27).setCellValue((datauntil.setValue(map.get("rununitid"))).toString());
-             row.createCell(28).setCellValue((datauntil.setValue(map.get("vrurl"))).toString());
-             row.createCell(29).setCellValue((datauntil.setValue(map.get("carno"))).toString());
-             row.createCell(30).setCellValue((datauntil.setValue(map.get("totalfloor"))).toString());
-             row.createCell(31).setCellValue((datauntil.setValue(map.get("propertyprice"))).toString());
-             row.createCell(32).setCellValue((datauntil.setValue(map.get("industryunit"))).toString());
-             row.createCell(33).setCellValue((datauntil.setValue(map.get("manageunit"))).toString());
-             row.createCell(34).setCellValue((datauntil.setValue(map.get("dutyunit"))).toString());
-             row.createCell(35).setCellValue((datauntil.setValue(map.get("buildclass"))).toString());
-     
-        }    
+		String filed="buildname,address,type,buildarea,eartharea,emptyarea,rent,propertyname,industryunit,manageunit,propertyname,dutyunit,buildclass";
+		String[] filedlist=filed.split(",");
+		FileInputStream fis = new FileInputStream(path);
+		Workbook wb= new HSSFWorkbook(fis);
+		 Sheet sheet = wb.getSheetAt(0);
+		 Font hssfFont = wb.createFont();
+		    hssfFont.setFontHeightInPoints((short)10);
+		    hssfFont.setFontName("宋体");
+		    CellStyle cellStyle = wb.createCellStyle();
+		    cellStyle.setFont(hssfFont);
+		    for(int i=0;i<listbuild.size();i++){
+		    	 Row row = sheet.createRow(i+3); 
+		    	 
+		    	  HashMap map=new HashMap();
+		          map=(HashMap<String, Object>) listbuild.get(i);
+		          row.createCell(0).setCellValue(i+1);
+		         for(int j=0;j<filedlist.length;j++){
+		        	 
+		        	Cell cell= row.createCell(j+1);
+		        	cell.setCellValue((datauntil.setValue(map.get(filedlist[j]))).toString());
+		        	cell.setCellStyle(cellStyle);
+		         }
+		          
+		          
+		    }
+		
         response.setContentType("application/vnd.ms-excel");    
         response.setHeader("Content-disposition", "attachment;filename=buildbasic.xls");    
         OutputStream ouputStream = response.getOutputStream();    
@@ -169,7 +143,6 @@ public class BuildImExport {
 		}else
 			return "false";
         InputStream in =null;  
-        List<List<Object>> listob = null;  
         CommonsMultipartFile file = excelfile;  
         if(file.isEmpty()){  
             throw new Exception("文件不存在！");  
@@ -178,12 +151,21 @@ public class BuildImExport {
         in = file.getInputStream();  
         
        
-        HSSFWorkbook wb = new HSSFWorkbook(in);
-		 HSSFSheet sheet=wb.getSheetAt(0);
+        String fileName = file.getOriginalFilename(); 
+        
+        Workbook wb=null;
+        if(fileName.endsWith("xls")){  
+            //2003  
+        	wb = new HSSFWorkbook(in);  
+        }else if(fileName.endsWith("xlsx")){  
+            //2007  
+        	wb = new XSSFWorkbook(in);  
+        }  
+        Sheet sheet=wb.getSheetAt(0);
 		
 		for(int j=3;j<sheet.getLastRowNum();j++){
 			HashMap<String, Object> map=new HashMap<String, Object>();
-			HSSFRow row=sheet.getRow(j);
+			Row row=sheet.getRow(j);
 			 try {
 				
 				map.put("buildname", datauntil.formatterdata(row.getCell(1)));
@@ -244,7 +226,6 @@ public class BuildImExport {
 		else
 			return "false";
         InputStream in =null;  
-        List<List<Object>> listob = null;  
         CommonsMultipartFile file = excelfile;  
         if(file.isEmpty()){  
             throw new Exception("文件不存在！");  
@@ -253,12 +234,21 @@ public class BuildImExport {
         List listbuildidname = mySQLDBHelper.retriveBySQL("select id,buildname from t_build_basis");
        
         in = file.getInputStream();  
-        HSSFWorkbook wb = new HSSFWorkbook(in);
-		 HSSFSheet sheet=wb.getSheetAt(0);
+        String fileName = file.getOriginalFilename(); 
+        
+        Workbook wb=null;
+        if(fileName.endsWith("xls")){  
+            //2003  
+        	wb = new HSSFWorkbook(in);  
+        }else if(fileName.endsWith("xlsx")){  
+            //2007  
+        	wb = new XSSFWorkbook(in);  
+        }  
+        Sheet sheet=wb.getSheetAt(0);
 		System.out.println(sheet.getLastRowNum());
 		for(int j=1;j<sheet.getLastRowNum()+1;j++){
 			HashMap<String, Object> map=new HashMap<String, Object>();
-			HSSFRow row=sheet.getRow(j);
+			Row row=sheet.getRow(j);
 			
 			 try {
 				map.put("unitname", datauntil.formatterdata(row.getCell(3)));
@@ -314,37 +304,61 @@ public class BuildImExport {
     public  String  uploaddishui(HttpServletRequest request) throws Exception {  
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;    
         System.out.println("通过传统方式form表单提交方式导入excel文件！"); 
-        MultipartFile file = multipartRequest.getFile("updishuifile");  
-        if(file.isEmpty()){  
+        MultipartFile file = multipartRequest.getFile("updishuifile"); 
+        
+        if(file==null){  
             throw new Exception("文件不存在！");  
         }  
+        String fileName = file.getOriginalFilename(); 
         String datatime=request.getParameter("datatime");
+        Map result = mySQLDBHelper.retriveMapFromSQL("select * from t_count_flag where countdate='" + datatime + "'");
+		if(result!=null){
+			return "exits";
+		}
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 		Date date=new Date();
 		String importtime=df.format(date);
+		String sql="SELECT societycode from t_build_unit";
+		List<Map<String,Object>> listqiy=mySQLDBHelper.retriveBySQL(sql);
+		int size0=listqiy.size();
         InputStream in =null;  
-        List<List<Object>> listob = null;  
-       
         List<HashMap<String, Object>> list=new ArrayList<HashMap<String, Object>>();
         in=file.getInputStream();
-        HSSFWorkbook wb=new HSSFWorkbook(in);
-        HSSFSheet sheet=wb.getSheetAt(0);
+        Workbook wb=null;
+        if(fileName.endsWith("xls")){  
+            //2003  
+        	wb = new HSSFWorkbook(in);  
+        }else if(fileName.endsWith("xlsx")){  
+            //2007  
+        	wb = new XSSFWorkbook(in);  
+        }  
+        Sheet sheet=wb.getSheetAt(0);
         
        
 		
 		for(int j=3;j<sheet.getLastRowNum()+1;j++){
+			int flag=0;
 			HashMap<String, Object> map=new HashMap<String, Object>();
 			Row row=sheet.getRow(j);
 			if(datauntil.formatterdata(row.getCell(0)).toString().length()<10)
 				continue;
 			 try {
+				String socid=datauntil.formatterdata(row.getCell(0)).toString();
+				for(int i=0;i<size0;i++){
+					HashMap<String, Object> mapqiye=(HashMap<String, Object>) listqiy.get(i);
+					if(socid.equals(mapqiye.get("societycode").toString())){
+						flag=1;
+						break;
+					}
+						
+				}
+				if(flag==0){
+					continue;
+				}
 				map.put("socialCreCode", datauntil.formatterdata(row.getCell(0)));
 				map.put("name", datauntil.formatterdata(row.getCell(1)));
 				map.put("taxableItem",datauntil.getDS( datauntil.formatterdata(row.getCell(2)).toString()));
-				map.put("leibie", datauntil.formatterdata(row.getCell(3)));
-				map.put("dalei", datauntil.formatterdata(row.getCell(4)));
-				map.put("countMarney", datauntil.formatterdata(row.getCell(5)));
-				map.put("filed", datauntil.formatterdata(row.getCell(6)));
+				map.put("countMarney", datauntil.formatterdata(row.getCell(3)));
 				map.put("importtime",importtime);
 				map.put("datatime", datatime);
 				
@@ -380,33 +394,61 @@ public class BuildImExport {
 	//导入国税
 		@RequestMapping(value="uploadguoshui.do",method = RequestMethod.POST) 
         @ResponseBody
-	    public  String  uploadguoshui(HttpServletRequest request) throws Exception {  
+	    public  String  uploadguoshui(/*@RequestParam(value="excelFile")MultipartFile file,*/HttpServletRequest request) throws Exception {  
 	        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;    
 	        System.out.println("通过传统方式form表单提交方式导入excel文件！"); 
 	        MultipartFile file = multipartRequest.getFile("upguoshuifile");  
-	        if(file.isEmpty()){  
+	          
+	       
+	        if(file==null){  
 	            throw new Exception("文件不存在！");  
 	        }  
+	        String fileName = file.getOriginalFilename();
 	        String datatime=request.getParameter("datatime");
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+	        Map result = mySQLDBHelper.retriveMapFromSQL("select * from t_count_flag where countdate='" + datatime + "'");
+			if(result!=null){
+				return "exits";
+			}
+	        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 			Date date=new Date();
 			String importtime=df.format(date);
+			String sql="SELECT societycode from t_build_unit";
+			List<Map<String,Object>> listqiy=mySQLDBHelper.retriveBySQL(sql);
+			int size0=listqiy.size();
 	        InputStream in =null;  
-	        List<List<Object>> listob = null;  
-	       
 	        List<HashMap<String, Object>> list=new ArrayList<HashMap<String, Object>>();
 	        in=file.getInputStream();
-	        HSSFWorkbook wb=new HSSFWorkbook(in);
+	        Workbook wb=null;
+	        if(fileName.endsWith("xls")){  
+                //2003  
+	        	wb = new HSSFWorkbook(in);  
+            }else if(fileName.endsWith("xlsx")){  
+                //2007  
+            	wb = new XSSFWorkbook(in);  
+            }  
+	        
 	        Sheet sheet=wb.getSheetAt(0);
 	        
 	       
 			System.out.println(sheet.getLastRowNum());
 			for(int j=2;j<sheet.getLastRowNum()+1;j++){
+				int flag=0;
 				HashMap<String, Object> map=new HashMap<String, Object>();
 				Row row=sheet.getRow(j);
 				if(datauntil.formatterdata(row.getCell(0)).toString().length()<10)
 					continue;
-				
+				String socid=datauntil.formatterdata(row.getCell(0)).toString();
+				for(int i=0;i<size0;i++){
+					HashMap<String, Object> mapqiye=(HashMap<String, Object>) listqiy.get(i);
+					if(socid.equals(mapqiye.get("societycode").toString())){
+						flag=1;
+						break;
+					}
+						
+				}
+				if(flag==0){
+					continue;
+				}
 					map.put("socialCreCode", datauntil.formatterdata(row.getCell(0)));
 					map.put("name", datauntil.formatterdata(row.getCell(1)));
 					map.put("taxableItem",datauntil.getGS(datauntil.formatterdata(row.getCell(2)).toString()));
@@ -482,6 +524,118 @@ public class BuildImExport {
 
 		}
 		
-		
+		//导出企业信息by 楼宇id
+				//
+      	@RequestMapping(value = "/exportqiyebyid", method = RequestMethod.GET,produces = "application/json")
+		@ResponseBody
+		public void exportqiyebyid(HttpServletRequest request,HttpServletResponse response) throws IOException {
+			String buildid = request.getParameter("id");
+			HttpSession session = request.getSession();
+			String role = "";
+			if(session.getAttribute("type") != null && !session.getAttribute("type").equals("")){
+
+			 role = session.getAttribute("role").toString();
+			}
+			//楼宇面积从哪个表里取	  
+			String sql="SELECT b.buildname, a.rentarea ,b.buildarea  from t_build_basis_count a ,t_build_basis b where a.buildid=b.id and a.buildid='"+buildid+"'ORDER BY  a.countmonth DESC";
+            
+			List list = mySQLDBHelper.retriveBySQL(sql);
+			String buildarea="";
+			String rentarea="";
+			String buildname="";
+			if(list.size()!=0){
+				Map map=(Map) list.get(0);
+				if(map.get("buildarea")!=null)
+					buildarea=map.get("buildarea").toString();
+				if(map.get("rentarea")!=null)
+					rentarea=map.get("rentarea").toString();
+				if(map.get("buildname")!=null)
+					buildname=map.get("buildname").toString();
+			}
+			
+			String path= request.getSession().getServletContext().getRealPath("/");
+			path=path+"tjlyxtgl/temp/qiyebyid.xls";
+			FileInputStream fis = new FileInputStream(path);
+		    Workbook wb= new HSSFWorkbook(fis);
+		    Sheet sheet = wb.getSheetAt(0);
+		    Font hssfFont = wb.createFont();
+		    hssfFont.setFontHeightInPoints((short)16);
+		    hssfFont.setFontName("宋体");
+		    CellStyle cellStyle = wb.createCellStyle();
+		    cellStyle.setFont(hssfFont);
+		    cellStyle.setAlignment(HSSFCellStyle.ALIGN_RIGHT);
+		    cellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+		    Row row0=sheet.getRow(1);
+		    Cell cell00=row0.getCell(0);
+		    cell00.setCellValue("       楼宇名称："+buildname);
+		    
+		    Row row=sheet.getRow(2);
+		    Cell cell=row.createCell(3);
+		    cell.setCellValue(buildarea+"㎡");
+		    cell.setCellStyle(cellStyle);
+		    Cell celll=row.getCell((8));
+		    celll.setCellValue("楼宇现有可出租面积："+rentarea+"㎡");
+		    celll.setCellStyle(cellStyle);
+		    //企业信息
+		    String sql1="SELECT a.* ,b.address from  t_build_unit a,t_build_basis b where a.buildid=b.id and a.buildid="+buildid;
+		    List listqiye = mySQLDBHelper.retriveBySQL(sql1);
+		    int size=listqiye.size();
+		    if(size!=0){
+		    	for(int i=0;i<size;i++ ){
+		    		Map qmap=(Map) listqiye.get(i);
+		    		Row row1=sheet.createRow(i+5);
+		    		Cell cell0=row1.createCell(0);
+		    		cell0.setCellValue(i+1);
+		    		Cell cell1=row1.createCell(1);
+		    		cell1.setCellValue(qmap.get("unitname").toString());
+		    		Cell cell2=row1.createCell(2);
+		    		cell2.setCellValue(datauntil.setValue(qmap.get("registryasset")).toString());
+		    		Cell cell3=row1.createCell(3);
+		    		cell3.setCellValue(datauntil.setValue(qmap.get("belongto")).toString());
+		    		Cell cell4=row1.createCell(4);
+		    		cell4.setCellValue("");
+		    		String dizhi= datauntil.setValue(qmap.get("registryaddress")).toString();
+		    		Cell cell5=row1.createCell(5);
+		    		Cell cell6=row1.createCell(6);
+		    	    if(dizhi.contains("河北区")){
+		    	    	cell5.setCellValue("√");
+		    	    }else{
+		    	    	cell6.setCellValue("√");
+		    	    }
+		    		Cell cell7=row1.createCell(7);
+		    		cell7.setCellValue(dizhi);
+		    		Cell cell8=row1.createCell(8);
+		    		Cell cell9=row1.createCell(9);
+		    		cell8.setCellValue("√");
+		    		Cell cell10=row1.createCell(10);
+		    		cell10.setCellValue(datauntil.setValue(qmap.get("address")).toString());
+		    		Cell cell11=row1.createCell(11);
+		    		cell11.setCellValue("");
+		    		Cell cell12=row1.createCell(12);
+		    		cell12.setCellValue(datauntil.setValue(qmap.get("lawer")).toString());
+		    		Cell cell13=row1.createCell(13);
+		    		cell13.setCellValue(datauntil.setValue(qmap.get("mobile")).toString());
+		    		Cell cell14=row1.createCell(14);
+		    		cell14.setCellValue(datauntil.setValue(qmap.get("entertime")).toString());
+		    		Cell cell15=row1.createCell(15);
+		    		cell15.setCellValue("--");
+		    		Cell cell16=row1.createCell(16);
+		    		cell16.setCellValue("--");
+		    		Cell cell17=row1.createCell(17);
+		    		cell17.setCellValue("√");
+		    		
+		    	}
+		    }
+		    
+		    
+		    response.setContentType("application/vnd.ms-excel");    
+	        response.setHeader("Content-disposition", "attachment;filename=buildqiye.xls");    
+	        OutputStream ouputStream = response.getOutputStream();    
+	        wb.write(ouputStream);    
+	        ouputStream.flush();    
+	        ouputStream.close();    
+		}
+				
+				
 		
 }

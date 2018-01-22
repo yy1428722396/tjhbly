@@ -34,7 +34,7 @@
 
 	<!-- 在com。controller包下查找所有的controller类 -->
 	
-	<task:scheduled-tasks>
+	<!--  <task:scheduled-tasks>
 		<task:scheduled ref="taskJob" method="count" cron="10 0 0 1 * ?" />
-	</task:scheduled-tasks>
+	</task:scheduled-tasks>-->
 </beans>

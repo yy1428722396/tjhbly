@@ -15,6 +15,7 @@
 	<!-- 以注解形式开发，并配置注解需要扫描的包 -->
 	<mvc:annotation-driven/>
 	<context:component-scan base-package="cn.com.xtgl.controller" />
+	<context:component-scan base-package="cn.com.tjly.controller" />
 	
 	<!-- spring mvc的全局配置，对所有的action请求，在其前面均加上/，返回的页面自动加上。jsp -->
 	<!-- <bean id="viewResolver"

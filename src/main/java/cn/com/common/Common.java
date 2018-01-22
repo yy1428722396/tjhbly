@@ -21,6 +21,36 @@ public class Common {
 		c.add(Calendar.MONTH, -1);
 		return sdf.format(c.getTime());
 	}
+	public static String lastYear(String time) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+		Date date = null;
+		try {
+			date = sdf.parse(time);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.add(Calendar.YEAR, -1);
+		return sdf.format(c.getTime());
+	}
+	public static String lastYearMonth(String time) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM");
+		Date date = null;
+		try {
+			date = sdf.parse(time);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.add(Calendar.YEAR, -1);
+		return sdf.format(c.getTime());
+	}
 	
 	public static Calendar oneYearMonth(String time) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM");
@@ -37,6 +67,7 @@ public class Common {
 		c.add(Calendar.MONTH, -11);
 		return c;
 	}
+	
 	
 	public static int monthDis(String beginTime,String endTime) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM");
@@ -61,12 +92,39 @@ public class Common {
 	
 	
 	public static void main(String[] args){
+		String countdate = "2016.01.01";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM");
-		Calendar c = oneYearMonth("2017.10");
-		System.out.println(sdf.format(c.getTime()));
-		c.add(Calendar.MONTH, 2);
-		System.out.println(sdf.format(c.getTime()));
+		Calendar c = Calendar.getInstance();
+		try {
+			c.setTime(sdf.parse(countdate));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		/*int index = c.getTime().getMonth() + 1;
+		String[] month =  new String[index];
+		System.out.println(index);
+		if(index == 1){
+			month[0] = sdf.format(c.getTime());
+		}else{
+			c.add(Calendar.MONTH, 1-index);
+			for (int m = 0; m < index; m++) {
+				month[m] = sdf.format(c.getTime());
+				c.add(Calendar.MONTH, 1);
+			}
+		}*/
 		
-		System.out.println(monthDis("2016.09","2017.02"));
+		int index = c.getTime().getMonth() + 1;
+		String[] month =  new String[12];
+		c.add(Calendar.MONTH, 1-index);
+			for (int m = 0; m < 12; m++) {
+				month[m] = sdf.format(c.getTime());
+				c.add(Calendar.MONTH, 1);
+			}
+		for (int m = 0; m < 12; m++) {
+			System.out.println(month[m]);
+		}
+		
 	}
 }
